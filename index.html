@@ -63,9 +63,9 @@
 <p>At the moment, <code>resquin</code> provides two functions:</p>
 <ul>
 <li>
-<code><a href="reference/resp_distributions.html">resp_distributions()</a></code> - Calculates response quality indicators (e.g. within person mean and standard deviation over a set of survey questions).</li>
-<li>
 <code><a href="reference/resp_styles.html">resp_styles()</a></code> - Calculates response style indicators (e.g. extreme response style or middle response style).</li>
+<li>
+<code><a href="reference/resp_distributions.html">resp_distributions()</a></code> - Calculates response distribution indicators (e.g. within person mean and standard deviation over a set of survey questions).</li>
 </ul>
 <p>Two more functions are planned:</p>
 <ul>
@@ -179,19 +179,7 @@
 <span><span class="co">#&gt; 8        2    1    0.33       NA         NA                 NA     NA    NA</span></span>
 <span><span class="co">#&gt; 9        3    0    0.00     2.67          2                  1   2.08  4.19</span></span>
 <span><span class="co">#&gt; 10       1    2    0.67       NA         NA                 NA     NA    NA</span></span>
-<span><span class="co">#&gt; 11       0    3    1.00       NA         NA                 NA     NA    NA</span></span>
-<span><span class="co">#&gt;    mahalanobis</span></span>
-<span><span class="co">#&gt; 1           NA</span></span>
-<span><span class="co">#&gt; 2           NA</span></span>
-<span><span class="co">#&gt; 3           NA</span></span>
-<span><span class="co">#&gt; 4           NA</span></span>
-<span><span class="co">#&gt; 5           NA</span></span>
-<span><span class="co">#&gt; 6           NA</span></span>
-<span><span class="co">#&gt; 7           NA</span></span>
-<span><span class="co">#&gt; 8           NA</span></span>
-<span><span class="co">#&gt; 9           NA</span></span>
-<span><span class="co">#&gt; 10          NA</span></span>
-<span><span class="co">#&gt; 11          NA</span></span></code></pre></div>
+<span><span class="co">#&gt; 11       0    3    1.00       NA         NA                 NA     NA    NA</span></span></code></pre></div>
 <p>The resulting data frame contains eight columns: * n_valid: the number of valid responses * n_na: the number of missing responses * prop_na: the proportion of missing responses of all responses * ips_mean: the ipsatized (within respondent) mean over all responses * ips_median: the ipsatized (within respondent) median over all responses * ips_sd: the ipsatized (within respondent) standard deviation over all responses * mahal: the mahalanobis distance of the respondent across all responses</p>
 </div>
 </div>
