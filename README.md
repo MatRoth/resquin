@@ -14,11 +14,11 @@ style indicators.
 
 At the moment, `resquin` provides two functions:
 
-- `resp_distributions()` - Calculates response quality indicators
-  (e.g. within person mean and standard deviation over a set of survey
-  questions).
 - `resp_styles()` - Calculates response style indicators (e.g. extreme
   response style or middle response style).
+- `resp_distributions()` - Calculates response distribution indicators
+  (e.g. within person mean and standard deviation over a set of survey
+  questions).
 
 Two more functions are planned:
 
@@ -179,18 +179,6 @@ resp_distributions(testdata,min_valid_responses = 1) |>
 #> 9        3    0    0.00     2.67          2                  1   2.08  4.19
 #> 10       1    2    0.67       NA         NA                 NA     NA    NA
 #> 11       0    3    1.00       NA         NA                 NA     NA    NA
-#>    mahalanobis
-#> 1           NA
-#> 2           NA
-#> 3           NA
-#> 4           NA
-#> 5           NA
-#> 6           NA
-#> 7           NA
-#> 8           NA
-#> 9           NA
-#> 10          NA
-#> 11          NA
 ```
 
 The resulting data frame contains eight columns: \* n_valid: the number

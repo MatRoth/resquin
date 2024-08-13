@@ -25,10 +25,11 @@ calculate common survey data quality indicators, such as response style indicato
 
 At the moment, `resquin` provides two functions: 
 
-* `resp_distributions()` - Calculates response quality indicators (e.g. within person 
-mean and standard deviation over a set of survey questions).
 * `resp_styles()` - Calculates response style indicators (e.g. extreme response style
 or middle response style).
+* `resp_distributions()` - Calculates response distribution indicators (e.g. within person 
+mean and standard deviation over a set of survey questions).
+
 
 Two more functions are planned: 
 
