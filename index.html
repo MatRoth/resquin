@@ -69,8 +69,10 @@
 </ul>
 <p>Two more functions are planned:</p>
 <ul>
-<li>`resp_patterns`` - Calculates response pattern indicators (e.g. straightlining)</li>
-<li>`resp_times`` - Calculates response time indicators (e.g. median item response time)</li>
+<li>
+<code>resp_patterns</code> - Calculates response pattern indicators (e.g. straightlining)</li>
+<li>
+<code>resp_times</code> - Calculates response time indicators (e.g. median item response time)</li>
 </ul>
 </div>
 <div class="section level2">
@@ -190,6 +192,7 @@
 <span><span class="co">#&gt; 9         4.19</span></span>
 <span><span class="co">#&gt; 10          NA</span></span>
 <span><span class="co">#&gt; 11          NA</span></span></code></pre></div>
+<p>The resulting data frame contains eight columsn: * n_valid: the number of valid responses * n_na: the number of missing responses * prop_na: the proportion of missing responses of all responses * ips_mean: the ipsatized (within respondent) mean over all responses * ips_median: the ipsatized (within respondent) median over all responses * ips_sd: the ipsatized (within respondent) standard deviation over all responses * mahal: the mahalanobis distance of the respondent across all responses</p>
 <p>The respondents received data distribution indicators in a data frame. This data frame can be analyzed by itself, or added to the main data set. Respondents with <code>NA</code> values were removed from the calculation. You can exclude respondents which do not have a minimal amount of valid data (i.e. non-missing responses) (<code>min_valid_responses</code>) up to 1, which excludes all respondents with a single <code>NA</code>.</p>
 </div>
 </div>
