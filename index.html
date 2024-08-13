@@ -59,7 +59,7 @@
 <div class="section level2">
 <h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
-<p><code>resquin</code> (<strong>re</strong>sponse <strong>qu</strong>ality <strong>in</strong>dicators) provides functions to calculate common survey data quality indicators, such as response style indicators.</p>
+<p><code>resquin</code> (<strong>res</strong>ponse <strong>qu</strong>ality <strong>in</strong>dicators) provides functions to calculate common survey data quality indicators, such as response style indicators.</p>
 <p>At the moment, <code>resquin</code> provides two functions:</p>
 <ul>
 <li>
@@ -168,31 +168,31 @@
 <code class="sourceCode R"><span><span class="co"># Calulating response distribution indicators for all respondents with no missing values</span></span>
 <span><span class="fu"><a href="reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span>,min_valid_responses <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="co"># Round to second decimal place</span></span>
-<span><span class="co">#&gt;    n_valid n_na prop_na ips_mean ips_median ips_median_abs_dev ips_sd</span></span>
-<span><span class="co">#&gt; 1        3    0    0.00     1.33          1                  0   0.58</span></span>
-<span><span class="co">#&gt; 2        3    0    0.00     1.67          2                  0   0.58</span></span>
-<span><span class="co">#&gt; 3        3    0    0.00     3.67          4                  1   1.53</span></span>
-<span><span class="co">#&gt; 4        3    0    0.00     2.67          3                  0   0.58</span></span>
-<span><span class="co">#&gt; 5        2    1    0.33       NA         NA                 NA     NA</span></span>
-<span><span class="co">#&gt; 6        3    0    0.00     3.33          3                  0   0.58</span></span>
-<span><span class="co">#&gt; 7        3    0    0.00     2.33          2                  1   1.53</span></span>
-<span><span class="co">#&gt; 8        2    1    0.33       NA         NA                 NA     NA</span></span>
-<span><span class="co">#&gt; 9        3    0    0.00     2.67          2                  1   2.08</span></span>
-<span><span class="co">#&gt; 10       1    2    0.67       NA         NA                 NA     NA</span></span>
-<span><span class="co">#&gt; 11       0    3    1.00       NA         NA                 NA     NA</span></span>
+<span><span class="co">#&gt;    n_valid n_na prop_na ips_mean ips_median ips_median_abs_dev ips_sd mahal</span></span>
+<span><span class="co">#&gt; 1        3    0    0.00     1.33          1                  0   0.58  3.06</span></span>
+<span><span class="co">#&gt; 2        3    0    0.00     1.67          2                  0   0.58  1.43</span></span>
+<span><span class="co">#&gt; 3        3    0    0.00     3.67          4                  1   1.53  3.21</span></span>
+<span><span class="co">#&gt; 4        3    0    0.00     2.67          3                  0   0.58  2.43</span></span>
+<span><span class="co">#&gt; 5        2    1    0.33       NA         NA                 NA     NA    NA</span></span>
+<span><span class="co">#&gt; 6        3    0    0.00     3.33          3                  0   0.58  1.26</span></span>
+<span><span class="co">#&gt; 7        3    0    0.00     2.33          2                  1   1.53  2.43</span></span>
+<span><span class="co">#&gt; 8        2    1    0.33       NA         NA                 NA     NA    NA</span></span>
+<span><span class="co">#&gt; 9        3    0    0.00     2.67          2                  1   2.08  4.19</span></span>
+<span><span class="co">#&gt; 10       1    2    0.67       NA         NA                 NA     NA    NA</span></span>
+<span><span class="co">#&gt; 11       0    3    1.00       NA         NA                 NA     NA    NA</span></span>
 <span><span class="co">#&gt;    mahalanobis</span></span>
-<span><span class="co">#&gt; 1         3.06</span></span>
-<span><span class="co">#&gt; 2         1.43</span></span>
-<span><span class="co">#&gt; 3         3.21</span></span>
-<span><span class="co">#&gt; 4         2.43</span></span>
+<span><span class="co">#&gt; 1           NA</span></span>
+<span><span class="co">#&gt; 2           NA</span></span>
+<span><span class="co">#&gt; 3           NA</span></span>
+<span><span class="co">#&gt; 4           NA</span></span>
 <span><span class="co">#&gt; 5           NA</span></span>
-<span><span class="co">#&gt; 6         1.26</span></span>
-<span><span class="co">#&gt; 7         2.43</span></span>
+<span><span class="co">#&gt; 6           NA</span></span>
+<span><span class="co">#&gt; 7           NA</span></span>
 <span><span class="co">#&gt; 8           NA</span></span>
-<span><span class="co">#&gt; 9         4.19</span></span>
+<span><span class="co">#&gt; 9           NA</span></span>
 <span><span class="co">#&gt; 10          NA</span></span>
 <span><span class="co">#&gt; 11          NA</span></span></code></pre></div>
-<p>The resulting data frame contains eight columsn: * n_valid: the number of valid responses * n_na: the number of missing responses * prop_na: the proportion of missing responses of all responses * ips_mean: the ipsatized (within respondent) mean over all responses * ips_median: the ipsatized (within respondent) median over all responses * ips_sd: the ipsatized (within respondent) standard deviation over all responses * mahal: the mahalanobis distance of the respondent across all responses</p>
+<p>The resulting data frame contains eight columns: * n_valid: the number of valid responses * n_na: the number of missing responses * prop_na: the proportion of missing responses of all responses * ips_mean: the ipsatized (within respondent) mean over all responses * ips_median: the ipsatized (within respondent) median over all responses * ips_sd: the ipsatized (within respondent) standard deviation over all responses * mahal: the mahalanobis distance of the respondent across all responses</p>
 </div>
 </div>
 </div>
@@ -224,7 +224,12 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Matthias Roth <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-4369-8106" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">More about authors...</a></li>
+<li>Nivedita Bhaktha <br><small class="roles"> Author, contributor </small>  </li>
+<li>Matthias Bluemke <br><small class="roles"> Author, contributor </small>  </li>
+<li>Thomas Knopf <br><small class="roles"> Author, contributor </small>  </li>
+<li>Fabienne Krämer <br><small class="roles"> Author, contributor </small>  </li>
+<li>Clemens Lechner <br><small class="roles"> Author, contributor </small>  </li>
+<li>Çağla Yildiz <br><small class="roles"> Author, contributor </small>  </li>
 </ul>
 </div>
 
@@ -235,7 +240,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Matthias Roth.</p>
+  <p>Developed by Matthias Roth, Nivedita Bhaktha, Matthias Bluemke, Thomas Knopf, Fabienne Krämer, Clemens Lechner, Çağla Yildiz.</p>
 </div>
 
 <div class="pkgdown-footer-right">
