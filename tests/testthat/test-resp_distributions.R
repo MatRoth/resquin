@@ -78,7 +78,7 @@ test_that("resp_distributions output tests", {
                  apply(1,sd,na.rm=T))
   #TODO Mahalanobis distance test
   expect_equal(resp_distributions(testdata,
-                       min_valid_responses = 0)$mahalanobis,
+                       min_valid_responses = 0)$mahal,
     mahalanobis(x = testdata,
                            center = colMeans(testdata,na.rm=T),
                            cov = cov(testdata,

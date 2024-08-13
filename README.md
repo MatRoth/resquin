@@ -8,7 +8,7 @@
 
 ## About
 
-`resquin` (**re**sponse **qu**ality **in**dicators) provides functions
+`resquin` (**res**ponse **qu**ality **in**dicators) provides functions
 to calculate common survey data quality indicators, such as response
 style indicators.
 
@@ -167,33 +167,33 @@ variability of responses within a respondent.
 # Calulating response distribution indicators for all respondents with no missing values
 resp_distributions(testdata,min_valid_responses = 1) |>
   round(2) # Round to second decimal place
-#>    n_valid n_na prop_na ips_mean ips_median ips_median_abs_dev ips_sd
-#> 1        3    0    0.00     1.33          1                  0   0.58
-#> 2        3    0    0.00     1.67          2                  0   0.58
-#> 3        3    0    0.00     3.67          4                  1   1.53
-#> 4        3    0    0.00     2.67          3                  0   0.58
-#> 5        2    1    0.33       NA         NA                 NA     NA
-#> 6        3    0    0.00     3.33          3                  0   0.58
-#> 7        3    0    0.00     2.33          2                  1   1.53
-#> 8        2    1    0.33       NA         NA                 NA     NA
-#> 9        3    0    0.00     2.67          2                  1   2.08
-#> 10       1    2    0.67       NA         NA                 NA     NA
-#> 11       0    3    1.00       NA         NA                 NA     NA
+#>    n_valid n_na prop_na ips_mean ips_median ips_median_abs_dev ips_sd mahal
+#> 1        3    0    0.00     1.33          1                  0   0.58  3.06
+#> 2        3    0    0.00     1.67          2                  0   0.58  1.43
+#> 3        3    0    0.00     3.67          4                  1   1.53  3.21
+#> 4        3    0    0.00     2.67          3                  0   0.58  2.43
+#> 5        2    1    0.33       NA         NA                 NA     NA    NA
+#> 6        3    0    0.00     3.33          3                  0   0.58  1.26
+#> 7        3    0    0.00     2.33          2                  1   1.53  2.43
+#> 8        2    1    0.33       NA         NA                 NA     NA    NA
+#> 9        3    0    0.00     2.67          2                  1   2.08  4.19
+#> 10       1    2    0.67       NA         NA                 NA     NA    NA
+#> 11       0    3    1.00       NA         NA                 NA     NA    NA
 #>    mahalanobis
-#> 1         3.06
-#> 2         1.43
-#> 3         3.21
-#> 4         2.43
+#> 1           NA
+#> 2           NA
+#> 3           NA
+#> 4           NA
 #> 5           NA
-#> 6         1.26
-#> 7         2.43
+#> 6           NA
+#> 7           NA
 #> 8           NA
-#> 9         4.19
+#> 9           NA
 #> 10          NA
 #> 11          NA
 ```
 
-The resulting data frame contains eight columsn: \* n_valid: the number
+The resulting data frame contains eight columns: \* n_valid: the number
 of valid responses \* n_na: the number of missing responses \* prop_na:
 the proportion of missing responses of all responses \* ips_mean: the
 ipsatized (within respondent) mean over all responses \* ips_median: the

@@ -2,14 +2,14 @@ Package: resquin
 Title: provides functions to calculate common response quality indicators in survey reseach
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Matthias", "Roth", , "matthias.roth@gesis.org", role = c("aut", "cre"),
+    person(given = "Matthias", family = "Roth", email = "matthias.roth@gesis.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4369-8106")),
-    person("Clemens", "Lechner", role = "ctb"),
-    person("Bluemke", "Matthias", role = "ctb"),
-    person("Thomas", "Knopf", role = "ctb"),
-    person("Fabienne", "Krämer", role = "ctb"),
-    person("Çağla", "Yildiz", role = "ctb"),
-    person("Nivedita", "Bhaktha", role = "ctb")
+    person(given ="Nivedita", family = "Bhaktha", role = c("aut","ctb")),
+    person(given ="Matthias", family = "Bluemke", role = c("aut","ctb")),
+    person(given ="Thomas"  , family = "Knopf",   role = c("aut","ctb")),
+    person(given ="Fabienne", family = "Krämer",  role = c("aut","ctb")),
+    person(given ="Clemens" , family = "Lechner", role = c("aut","ctb")),
+    person(given ="Çağla"   , family = "Yildiz",  role = c("aut","ctb"))
   )
 Description: resquin (response quality indicators) provides functions to calculate common survey data quality indicators, such as response style indicators. Currently, resquin provides two functions.resp_distributions() - Calculates response quality indicators (e.g. within person mean and standard deviation over a set of survey questions). resp_styles() - Calculates response style indicators (e.g. extreme response style or middle response style).
 License: GPL (>= 3) + file LICENSE

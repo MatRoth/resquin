@@ -85,7 +85,7 @@ resp_distributions <- function(x, min_valid_responses = 1) {
 
   # Mahalanobis distance can fail due to singular matrix
   tryCatch(
-    expr = {output$mahalanobis[!na_mask] <- mahalanobis(
+    expr = {output$mahal[!na_mask] <- mahalanobis(
       x = x[!na_mask,],
       center = colMeans(x[!na_mask,],na.rm = T),
       cov = cov(x = x[!na_mask,],
@@ -97,7 +97,7 @@ resp_distributions <- function(x, min_valid_responses = 1) {
       return(output)},
 
     finally = {
-      if(!("mahalanobis" %in% names(output))) output$mahalanobis <- NA
+      if(!("mahal" %in% names(output))) output$mahal <- NA
     }
   )
 

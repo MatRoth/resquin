@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 ## About
 
-`resquin` (**re**sponse **qu**ality **in**dicators) provides functions to
+`resquin` (**res**ponse **qu**ality **in**dicators) provides functions to
 calculate common survey data quality indicators, such as response style indicators. 
 
 At the moment, `resquin` provides two functions: 
@@ -137,14 +137,14 @@ responses that need to be valid to be included in the response style calculation
 resp_distributions(testdata,min_valid_responses = 1) |>
   round(2) # Round to second decimal place
 ```
-The resulting data frame contains eight columsn:
-  * n_valid: the number of valid responses
-  * n_na: the number of missing responses
-  * prop_na: the proportion of missing responses of all responses
-  * ips_mean: the ipsatized (within respondent) mean over all responses
-  * ips_median: the ipsatized (within respondent) median over all responses
-  * ips_sd: the ipsatized (within respondent) standard deviation over all responses
-  * mahal: the mahalanobis distance of the respondent across all responses
+The resulting data frame contains eight columns:
+* n_valid: the number of valid responses
+* n_na: the number of missing responses
+* prop_na: the proportion of missing responses of all responses
+* ips_mean: the ipsatized (within respondent) mean over all responses
+* ips_median: the ipsatized (within respondent) median over all responses
+* ips_sd: the ipsatized (within respondent) standard deviation over all responses
+* mahal: the mahalanobis distance of the respondent across all responses
 
 
 
