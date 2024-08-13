@@ -19,5 +19,5 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/MatRoth/resquin
+URL: https://github.com/MatRoth/resquin, https://matroth.github.io/resquin/
 BugReports: https://github.com/MatRoth/resquin/issues

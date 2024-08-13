@@ -22,10 +22,10 @@ At the moment, `resquin` provides two functions:
 
 Two more functions are planned:
 
-- \`resp_patterns\`\` - Calculates response pattern indicators
+- `resp_patterns` - Calculates response pattern indicators
   (e.g. straightlining)
-- \`resp_times\`\` - Calculates response time indicators (e.g. median
-  item response time)
+- `resp_times` - Calculates response time indicators (e.g. median item
+  response time)
 
 ## Installation
 
@@ -192,6 +192,14 @@ resp_distributions(testdata,min_valid_responses = 1) |>
 #> 10          NA
 #> 11          NA
 ```
+
+The resulting data frame contains eight columsn: \* n_valid: the number
+of valid responses \* n_na: the number of missing responses \* prop_na:
+the proportion of missing responses of all responses \* ips_mean: the
+ipsatized (within respondent) mean over all responses \* ips_median: the
+ipsatized (within respondent) median over all responses \* ips_sd: the
+ipsatized (within respondent) standard deviation over all responses \*
+mahal: the mahalanobis distance of the respondent across all responses
 
 The respondents received data distribution indicators in a data frame.
 This data frame can be analyzed by itself, or added to the main data

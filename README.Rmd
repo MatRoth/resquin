@@ -130,13 +130,22 @@ responses that need to be valid to be included in the response style calculation
 
 ### `resp_distributions()`: Within respondent response distribution indices 
 
-`resp_distributions()` calculates indices which reflect the location and variability of responses within a respondent. 
+`resp_distributions()` calculates indices which reflect the location and variability of responses within a respondent.
 
 ```{r}
 # Calulating response distribution indicators for all respondents with no missing values
 resp_distributions(testdata,min_valid_responses = 1) |>
   round(2) # Round to second decimal place
 ```
+The resulting data frame contains eight columsn:
+  * n_valid: the number of valid responses
+  * n_na: the number of missing responses
+  * prop_na: the proportion of missing responses of all responses
+  * ips_mean: the ipsatized (within respondent) mean over all responses
+  * ips_median: the ipsatized (within respondent) median over all responses
+  * ips_sd: the ipsatized (within respondent) standard deviation over all responses
+  * mahal: the mahalanobis distance of the respondent across all responses
+
 
 The respondents received data distribution indicators in a data frame. This data frame can be analyzed by itself,
 or added to the main data set. Respondents with `NA` values were removed from the 
