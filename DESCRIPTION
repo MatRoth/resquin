@@ -1,0 +1,23 @@
+Package: resquin
+Title: provides functions to calculate common response quality indicators in survey reseach
+Version: 0.0.0.9000
+Authors@R: 
+    person("Matthias", "Roth", , "matthias.roth@gesis.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-4369-8106"))
+Description: resquin (response quality indicators) provides functions to calculate common survey data quality indicators, such as response style indicators. Currently, resquin provides two functions.resp_distributions() - Calculates response quality indicators (e.g. within person mean and standard deviation over a set of survey questions). resp_styles() - Calculates response style indicators (e.g. extreme response style or middle response style).
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    cli,
+    purrr,
+    vctrs
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+URL: https://github.com/MatRoth/resquin
+BugReports: https://github.com/MatRoth/resquin/issues
