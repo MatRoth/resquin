@@ -157,17 +157,20 @@
 <p>The resulting data frame contains five columns corresponding to the middle response style (MRS), acquiescence response style (ARS), disaquiescence response style (DRS), extreme response style (ERS), and non-extreme response style (NERS) - you can learn more about the response styles in the help file of the function using <code><a href="reference/resp_styles.html">?resp_styles</a></code>.</p>
 <p>Each respondent receives one value for each indicator, given that they can be calculated. Because <code>normalize</code> is set to <code>TRUE</code>the values are expressed as the share of responses of a respondent that can be attributed to a response style. For example, respondent one has an ERS value of 0.67 meaning that two out of three responses can be identified as extreme responses. On the other hand, respondent one does not have any mid-point response, leading to a value of 0 in the MRS column.</p>
 <p>Instead of calculating proportions, we can extract the counts of responses that can be attributed to a response option by setting <code>normalize</code> to <code>FALSE</code>.</p>
-<p>Finally, we can decide to include or exclude respondents from receiving response style values by setting <code>min_valid_responses</code>, which can take values from 0 to 1. <code>min_valid_responses</code> sets the share of valid responses (i.e. non-missing responses) a respondent must have to receive response style values. A value of 0 indicates that response style values should be calculated for all respondents, regardless of whether or not they have missing values. A value of 1 indicates that response styles should only be calculated if respondents have valid responses on all variables. Values between 0 and 1 indicate the share of responses that need to be valid to be included in the response style calculations.</p>
+<p>Finally, we can decide to include or exclude respondents from receiving response style values by setting <code>min_valid_responses</code>, which can take values from 0 to 1. <code>min_valid_responses</code> sets the share of valid responses (i.e. non-missing responses) a respondent must have to receive response style values. A value of 0 indicates that response style values should be calculated for all respondents, regardless of whether or not they have missing values. A value of 1 indicates that response styles should only be calculated for respondents who have valid responses on all variables. Values between 0 and 1 indicate the share of responses that need to be valid to be included in the response style calculations.</p>
 </div>
 <div class="section level3">
 <h3 id="resp_distributions-within-respondent-response-distribution-indices">
 <code>resp_distributions()</code>: Within respondent response distribution indices<a class="anchor" aria-label="anchor" href="#resp_distributions-within-respondent-response-distribution-indices"></a>
 </h3>
-<p><code><a href="reference/resp_distributions.html">resp_distributions()</a></code> calculates indices which reflect the location and variability of responses within a respondent.</p>
+<p><code><a href="reference/resp_distributions.html">resp_distributions()</a></code> calculates indices which reflect the location and variability of responses within a respondent. <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> works similar to <code>resp_styles</code>: We need to specify the data argument and we can include or exclude respondents from the calculations based on amount of missing data they exhibit (for an explanation see paragraph above).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calulating response distribution indicators for all respondents with no missing values</span></span>
-<span><span class="fu"><a href="reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span>,min_valid_responses <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="co"># Round to second decimal place</span></span>
+<span><span class="va">results_resp_distributions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
+<span>  min_valid_responses <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Excludes respondents with less than 100% valid responses</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">results_resp_distributions</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    n_valid n_na prop_na ips_mean ips_median ips_median_abs_dev ips_sd mahal</span></span>
 <span><span class="co">#&gt; 1        3    0    0.00     1.33          1                  0   0.58  3.06</span></span>
 <span><span class="co">#&gt; 2        3    0    0.00     1.67          2                  0   0.58  1.43</span></span>
@@ -180,7 +183,16 @@
 <span><span class="co">#&gt; 9        3    0    0.00     2.67          2                  1   2.08  4.19</span></span>
 <span><span class="co">#&gt; 10       1    2    0.67       NA         NA                 NA     NA    NA</span></span>
 <span><span class="co">#&gt; 11       0    3    1.00       NA         NA                 NA     NA    NA</span></span></code></pre></div>
-<p>The resulting data frame contains eight columns: * n_valid: the number of valid responses * n_na: the number of missing responses * prop_na: the proportion of missing responses of all responses * ips_mean: the ipsatized (within respondent) mean over all responses * ips_median: the ipsatized (within respondent) median over all responses * ips_sd: the ipsatized (within respondent) standard deviation over all responses * mahal: the mahalanobis distance of the respondent across all responses</p>
+<p>The resulting data frame contains eight columns:</p>
+<ul>
+<li>n_valid: the number of valid responses</li>
+<li>n_na: the number of missing responses</li>
+<li>prop_na: the proportion of missing responses of all responses</li>
+<li>ips_mean: the ipsatized (within respondent) mean over all responses</li>
+<li>ips_median: the ipsatized (within respondent) median over all responses</li>
+<li>ips_sd: the ipsatized (within respondent) standard deviation over all responses</li>
+<li>mahal: the mahalanobis distance of the respondent across all responses</li>
+</ul>
 </div>
 </div>
 </div>
