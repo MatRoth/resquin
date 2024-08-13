@@ -14,10 +14,10 @@ style indicators.
 
 At the moment, `resquin` provides two functions:
 
-- `resp_distributions` - Calculates response quality indicators
+- `resp_distributions()` - Calculates response quality indicators
   (e.g. within person mean and standard deviation over a set of survey
   questions).
-- `resp_styles` - Calculates response style indicators (e.g. extreme
+- `resp_styles()` - Calculates response style indicators (e.g. extreme
   response style or middle response style).
 
 Two more functions are planned:
@@ -143,20 +143,20 @@ value of 0.67 meaning that two out of three responses can be identified
 as extreme responses. On the other hand, respondent one does not have
 any mid-point response, leading to a value of 0 in the MRS column.
 
-Instead of receiving proportions, we can extract the counts of responses
-that can be attributed to a response option by setting `normalize` to
-`FALSE`.
+Instead of calculating proportions, we can extract the counts of
+responses that can be attributed to a response option by setting
+`normalize` to `FALSE`.
 
 Finally, we can decide to include or exclude respondents from receiving
 response style values by setting `min_valid_responses`, which can take
 values from 0 to 1. `min_valid_responses` sets the share of valid
-responses (i.e. non-missing respones) a respondent must have to receive
+responses (i.e. non-missing responses) a respondent must have to receive
 response style values. A value of 0 indicates that response style values
 should be calculated for all respondents, regardless of whether or not
-they have missings. A value of 1 indicates that response styles should
-only be calculated if respondents have valid responses on all variables.
-Values between 0 and 1 indicate the share of responses that need to be
-valid to be included in the response style calculations.
+they have missing values. A value of 1 indicates that response styles
+should only be calculated if respondents have valid responses on all
+variables. Values between 0 and 1 indicate the share of responses that
+need to be valid to be included in the response style calculations.
 
 ### `resp_distributions()`: Within respondent response distribution indices
 
@@ -200,10 +200,3 @@ ipsatized (within respondent) mean over all responses \* ips_median: the
 ipsatized (within respondent) median over all responses \* ips_sd: the
 ipsatized (within respondent) standard deviation over all responses \*
 mahal: the mahalanobis distance of the respondent across all responses
-
-The respondents received data distribution indicators in a data frame.
-This data frame can be analyzed by itself, or added to the main data
-set. Respondents with `NA` values were removed from the calculation. You
-can exclude respondents which do not have a minimal amount of valid data
-(i.e. non-missing responses) (`min_valid_responses`) up to 1, which
-excludes all respondents with a single `NA`.

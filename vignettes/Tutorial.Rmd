@@ -1,5 +1,5 @@
 ---
-title: "DQAres Tutorial"
+title: "resquin tutorial"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{DQAres Tutorial}
@@ -17,3 +17,4 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(resquin)
 ```
+Comming soon.
