@@ -125,20 +125,26 @@ style values by setting `min_valid_responses`, which can take values from 0 to 1
 share of valid responses (i.e. non-missing responses) a respondent must have to receive
 response style values. A value of 0 indicates that response style values should be
 calculated for all respondents, regardless of whether or not they have missing values. A value 
-of 1 indicates that response styles should only be calculated if respondents have
+of 1 indicates that response styles should only be calculated for respondents who have
 valid responses on all variables. Values between 0 and 1 indicate the share of
 responses that need to be valid to be included in the response style calculations.
 
 ### `resp_distributions()`: Within respondent response distribution indices 
 
-`resp_distributions()` calculates indices which reflect the location and variability of responses within a respondent.
+`resp_distributions()` calculates indices which reflect the location and variability of responses within a respondent. `resp_distributions()` works similar to `resp_styles`: We need to 
+specify the data argument and we can include or exclude respondents from the calculations
+based on amount of missing data they exhibit (for an explanation see paragraph above). 
 
 ```{r}
 # Calulating response distribution indicators for all respondents with no missing values
-resp_distributions(testdata,min_valid_responses = 1) |>
-  round(2) # Round to second decimal place
+results_resp_distributions <- resp_distributions(
+  x = testdata,
+  min_valid_responses = 1) # Excludes respondents with less than 100% valid responses
+
+round(results_resp_distributions,2)
 ```
 The resulting data frame contains eight columns:
+
 * n_valid: the number of valid responses
 * n_na: the number of missing responses
 * prop_na: the proportion of missing responses of all responses

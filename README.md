@@ -154,19 +154,26 @@ responses (i.e. non-missing responses) a respondent must have to receive
 response style values. A value of 0 indicates that response style values
 should be calculated for all respondents, regardless of whether or not
 they have missing values. A value of 1 indicates that response styles
-should only be calculated if respondents have valid responses on all
-variables. Values between 0 and 1 indicate the share of responses that
-need to be valid to be included in the response style calculations.
+should only be calculated for respondents who have valid responses on
+all variables. Values between 0 and 1 indicate the share of responses
+that need to be valid to be included in the response style calculations.
 
 ### `resp_distributions()`: Within respondent response distribution indices
 
 `resp_distributions()` calculates indices which reflect the location and
-variability of responses within a respondent.
+variability of responses within a respondent. `resp_distributions()`
+works similar to `resp_styles`: We need to specify the data argument and
+we can include or exclude respondents from the calculations based on
+amount of missing data they exhibit (for an explanation see paragraph
+above).
 
 ``` r
 # Calulating response distribution indicators for all respondents with no missing values
-resp_distributions(testdata,min_valid_responses = 1) |>
-  round(2) # Round to second decimal place
+results_resp_distributions <- resp_distributions(
+  x = testdata,
+  min_valid_responses = 1) # Excludes respondents with less than 100% valid responses
+
+round(results_resp_distributions,2)
 #>    n_valid n_na prop_na ips_mean ips_median ips_median_abs_dev ips_sd mahal
 #> 1        3    0    0.00     1.33          1                  0   0.58  3.06
 #> 2        3    0    0.00     1.67          2                  0   0.58  1.43
@@ -181,10 +188,14 @@ resp_distributions(testdata,min_valid_responses = 1) |>
 #> 11       0    3    1.00       NA         NA                 NA     NA    NA
 ```
 
-The resulting data frame contains eight columns: \* n_valid: the number
-of valid responses \* n_na: the number of missing responses \* prop_na:
-the proportion of missing responses of all responses \* ips_mean: the
-ipsatized (within respondent) mean over all responses \* ips_median: the
-ipsatized (within respondent) median over all responses \* ips_sd: the
-ipsatized (within respondent) standard deviation over all responses \*
-mahal: the mahalanobis distance of the respondent across all responses
+The resulting data frame contains eight columns:
+
+- n_valid: the number of valid responses
+- n_na: the number of missing responses
+- prop_na: the proportion of missing responses of all responses
+- ips_mean: the ipsatized (within respondent) mean over all responses
+- ips_median: the ipsatized (within respondent) median over all
+  responses
+- ips_sd: the ipsatized (within respondent) standard deviation over all
+  responses
+- mahal: the mahalanobis distance of the respondent across all responses
