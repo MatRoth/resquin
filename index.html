@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Functions to calculate common response quality indicators in survey reseach • resquin</title>
+<title>Response Quality Indicators for Survey Research • resquin</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Functions to calculate common response quality indicators in survey reseach">
-<meta name="description" content="resquin (response quality indicators) provides functions to calculate common survey data quality indicators, such as response style indicators. Currently, resquin provides two functions.resp_distributions() - Calculates response quality indicators (e.g. within person mean and standard deviation over a set of survey questions). resp_styles() - Calculates response style indicators (e.g. extreme response style or middle response style).">
-<meta property="og:description" content="resquin (response quality indicators) provides functions to calculate common survey data quality indicators, such as response style indicators. Currently, resquin provides two functions.resp_distributions() - Calculates response quality indicators (e.g. within person mean and standard deviation over a set of survey questions). resp_styles() - Calculates response style indicators (e.g. extreme response style or middle response style).">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Response Quality Indicators for Survey Research">
+<meta name="description" content="Calculate common survey data quality indicators for multi-item scales and matrix questions. Currently supports the calculation of response style indicators and response distribution indicators.">
+<meta property="og:description" content="Calculate common survey data quality indicators for multi-item scales and matrix questions. Currently supports the calculation of response style indicators and response distribution indicators.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -38,6 +38,7 @@
 <li><a class="dropdown-item" href="articles/Tutorial.html">resquin tutorial</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -55,11 +56,12 @@
 <div class="page-header"><h1 id="resquin">resquin<a class="anchor" aria-label="anchor" href="#resquin"></a>
 </h1></div>
 <!-- badges: start -->
+
 <!-- badges: end -->
 <div class="section level2">
 <h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
-<p><code>resquin</code> (<strong>res</strong>ponse <strong>qu</strong>ality <strong>in</strong>dicators) provides functions to calculate common survey data quality indicators, such as response style indicators.</p>
+<p><code>resquin</code> (<strong>res</strong>ponse <strong>qu</strong>ality <strong>in</strong>dicators) provides functions to calculate survey data quality indicators to help identifying low-quality responses Vaerenbergh and Thomas (2013). <code><a href="reference/resp_styles.html">resp_styles()</a></code>, <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> and <code>resp_patterns()</code> (not yet implemented) provide response quality indicators geared towards matrix questions. Matrix questions present survey respondents with multiple questions which have the same response format, meaning the same number and labeling of response options.</p>
 <p>At the moment, <code>resquin</code> provides two functions:</p>
 <ul>
 <li>
@@ -70,7 +72,7 @@
 <p>Two more functions are planned:</p>
 <ul>
 <li>
-<code>resp_patterns</code> - Calculates response pattern indicators (e.g. straightlining)</li>
+<code>resp_patterns</code> - Calculates response pattern indicators (e.g. straightlining)</li>
 <li>
 <code>resp_times</code> - Calculates response time indicators (e.g. median item response time)</li>
 </ul>
@@ -105,23 +107,22 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># A small test data set with three items and ten respondents</span></span>
 <span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>  var_a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">3</span>,<span class="cn">NA</span><span class="op">)</span>,</span>
-<span>  var_b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="cn">NA</span>,<span class="fl">2</span>,<span class="cn">NA</span>,<span class="cn">NA</span><span class="op">)</span>,</span>
-<span>  var_c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="cn">NA</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="cn">NA</span>,<span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span>  var_a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">3</span>,<span class="cn">NA</span><span class="op">)</span>,</span>
+<span>  var_b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="cn">NA</span>,<span class="fl">2</span>,<span class="cn">NA</span>,<span class="cn">NA</span><span class="op">)</span>,</span>
+<span>  var_c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="cn">NA</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="cn">NA</span>,<span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">testdata</span></span>
 <span><span class="co">#&gt;    var_a var_b var_c</span></span>
 <span><span class="co">#&gt; 1      1     2     1</span></span>
-<span><span class="co">#&gt; 2      1     2     2</span></span>
-<span><span class="co">#&gt; 3      4     5     2</span></span>
-<span><span class="co">#&gt; 4      3     2     3</span></span>
-<span><span class="co">#&gt; 5      5     3    NA</span></span>
-<span><span class="co">#&gt; 6      3     4     3</span></span>
-<span><span class="co">#&gt; 7      2     1     4</span></span>
-<span><span class="co">#&gt; 8      3    NA     4</span></span>
-<span><span class="co">#&gt; 9      1     2     5</span></span>
-<span><span class="co">#&gt; 10     3    NA    NA</span></span>
-<span><span class="co">#&gt; 11    NA    NA    NA</span></span></code></pre></div>
+<span><span class="co">#&gt; 2      4     5     2</span></span>
+<span><span class="co">#&gt; 3      3     2     3</span></span>
+<span><span class="co">#&gt; 4      5     3    NA</span></span>
+<span><span class="co">#&gt; 5      3     4     3</span></span>
+<span><span class="co">#&gt; 6      2     1     4</span></span>
+<span><span class="co">#&gt; 7      3    NA     4</span></span>
+<span><span class="co">#&gt; 8      1     2     5</span></span>
+<span><span class="co">#&gt; 9      3    NA    NA</span></span>
+<span><span class="co">#&gt; 10    NA    NA    NA</span></span></code></pre></div>
 <p>The data set contains responses to three survey questions (var_a,var_b and var_c) from ten respondents. All three survey question allow responses on a scale from 1 to 5. Some respondents have missing values, which are set to <code>NA</code>.</p>
 <p>Lets use this data set to calculate response quality indicators.</p>
 </div>
@@ -144,16 +145,15 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">results_response_styles</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     MRS  ARS  DRS  ERS NERS</span></span>
 <span><span class="co">#&gt; 1  0.00 0.00 1.00 0.67 0.33</span></span>
-<span><span class="co">#&gt; 2  0.00 0.00 1.00 0.33 0.67</span></span>
-<span><span class="co">#&gt; 3  0.00 0.67 0.33 0.33 0.67</span></span>
-<span><span class="co">#&gt; 4  0.67 0.00 0.33 0.00 1.00</span></span>
-<span><span class="co">#&gt; 5    NA   NA   NA   NA   NA</span></span>
-<span><span class="co">#&gt; 6  0.67 0.33 0.00 0.00 1.00</span></span>
-<span><span class="co">#&gt; 7  0.00 0.33 0.67 0.33 0.67</span></span>
-<span><span class="co">#&gt; 8    NA   NA   NA   NA   NA</span></span>
-<span><span class="co">#&gt; 9  0.00 0.33 0.67 0.67 0.33</span></span>
-<span><span class="co">#&gt; 10   NA   NA   NA   NA   NA</span></span>
-<span><span class="co">#&gt; 11   NA   NA   NA   NA   NA</span></span></code></pre></div>
+<span><span class="co">#&gt; 2  0.00 0.67 0.33 0.33 0.67</span></span>
+<span><span class="co">#&gt; 3  0.67 0.00 0.33 0.00 1.00</span></span>
+<span><span class="co">#&gt; 4    NA   NA   NA   NA   NA</span></span>
+<span><span class="co">#&gt; 5  0.67 0.33 0.00 0.00 1.00</span></span>
+<span><span class="co">#&gt; 6  0.00 0.33 0.67 0.33 0.67</span></span>
+<span><span class="co">#&gt; 7    NA   NA   NA   NA   NA</span></span>
+<span><span class="co">#&gt; 8  0.00 0.33 0.67 0.67 0.33</span></span>
+<span><span class="co">#&gt; 9    NA   NA   NA   NA   NA</span></span>
+<span><span class="co">#&gt; 10   NA   NA   NA   NA   NA</span></span></code></pre></div>
 <p>The resulting data frame contains five columns corresponding to the middle response style (MRS), acquiescence response style (ARS), disaquiescence response style (DRS), extreme response style (ERS), and non-extreme response style (NERS) - you can learn more about the response styles in the help file of the function using <code><a href="reference/resp_styles.html">?resp_styles</a></code>.</p>
 <p>Each respondent receives one value for each indicator, given that they can be calculated. Because <code>normalize</code> is set to <code>TRUE</code>the values are expressed as the share of responses of a respondent that can be attributed to a response style. For example, respondent one has an ERS value of 0.67 meaning that two out of three responses can be identified as extreme responses. On the other hand, respondent one does not have any mid-point response, leading to a value of 0 in the MRS column.</p>
 <p>Instead of calculating proportions, we can extract the counts of responses that can be attributed to a response option by setting <code>normalize</code> to <code>FALSE</code>.</p>
@@ -163,26 +163,25 @@
 <h3 id="resp_distributions-within-respondent-response-distribution-indices">
 <code>resp_distributions()</code>: Within respondent response distribution indices<a class="anchor" aria-label="anchor" href="#resp_distributions-within-respondent-response-distribution-indices"></a>
 </h3>
-<p><code><a href="reference/resp_distributions.html">resp_distributions()</a></code> calculates indices which reflect the location and variability of responses within a respondent. <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> works similar to <code>resp_styles</code>: We need to specify the data argument and we can include or exclude respondents from the calculations based on amount of missing data they exhibit (for an explanation see paragraph above).</p>
+<p><code><a href="reference/resp_distributions.html">resp_distributions()</a></code> calculates indices which reflect the location and variability of responses within a respondent. <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> works similar to <code><a href="reference/resp_styles.html">resp_styles()</a></code>: We need to specify the data argument and we can include or exclude respondents from the calculations based on amount of missing data they exhibit (for an explanation see paragraph above).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calulating response distribution indicators for all respondents with no missing values</span></span>
 <span><span class="va">results_resp_distributions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
-<span>  min_valid_responses <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Excludes respondents with less than 100% valid responses</span></span>
+<span>  min_valid_responses <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="co"># Excludes respondents with less than 100% valid responses</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">results_resp_distributions</span>,<span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    n_valid n_na prop_na ips_mean ips_median ips_median_abs_dev ips_sd mahal</span></span>
-<span><span class="co">#&gt; 1        3    0    0.00     1.33          1                  0   0.58  3.06</span></span>
-<span><span class="co">#&gt; 2        3    0    0.00     1.67          2                  0   0.58  1.43</span></span>
-<span><span class="co">#&gt; 3        3    0    0.00     3.67          4                  1   1.53  3.21</span></span>
-<span><span class="co">#&gt; 4        3    0    0.00     2.67          3                  0   0.58  2.43</span></span>
-<span><span class="co">#&gt; 5        2    1    0.33       NA         NA                 NA     NA    NA</span></span>
-<span><span class="co">#&gt; 6        3    0    0.00     3.33          3                  0   0.58  1.26</span></span>
-<span><span class="co">#&gt; 7        3    0    0.00     2.33          2                  1   1.53  2.43</span></span>
-<span><span class="co">#&gt; 8        2    1    0.33       NA         NA                 NA     NA    NA</span></span>
-<span><span class="co">#&gt; 9        3    0    0.00     2.67          2                  1   2.08  4.19</span></span>
-<span><span class="co">#&gt; 10       1    2    0.67       NA         NA                 NA     NA    NA</span></span>
-<span><span class="co">#&gt; 11       0    3    1.00       NA         NA                 NA     NA    NA</span></span></code></pre></div>
+<span><span class="co">#&gt;    n_valid n_na prop_na wr_mean wr_sd wr_var wr_median wr_median_abs_dev mahal</span></span>
+<span><span class="co">#&gt; 1        3    0    0.00    1.33  0.58   0.33       1.0               0.0  2.27</span></span>
+<span><span class="co">#&gt; 2        3    0    0.00    3.67  1.53   2.33       4.0               1.0  1.68</span></span>
+<span><span class="co">#&gt; 3        3    0    0.00    2.67  0.58   0.33       3.0               0.0  1.05</span></span>
+<span><span class="co">#&gt; 4        2    1    0.33    4.00  1.41   2.00       4.0               1.0  2.21</span></span>
+<span><span class="co">#&gt; 5        3    0    0.00    3.33  0.58   0.33       3.0               0.0  1.24</span></span>
+<span><span class="co">#&gt; 6        3    0    0.00    2.33  1.53   2.33       2.0               1.0  1.29</span></span>
+<span><span class="co">#&gt; 7        2    1    0.33    3.50  0.71   0.50       3.5               0.5  0.71</span></span>
+<span><span class="co">#&gt; 8        3    0    0.00    2.67  2.08   4.33       2.0               1.0  2.24</span></span>
+<span><span class="co">#&gt; 9        1    2    0.67    3.00   NaN    NaN       3.0               0.0  0.24</span></span>
+<span><span class="co">#&gt; 10       0    3    1.00      NA    NA     NA        NA                NA    NA</span></span></code></pre></div>
 <p>The resulting data frame contains eight columns:</p>
 <ul>
 <li>n_valid: the number of valid responses</li>
@@ -190,9 +189,21 @@
 <li>prop_na: the proportion of missing responses of all responses</li>
 <li>ips_mean: the ipsatized (within respondent) mean over all responses</li>
 <li>ips_median: the ipsatized (within respondent) median over all responses</li>
+<li>ips_median_abs_dev: the ipsatized (within respondent) median deviation from the ipsaized median</li>
 <li>ips_sd: the ipsatized (within respondent) standard deviation over all responses</li>
 <li>mahal: the mahalanobis distance of the respondent across all responses</li>
 </ul>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-bhaktha" class="csl-entry">
+Bhaktha, Nivedita, Henning Silber, and Clemens Lechner. n.d. “Characterizing Response Quality in Surveys with Multi-Item Scales: A Unified Framework.” <a href="https://osf.io/9gs67/" class="external-link uri">https://osf.io/9gs67/</a>.
+</div>
+<div id="ref-curran2016" class="csl-entry">
+Curran, Paul G. 2016. “Methods for the Detection of Carelessly Invalid Responses in Survey Data.” <em>Journal of Experimental Social Psychology</em> 66 (September): 4–19. <a href="https://doi.org/10.1016/j.jesp.2015.07.006" class="external-link uri">https://doi.org/10.1016/j.jesp.2015.07.006</a>.
+</div>
+<div id="ref-vanvaerenbergh2013" class="csl-entry">
+Vaerenbergh, Y. van, and T. D. Thomas. 2013. “Response Styles in Survey Research: A Literature Review of Antecedents, Consequences, and Remedies.” <em>International Journal of Public Opinion Research</em> 25 (2): 195–217. <a href="https://doi.org/10.1093/ijpor/eds021" class="external-link uri">https://doi.org/10.1093/ijpor/eds021</a>.
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -223,7 +234,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Matthias Roth <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-4369-8106" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Matthias Roth <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0003-4369-8106" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Nivedita Bhaktha <br><small class="roles"> Author, contributor </small>  </li>
 <li>Matthias Bluemke <br><small class="roles"> Author, contributor </small>  </li>
 <li>Thomas Knopf <br><small class="roles"> Author, contributor </small>  </li>
@@ -233,7 +244,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=resquin" class="external-link"><img src="https://www.r-pkg.org/badges/version/resquin" alt="CRAN status"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
