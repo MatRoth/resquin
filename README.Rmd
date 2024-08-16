@@ -4,6 +4,7 @@ editor_options:
   markdown: 
     wrap: 72
 bibliography: references.bib
+link-citations: true
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -33,9 +34,8 @@ caution. This message will be removed once the package is released on CRAN.**
 
 `resquin` (**res**ponse **qu**ality **in**dicators) provides functions
 to calculate survey data quality indicators to help identifying
-low-quality responses [@bhaktha @curran2016 @vanvaerenbergh2013].
-`resp_styles()`, `resp_distributions()` and `resp_patterns()` (not yet
-implemented) provide response quality indicators geared towards multi-item
+low-quality responses [@bhaktha; @curran2016; @vanvaerenbergh2013].
+`resp_styles()` and `resp_distributions()` provide response quality indicators geared towards multi-item
 scales or matrix questions. Both multi-item scales and matrix questions
 present survey respondents with multiple questions which have the same response format,
 meaning the same number and labeling of response options.
@@ -54,6 +54,8 @@ Two more functions are planned:
     straightlining)
 -   `resp_times` - Calculates response time indicators (e.g. median item
     response time)
+    
+For information on how to use `resquin` see the vignettes [Getting started with resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html) and [resquin in practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
 ## Installation
 
@@ -96,6 +98,6 @@ resp_distributions(x = testdata) |>
   round(2)
 ```
 
-For a more information how to use `resquin` see the vignettes [Getting started with resquin](doc/getting_started_with_resquin.html) and [Resquin in practice](doc/resquin_in_practice.html).
+For a more information on how to use `resquin` see the vignettes [Getting started with resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html) and [resquin in practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
 # References

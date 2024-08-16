@@ -18,12 +18,14 @@ CRAN.**
 
 `resquin` (**res**ponse **qu**ality **in**dicators) provides functions
 to calculate survey data quality indicators to help identifying
-low-quality responses Vaerenbergh and Thomas (2013). `resp_styles()`,
-`resp_distributions()` and `resp_patterns()` (not yet implemented)
-provide response quality indicators geared towards multi-item scales or
-matrix questions. Both multi-item scales and matrix questions present
-survey respondents with multiple questions which have the same response
-format, meaning the same number and labeling of response options.
+low-quality responses ([Bhaktha, Silber, and Lechner
+2024](#ref-bhaktha); [Curran 2016](#ref-curran2016); [Vaerenbergh and
+Thomas 2013](#ref-vanvaerenbergh2013)). `resp_styles()` and
+`resp_distributions()` provide response quality indicators geared
+towards multi-item scales or matrix questions. Both multi-item scales
+and matrix questions present survey respondents with multiple questions
+which have the same response format, meaning the same number and
+labeling of response options.
 
 At the moment, `resquin` provides two functions:
 
@@ -39,6 +41,12 @@ Two more functions are planned:
   straightlining)
 - `resp_times` - Calculates response time indicators (e.g. median item
   response time)
+
+For information on how to use `resquin` see the vignettes [Getting
+started with
+resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html)
+and [resquin in
+practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
 ## Installation
 
@@ -114,9 +122,11 @@ resp_distributions(x = testdata) |>
 #> 10       0    3    1.00      NA    NA     NA        NA                NA    NA
 ```
 
-For a more information how to use `resquin` see the vignettes [Getting
-started with resquin](doc/getting_started_with_resquin.html) and
-[Resquin in practice](doc/resquin_in_practice.html).
+For a more information on how to use `resquin` see the vignettes
+[Getting started with
+resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html)
+and [resquin in
+practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
 # References
 
@@ -125,7 +135,7 @@ entry-spacing="0">
 
 <div id="ref-bhaktha" class="csl-entry">
 
-Bhaktha, Nivedita, Henning Silber, and Clemens Lechner. n.d.
+Bhaktha, Nivedita, Henning Silber, and Clemens Lechner. 2024.
 “Characterizing Response Quality in Surveys with Multi-Item Scales: A
 Unified Framework.” <https://osf.io/9gs67/>.
 

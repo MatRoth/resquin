@@ -1,28 +1,14 @@
 #' Compute response distribution indicators
 #'
-#' Calculates response distribution indicators for multi-item scales or matrix
-#' questions which have the same number of response options for many questions.
+#' Compute response distribution indicators for responses to multi-item scales or matrix
+#' questions.
 #'
-#' @param x A data frame containing survey responses in wide format.
+#' @param x A data frame containing survey responses in wide format. For more information
+#' see section "Data requirements" below.
 #' @param min_valid_responses numeric between 0 and 1. Defines the share of valid responses
 #' a respondent must have to calculate response quality indicators. Default is 1.
 #'
 #' @details
-#' The functions assumes that the input data frame is structured in the following way:
-#' * The data frame is in wide format, meaning each row represents one respondent, each
-#' column represents one variable.
-#' * The variables are in same the order as the questions respondents saw while taking the survey.
-#' * All responses have integer values.
-#' * Missing values are set to `NA`.
-#'
-#' The interpretation of the indicators calculated depends on the whether response
-#' data of negatively worded questions are reversed or not:
-#' * Do not reverse data of negatively worded questions if you want to assess
-#' average response patterns (Dunn et al., 2018).
-#' * Reverse data of negatively worded questions if you want to assess whether
-#' responses are distributed randomly or not with respect to an assumed
-#' latent variable (Marjanovic et al., 2015).
-#'
 #' The following response distribution indicators are calculated per respondent:
 #' \itemize{
 #'    \item n_valid: number of within person valid answers
@@ -48,7 +34,24 @@
 #' of a participants responses from the center of a multivariate normal distribution
 #' defined by the data of all respondents.
 #'
-#' Reponse distribution measures
+#' @section Data requirements:
+#' `resp_distributions()` assumes that data comes from multi-item scales or matrix questions,
+#' which have the same number and labeling of response options for many questions.
+#' The input data frame must be structured in the following way:
+#' * The data frame is in wide format, meaning each row represents one respondent, each
+#' column represents one variable.
+#' * All responses have integer values.
+#' * Missing values are set to `NA`.
+#'
+#' The interpretation of the indicators depends on the whether response
+#' data of negatively worded questions was reversed or not:
+#' * Do not reverse data of negatively worded questions if you want to assess
+#' average response patterns (Dunn et al., 2018).
+#' * Reverse data of negatively worded questions if you want to assess whether
+#' responses are distributed randomly or not with respect to an assumed
+#' latent variable (Marjanovic et al., 2015).
+#'
+
 #'
 #' @returns Returns a data frame with response quality indicators per respondent.
 #'  Dimensions:
@@ -81,15 +84,16 @@
 #'   var_c = c(1,2,3,NA,3,4,4,5,NA,NA))
 #'
 #' # Calculate response distribution indicators
-#' resp_distributions(testdata) |>
+#' resp_distributions(x = testdata) |>
 #'     round(2)
 #'
 #' # Include respondents with NA values by decreasing the
 #' # necessary number of valid responses per respondent.
 #'
-#' resp_distributions(testdata,
-#'                    min_valid_responses = 0.2) |>
-#'     round(2)
+#' resp_distributions(
+#'       x = testdata,
+#'       min_valid_responses = 0.2) |>
+#'    round(2)
 #'
 #' @export
 resp_distributions <- function(x, min_valid_responses = 1) {

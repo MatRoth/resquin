@@ -2,8 +2,8 @@ Package: resquin
 Title: Response Quality Indicators for Survey Research
 Version: 0.0.0.9000
 Authors@R: c(
-    person(given = "Matthias", family = "Roth", email = "matthias.roth@gesis.org", role = c("aut", "cre","cph"),
-           comment = c(ORCID = "0000-0003-4369-8106")),
+    person(given = "Matthias", family = "Roth", email = "matthias.roth@gesis.org",
+           role = c("aut", "cre","cph"), comment = c(ORCID = "0000-0003-4369-8106")),
     person(given ="Nivedita", family = "Bhaktha", role = c("aut","ctb")),
     person(given ="Matthias", family = "Bluemke", role = c("aut","ctb")),
     person(given ="Thomas"  , family = "Knopf",   role = c("aut","ctb")),
@@ -14,6 +14,10 @@ Authors@R: c(
 Description: Calculate common survey data quality indicators for multi-item scales 
              and matrix questions. Currently supports the calculation of
              response style indicators and response distribution indicators.
+             For an overview on response quality indicators see Bhaktha N,
+             Henning S, Clemens L (2024). 'Characterizing response quality
+             in surveys with multi-item scales: A unified framework'
+             <https://osf.io/9gs67/>.
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
