@@ -7,3 +7,6 @@ resquin_github.Rproj
 Dokumente.Rcheck
 ..Rcheck
 docs
+.tar.gz
+/doc/
+/Meta/

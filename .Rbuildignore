@@ -7,3 +7,9 @@
 ^README\.Rmd$
 ^\.github$
 ^resquin_github.Rproj$
+^references.bib$
+^cran-comments\.md$
+^codecov\.yml$
+^.\.tar\.gt$
+^doc$
+^Meta$

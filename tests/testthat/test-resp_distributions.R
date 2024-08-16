@@ -42,7 +42,7 @@ test_that("resp_distributions output tests", {
                        min_valid_responses = 1)$prop_na,
                c(1,2/3,1/3,1/3,2/3,2/3,2/3,0,0,0,0,0))
   expect_equal(resp_distributions(testdata,
-                       min_valid_responses = 0)$ips_mean,
+                       min_valid_responses = 0)$wr_mean,
                c(NA,2,(3+4)/2,(1+5)/2,2,3,5,
                  (2+5+3)/3,
                  (1+4+5)/3,
@@ -50,7 +50,7 @@ test_that("resp_distributions output tests", {
                  (1+1+1)/3,
                  (3+3+4)/3))
   expect_equal(resp_distributions(testdata,
-                       min_valid_responses = 0)$ips_median,
+                       min_valid_responses = 0)$wr_median,
                c(NA,2,3.5,(1+5)/2,2,3,5,
                  median(c(2,5,3)),
                  median(c(1,4,5)),
@@ -58,7 +58,7 @@ test_that("resp_distributions output tests", {
                  median(c(1,1,1)),
                  median(c(3,3,4))))
   expect_equal(resp_distributions(testdata,
-                       min_valid_responses = 0)$ips_median_abs_dev,
+                       min_valid_responses = 0)$wr_median_abs_dev,
                c(NA,
                  median(abs(c(2,NA,NA))-2,na.rm=T),
                  median(abs(c(3,4,NA)-median(c(3,4,NA),  na.rm=T)),na.rm=T),
@@ -73,16 +73,18 @@ test_that("resp_distributions output tests", {
                  median(abs(c(1,1,1)-median(c(1,1,1), na.rm=T)),na.rm=T),
                  median(abs(c(3,3,4)-median(c(3,3,4), na.rm=T)),na.rm=T)))
   expect_equal(resp_distributions(testdata,
-               min_valid_responses = 0)$ips_sd,
+               min_valid_responses = 0)$wr_sd,
                testdata |>
                  apply(1,sd,na.rm=T))
   #TODO Mahalanobis distance test
   expect_equal(resp_distributions(testdata,
                        min_valid_responses = 0)$mahal,
-    mahalanobis(x = testdata,
+    {mahal_res <- resquin:::mahalanobis_na(x = testdata,
                            center = colMeans(testdata,na.rm=T),
                            cov = cov(testdata,
-                                     use = "pairwise.complete.obs")))
+                                     use = "pairwise.complete.obs"))
+    mahal_res[1] <- NA
+    mahal_res})
 })
 
 

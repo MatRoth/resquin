@@ -4,13 +4,22 @@
 # resquin
 
 <!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.org/package=resquin)
+
 <!-- badges: end -->
 
 ## About
 
 `resquin` (**res**ponse **qu**ality **in**dicators) provides functions
-to calculate common survey data quality indicators, such as response
-style indicators.
+to calculate survey data quality indicators to help identifying
+low-quality responses Vaerenbergh and Thomas (2013). `resp_styles()`,
+`resp_distributions()` and `resp_patterns()` (not yet implemented)
+provide response quality indicators geared towards matrix questions.
+Matrix questions present survey respondents with multiple questions
+which have the same response format, meaning the same number and
+labeling of response options.
 
 At the moment, `resquin` provides two functions:
 
@@ -22,8 +31,8 @@ At the moment, `resquin` provides two functions:
 
 Two more functions are planned:
 
-- `resp_patterns` - Calculates response pattern indicators
-  (e.g. straightlining)
+- `resp_patterns` - Calculates response pattern indicators (e.g.
+  straightlining)
 - `resp_times` - Calculates response time indicators (e.g. median item
   response time)
 
@@ -63,23 +72,22 @@ Consider the following (fake) data set of survey responses.
 ``` r
 # A small test data set with three items and ten respondents
 testdata <- data.frame(
-  var_a = c(1,1,4,3,5,3,2,3,1,3,NA),
-  var_b = c(2,2,5,2,3,4,1,NA,2,NA,NA),
-  var_c = c(1,2,2,3,NA,3,4,4,5,NA,NA))
+  var_a = c(1,4,3,5,3,2,3,1,3,NA),
+  var_b = c(2,5,2,3,4,1,NA,2,NA,NA),
+  var_c = c(1,2,3,NA,3,4,4,5,NA,NA))
 
 testdata
 #>    var_a var_b var_c
 #> 1      1     2     1
-#> 2      1     2     2
-#> 3      4     5     2
-#> 4      3     2     3
-#> 5      5     3    NA
-#> 6      3     4     3
-#> 7      2     1     4
-#> 8      3    NA     4
-#> 9      1     2     5
-#> 10     3    NA    NA
-#> 11    NA    NA    NA
+#> 2      4     5     2
+#> 3      3     2     3
+#> 4      5     3    NA
+#> 5      3     4     3
+#> 6      2     1     4
+#> 7      3    NA     4
+#> 8      1     2     5
+#> 9      3    NA    NA
+#> 10    NA    NA    NA
 ```
 
 The data set contains responses to three survey questions (var_a,var_b
@@ -117,16 +125,15 @@ results_response_styles <- resp_styles(
 round(results_response_styles,2)
 #>     MRS  ARS  DRS  ERS NERS
 #> 1  0.00 0.00 1.00 0.67 0.33
-#> 2  0.00 0.00 1.00 0.33 0.67
-#> 3  0.00 0.67 0.33 0.33 0.67
-#> 4  0.67 0.00 0.33 0.00 1.00
-#> 5    NA   NA   NA   NA   NA
-#> 6  0.67 0.33 0.00 0.00 1.00
-#> 7  0.00 0.33 0.67 0.33 0.67
-#> 8    NA   NA   NA   NA   NA
-#> 9  0.00 0.33 0.67 0.67 0.33
+#> 2  0.00 0.67 0.33 0.33 0.67
+#> 3  0.67 0.00 0.33 0.00 1.00
+#> 4    NA   NA   NA   NA   NA
+#> 5  0.67 0.33 0.00 0.00 1.00
+#> 6  0.00 0.33 0.67 0.33 0.67
+#> 7    NA   NA   NA   NA   NA
+#> 8  0.00 0.33 0.67 0.67 0.33
+#> 9    NA   NA   NA   NA   NA
 #> 10   NA   NA   NA   NA   NA
-#> 11   NA   NA   NA   NA   NA
 ```
 
 The resulting data frame contains five columns corresponding to the
@@ -162,8 +169,8 @@ that need to be valid to be included in the response style calculations.
 
 `resp_distributions()` calculates indices which reflect the location and
 variability of responses within a respondent. `resp_distributions()`
-works similar to `resp_styles`: We need to specify the data argument and
-we can include or exclude respondents from the calculations based on
+works similar to `resp_styles()`: We need to specify the data argument
+and we can include or exclude respondents from the calculations based on
 amount of missing data they exhibit (for an explanation see paragraph
 above).
 
@@ -171,21 +178,20 @@ above).
 # Calulating response distribution indicators for all respondents with no missing values
 results_resp_distributions <- resp_distributions(
   x = testdata,
-  min_valid_responses = 1) # Excludes respondents with less than 100% valid responses
+  min_valid_responses = 0) # Excludes respondents with less than 100% valid responses
 
 round(results_resp_distributions,2)
-#>    n_valid n_na prop_na ips_mean ips_median ips_median_abs_dev ips_sd mahal
-#> 1        3    0    0.00     1.33          1                  0   0.58  3.06
-#> 2        3    0    0.00     1.67          2                  0   0.58  1.43
-#> 3        3    0    0.00     3.67          4                  1   1.53  3.21
-#> 4        3    0    0.00     2.67          3                  0   0.58  2.43
-#> 5        2    1    0.33       NA         NA                 NA     NA    NA
-#> 6        3    0    0.00     3.33          3                  0   0.58  1.26
-#> 7        3    0    0.00     2.33          2                  1   1.53  2.43
-#> 8        2    1    0.33       NA         NA                 NA     NA    NA
-#> 9        3    0    0.00     2.67          2                  1   2.08  4.19
-#> 10       1    2    0.67       NA         NA                 NA     NA    NA
-#> 11       0    3    1.00       NA         NA                 NA     NA    NA
+#>    n_valid n_na prop_na wr_mean wr_sd wr_var wr_median wr_median_abs_dev mahal
+#> 1        3    0    0.00    1.33  0.58   0.33       1.0               0.0  2.27
+#> 2        3    0    0.00    3.67  1.53   2.33       4.0               1.0  1.68
+#> 3        3    0    0.00    2.67  0.58   0.33       3.0               0.0  1.05
+#> 4        2    1    0.33    4.00  1.41   2.00       4.0               1.0  2.21
+#> 5        3    0    0.00    3.33  0.58   0.33       3.0               0.0  1.24
+#> 6        3    0    0.00    2.33  1.53   2.33       2.0               1.0  1.29
+#> 7        2    1    0.33    3.50  0.71   0.50       3.5               0.5  0.71
+#> 8        3    0    0.00    2.67  2.08   4.33       2.0               1.0  2.24
+#> 9        1    2    0.67    3.00   NaN    NaN       3.0               0.0  0.24
+#> 10       0    3    1.00      NA    NA     NA        NA                NA    NA
 ```
 
 The resulting data frame contains eight columns:
@@ -196,6 +202,38 @@ The resulting data frame contains eight columns:
 - ips_mean: the ipsatized (within respondent) mean over all responses
 - ips_median: the ipsatized (within respondent) median over all
   responses
+- ips_median_abs_dev: the ipsatized (within respondent) median deviation
+  from the ipsaized median
 - ips_sd: the ipsatized (within respondent) standard deviation over all
   responses
 - mahal: the mahalanobis distance of the respondent across all responses
+
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
+
+<div id="ref-bhaktha" class="csl-entry">
+
+Bhaktha, Nivedita, Henning Silber, and Clemens Lechner. n.d.
+“Characterizing Response Quality in Surveys with Multi-Item Scales: A
+Unified Framework.” <https://osf.io/9gs67/>.
+
+</div>
+
+<div id="ref-curran2016" class="csl-entry">
+
+Curran, Paul G. 2016. “Methods for the Detection of Carelessly Invalid
+Responses in Survey Data.” *Journal of Experimental Social Psychology*
+66 (September): 4–19. <https://doi.org/10.1016/j.jesp.2015.07.006>.
+
+</div>
+
+<div id="ref-vanvaerenbergh2013" class="csl-entry">
+
+Vaerenbergh, Y. van, and T. D. Thomas. 2013. “Response Styles in Survey
+Research: A Literature Review of Antecedents, Consequences, and
+Remedies.” *International Journal of Public Opinion Research* 25 (2):
+195–217. <https://doi.org/10.1093/ijpor/eds021>.
+
+</div>
+
+</div>

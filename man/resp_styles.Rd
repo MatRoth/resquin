@@ -16,19 +16,25 @@ resp_styles(x, scale_min, scale_max, min_valid_responses = 1, normalize = TRUE)
 \item{min_valid_responses}{numeric between 0 and 1. Defines the share of valid responses
 a respondent must have to calculate response style indicators.}
 
-\item{normalize}{logical. If true, counts of response style indicators will
-be divided by the number of non-missing responses per respondent.}
+\item{normalize}{logical. If \emph{TRUE}, counts of response style indicators will
+be divided by the number of non-missing responses per respondent. Default is
+\emph{TRUE}.}
 }
 \value{
-Returns a data frame with response quality indicators per respondent.
+Returns a data frame with response style indicators
+per respondent.
+\itemize{
+\item Rows: Equal to number of rows in x.
+\item Columns: Five, one for each response style indicator.
+}
 }
 \description{
-Calculates response style indicators for multi-item scales
+Calculates response style indicators for matrix questions or multi-item scales.
 }
 \details{
-Response style indicators are ...
-\code{resp_styles} is aimed at multi-item scales which use the response options for
-many questions.
+Response styles capture systematic shifts in respondents response behavior.
+\code{resp_styles} is aimed at multi-item scales or matrix questions which use the same number of
+response options for many questions.
 
 The functions assumes that the input data frame is structured in the following way:
 \itemize{
@@ -43,14 +49,68 @@ saw while taking the survey.
 }
 
 The following response style indicators are calculated per respondent:
+Middle response style (MRS), acquiescence response style (ARS), disacquiescence
+response style (DARS), extreme response style (ERS) and
+non-extreme response style (NERS).
+
+The response style indicators are calculated in the following way
 \itemize{
-\item MRS: Middle response style (only if scale has a numeric midpoint)
-\item ARS: Acquiescence response style
-\item DRS: Disacquiescence response style
-\item ERS: Extreme response style
-\item NERS: Non-extreme response style
+\item MRS: Sum of mid point responses.
+\item ARS: Sum of responses larger than midpoint.
+\item DARS: Sum of responses lower than midpoint.
+\item ERS: Sum of lowest or highest category responses.
+\item NERS: Sum of responses between lowest and highest respnose category.
 }
+
+Note that ARS and DRS assume that the polarity of the scale is positive. This
+means that higher numerical values indicate agreement and lower numerical values
+indicate disagreement. MRS can only be calculated if the scale has a numeric midpoint.
+
+Also note that the response style literature is fragmented (Bhaktha et al., 2024).
+Response styles calculated in \code{resquin} are based on van Vaerenbergh & Thomas (2024).
+However, we used the name non-extreme response style (NERS) instead of mild response style,
+to emphasize that NERS it the inverse of ERS. Both appear in the literature
+(for a NERS example see Wetzel et al. (2013)). Consult literature in your field
+of research to find appropriate names for the response style indicators calculated here.
+}
+\examples{
+# A test data set with ten respondents
+# and responses to three survey questions
+# with response scales from 1 to 5.
+testdata <- data.frame(
+  var_a = c(1,4,3,5,3,2,3,1,3,NA),
+  var_b = c(2,5,2,3,4,1,NA,2,NA,NA),
+  var_c = c(1,2,3,NA,3,4,4,5,NA,NA))
+
+# Calculate response distribution indicators
+resp_styles(testdata,
+            scale_min = 1,
+            scale_max = 5) |>
+   round(2) # round to second decimal
+
+# Include respondents with NA values by decreasing the
+# necessary number of valid responses per respondent.
+resp_styles(testdata,
+            scale_min = 1,
+            scale_max = 5,
+            min_valid_responses = 0.2) |>
+   round(2) # round to second decimal
+
+# Get counts of responses attributable to response styles.
+resp_styles(testdata,
+            scale_min = 1,
+            scale_max = 5,
+            normalize = FALSE)
+
+}
+\references{
+Bhaktha, Nivedita, Henning Silber, and Clemens Lechner. 2024. „Characterizing response quality in surveys with multi-item scales: A unified framework“. OSF-preprtint: https://osf.io/9gs67/
+van Vaerenbergh, Y., and T. D. Thomas. 2013. „Response Styles in Survey Research: A Literature Review of Antecedents, Consequences, and Remedies“. International Journal of Public Opinion Research 25(2):195–217. doi: 10.1093/ijpor/eds021.
+Wetzel, Eunike, Claus H. Carstensen, und Jan R. Böhnke. 2013. „Consistency of Extreme Response Style and Non-Extreme Response Style across Traits“. Journal of Research in Personality 47(2):178–89. doi: 10.1016/j.jrp.2012.10.010.
 }
 \seealso{
-\code{\link[=resp_distributions]{resp_distributions()}}
+\code{\link[=resp_distributions]{resp_distributions()}} for calculating response distribution indicators.
+}
+\author{
+Matthias Roth, Matthias Bluemke & Clemens Lechner
 }
