@@ -12,8 +12,7 @@ Authors@R: c(
     person(given ="Çağla"   , family = "Yildiz",  role = c("aut","ctb"))
   )
 Description: Calculate common survey data quality indicators for multi-item scales 
-             and matrix questions.
-             Currently supports the calculation of
+             and matrix questions. Currently supports the calculation of
              response style indicators and response distribution indicators.
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8

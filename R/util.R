@@ -62,7 +62,7 @@ input_check_resp_styles <- function(x,
   unique_response_options <- x |>
     purrr::map(unique) |>
     purrr::map(\(cur_resp_opt){
-      any(cur_resp_opt > na.omit(scale_max) | cur_resp_opt < na.omit(scale_min))}) |>
+      any(cur_resp_opt > stats::na.omit(scale_max) | cur_resp_opt < stats::na.omit(scale_min))}) |>
     purrr::keep(isTRUE)
 
   if(length(unique_response_options)>0) cli::cli_abort(c(

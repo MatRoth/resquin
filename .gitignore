@@ -10,3 +10,4 @@ docs
 .tar.gz
 /doc/
 /Meta/
+inst/doc

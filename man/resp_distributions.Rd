@@ -2,15 +2,23 @@
 % Please edit documentation in R/resp_distributions.R
 \name{resp_distributions}
 \alias{resp_distributions}
-\title{Compute response distribution indices}
+\title{Compute response distribution indicators}
 \usage{
 resp_distributions(x, min_valid_responses = 1)
 }
 \arguments{
-\item{x}{A dataframe containing survey responses in wide format.}
+\item{x}{A data frame containing survey responses in wide format.}
 
 \item{min_valid_responses}{numeric between 0 and 1. Defines the share of valid responses
 a respondent must have to calculate response quality indicators. Default is 1.}
+}
+\value{
+Returns a data frame with response quality indicators per respondent.
+Dimensions:
+\itemize{
+\item Rows: Equal to number of rows in x.
+\item Columns: 9, one for each response distribution indictator
+}
 }
 \description{
 Calculates response distribution indicators for multi-item scales or matrix
@@ -22,9 +30,18 @@ The functions assumes that the input data frame is structured in the following w
 \item The data frame is in wide format, meaning each row represents one respondent, each
 column represents one variable.
 \item The variables are in same the order as the questions respondents saw while taking the survey.
-\item Reverse keyed variables are in their original form. No items were recoded.
 \item All responses have integer values.
 \item Missing values are set to \code{NA}.
+}
+
+The interpretation of the indicators calculated depends on the whether response
+data of negatively worded questions are reversed or not:
+\itemize{
+\item Do not reverse data of negatively worded questions if you want to assess
+average response patterns (Dunn et al., 2018).
+\item Reverse data of negatively worded questions if you want to assess whether
+responses are distributed randomly or not with respect to an assumed
+latent variable (Marjanovic et al., 2015).
 }
 
 The following response distribution indicators are calculated per respondent:
@@ -32,22 +49,27 @@ The following response distribution indicators are calculated per respondent:
 \item n_valid: number of within person valid answers
 \item n_na: number of within person missing answers
 \item prop_na: proportion of missing responses within respondents
-\item ii_mean: intra-individual mean over all items
+\item ii_mean: intra-individual mean
 \item ii_median: intra-individual median
 \item ii_median_abs_dev: intra-individual median absolute deviation
 \item ii_sd:  intra-individual standard deviation
 \item ii_var: intra-individual variance
-\item mahal: Mahalanobis distance per respondent. Represents the distance
-of observations from the center of a multivariate normal distribution.
+\item mahal: Mahalanobis distance per respondent.
 }
 
+Intra-individual response variability indicators (ii_sd, ii_var) have been
+proposed to measure insufficient effort responding (Dunn et al., 2018) and to
+distinguish between random and conscientious responding (Marjanovic et al, 2015).
+ii_median_abs_dev is added as a robust alternative.
+
+Intra-individual location indicators can be used to asses the average location
+of responses on a set of questions (ii_mean, ii_median).
+
+Mahalanobis distance is a outlier detection indicator. It represents the distance
+of a participants responses from the center of a multivariate normal distribution
+defined by the data of all respondents.
+
 Reponse distribution measures
-@returns Returns a data frame with response quality indicators per respondent.
-Dimensions:
-\itemize{
-\item Rows: Equal to number of rows in x.
-\item Columns: 9, one for each response distribution indictator
-}
 }
 \examples{
 # A small test data set with ten respondents
@@ -69,6 +91,18 @@ resp_distributions(testdata,
                    min_valid_responses = 0.2) |>
     round(2)
 
+}
+\references{
+Dunn, Alexandra M., Eric D. Heggestad, Linda R. Shanock, and Nels Theilgard. 2018.
+“Intra-Individual Response Variability as an Indicator of Insufficient Effort Responding:
+Comparison to Other Indicators and Relationships with Individual Differences.”
+Journal of Business and Psychology 33(1):105–21. doi: 10.1007/s10869-016-9479-0.
+
+Marjanovic, Zdravko, Ronald Holden, Ward Struthers, Robert Cribbie,
+and Esther Greenglass. 2015. “The Inter-Item Standard Deviation (ISD):
+An Index That Discriminates between Conscientious and Random Responders.”
+Personality and Individual Differences 84:79–83.
+doi: 10.1016/j.paid.2014.08.021.
 }
 \seealso{
 \code{\link[=resp_styles]{resp_styles()}} for calculating response style indicators.
