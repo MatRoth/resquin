@@ -43,6 +43,7 @@
 #' * All responses have integer values.
 #' * Missing values are set to `NA`.
 #'
+#' @section Reverse coding of variables:
 #' The interpretation of the indicators depends on the whether response
 #' data of negatively worded questions was reversed or not:
 #' * Do not reverse data of negatively worded questions if you want to assess
@@ -51,7 +52,14 @@
 #' responses are distributed randomly or not with respect to an assumed
 #' latent variable (Marjanovic et al., 2015).
 #'
-
+#' @section Mahalanobis distance could not be calculated:
+#' Under certain circumstances, the mahalanobis distance can not be calculated.
+#' This may be if there is high collinearity (correlation between indicators) or
+#' if there are to many missing values.
+#' Although this can happen in survey research data, this message can also
+#' indicate that something in the data is "off" due to one of the reasons stated
+#' above. A manual inspection for low-quality responses can be a next step.
+#
 #'
 #' @returns Returns a data frame with response quality indicators per respondent.
 #'  Dimensions:
@@ -132,11 +140,11 @@ resp_distributions <- function(x, min_valid_responses = 1) {
   output$prop_na <- (output$n_na/ncol(x))
 
   # Response quality indicators for respondents with less missings than min_valid_responses
-  output$wr_mean[!na_mask] <- rowMeans(x[!na_mask,],na.rm)
-  output$wr_sd[!na_mask] <- sqrt(rowSums((x[!na_mask,]-output$wr_mean[!na_mask])^2,na.rm)/(rowSums(!is.na(x[!na_mask,]),na.rm)-1))
-  output$wr_var <- output$wr_sd^2
-  output$wr_median[!na_mask] <- apply(x[!na_mask,],1,stats::median,na.rm)
-  output$wr_median_abs_dev[!na_mask] <- apply((abs(x[!na_mask,]-output$wr_median[!na_mask])),
+  output$ii_mean[!na_mask] <- rowMeans(x[!na_mask,],na.rm)
+  output$ii_sd[!na_mask] <- sqrt(rowSums((x[!na_mask,]-output$ii_mean[!na_mask])^2,na.rm)/(rowSums(!is.na(x[!na_mask,]),na.rm)-1))
+  output$ii_var <- output$ii_sd^2
+  output$ii_median[!na_mask] <- apply(x[!na_mask,],1,stats::median,na.rm)
+  output$ii_median_abs_dev[!na_mask] <- apply((abs(x[!na_mask,]-output$ii_median[!na_mask])),
                                                1,
                                                stats::median,
                                                na.rm)

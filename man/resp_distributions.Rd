@@ -62,6 +62,9 @@ column represents one variable.
 \item All responses have integer values.
 \item Missing values are set to \code{NA}.
 }
+}
+
+\section{Reverse coding of variables}{
 
 The interpretation of the indicators depends on the whether response
 data of negatively worded questions was reversed or not:
@@ -72,6 +75,16 @@ average response patterns (Dunn et al., 2018).
 responses are distributed randomly or not with respect to an assumed
 latent variable (Marjanovic et al., 2015).
 }
+}
+
+\section{Mahalanobis distance could not be calculated}{
+
+Under certain circumstances, the mahalanobis distance can not be calculated.
+This may be if there is high collinearity (correlation between indicators) or
+if there are to many missing values.
+Although this can happen in survey research data, this message can also
+indicate that something in the data is "off" due to one of the reasons stated
+above. A manual inspection for low-quality responses can be a next step.
 }
 
 \examples{

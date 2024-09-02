@@ -125,7 +125,7 @@ above).
 # Calulating response distribution indicators for all respondents with no missing values
 results_resp_distributions <- resp_distributions(
   x = testdata,
-  min_valid_responses = 0) # Excludes respondents with less than 100% valid responses
+  min_valid_responses = 1) # Excludes respondents with less than 100% valid responses
 
 round(results_resp_distributions,2)
 ```
