@@ -101,13 +101,29 @@ The input data frame must be structured in the following way:</p><ul><li><p>The 
 column represents one variable.</p></li>
 <li><p>All responses have integer values.</p></li>
 <li><p>Missing values are set to <code>NA</code>.</p></li>
-</ul><p>The interpretation of the indicators depends on the whether response
+</ul></div>
+    <div class="section level2">
+    <h2 id="reverse-coding-of-variables">Reverse coding of variables<a class="anchor" aria-label="anchor" href="#reverse-coding-of-variables"></a></h2>
+
+
+<p>The interpretation of the indicators depends on the whether response
 data of negatively worded questions was reversed or not:</p><ul><li><p>Do not reverse data of negatively worded questions if you want to assess
 average response patterns (Dunn et al., 2018).</p></li>
 <li><p>Reverse data of negatively worded questions if you want to assess whether
 responses are distributed randomly or not with respect to an assumed
 latent variable (Marjanovic et al., 2015).</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="mahalanobis-distance-could-not-be-calculated">Mahalanobis distance could not be calculated<a class="anchor" aria-label="anchor" href="#mahalanobis-distance-could-not-be-calculated"></a></h2>
+
+
+<p>Under certain circumstances, the mahalanobis distance can not be calculated.
+This may be if there is high collinearity (correlation between indicators) or
+if there are to many missing values.
+Although this can happen in survey research data, this message can also
+indicate that something in the data is "off" due to one of the reasons stated
+above. A manual inspection for low-quality responses can be a next step.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Dunn, Alexandra M., Eric D. Heggestad, Linda R. Shanock, and Nels Theilgard. 2018.
@@ -142,7 +158,7 @@ doi: 10.1016/j.paid.2014.08.021.</p>
 <span class="r-in"><span><span class="co"># Calculate response distribution indicators</span></span></span>
 <span class="r-in"><span><span class="fu">resp_distributions</span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    n_valid n_na prop_na wr_mean wr_sd wr_var wr_median wr_median_abs_dev mahal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    n_valid n_na prop_na ii_mean ii_sd ii_var ii_median ii_median_abs_dev mahal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        3    0    0.00    1.33  0.58   0.33         1                 0  2.04</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        3    0    0.00    3.67  1.53   2.33         4                 1  1.60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3        3    0    0.00    2.67  0.58   0.33         3                 0  1.38</span>
@@ -161,7 +177,7 @@ doi: 10.1016/j.paid.2014.08.021.</p>
 <span class="r-in"><span>      x <span class="op">=</span> <span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>      min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    n_valid n_na prop_na wr_mean wr_sd wr_var wr_median wr_median_abs_dev mahal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    n_valid n_na prop_na ii_mean ii_sd ii_var ii_median ii_median_abs_dev mahal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        3    0    0.00    1.33  0.58   0.33       1.0               0.0  2.27</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        3    0    0.00    3.67  1.53   2.33       4.0               1.0  1.68</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3        3    0    0.00    2.67  0.58   0.33       3.0               0.0  1.05</span>
