@@ -52,7 +52,8 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A data frame containing survey responses in wide format.</p></dd>
+<dd><p>A data frame containing survey responses in wide format. For more information
+see section "Data requirements" below.</p></dd>
 
 
 <dt id="arg-scale-min">scale_min<a class="anchor" aria-label="anchor" href="#arg-scale-min"></a></dt>
@@ -83,17 +84,9 @@ per respondent.</p><ul><li><p>Rows: Equal to number of rows in x.</p></li>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Response styles capture systematic shifts in respondents response behavior.
-<code>resp_styles</code> is aimed at multi-item scales or matrix questions which use the same number of
+<code>resp_styles()</code> is aimed at multi-item scales or matrix questions which use the same number of
 response options for many questions.</p>
-<p>The functions assumes that the input data frame is structured in the following way:</p><ul><li><p>The data frame is in wide format, meaning each row represents one respondent,
-each column represents one variable.</p></li>
-<li><p>The variables are in same the order as the questions respondents
-saw while taking the survey.</p></li>
-<li><p>Reverse keyed variables are in their original form. No items were recoded.</p></li>
-<li><p>All responses have integer values.</p></li>
-<li><p>Questions have the same number of response options.</p></li>
-<li><p>Missing values are set to <code>NA</code>.</p></li>
-</ul><p>The following response style indicators are calculated per respondent:
+<p>#' The following response style indicators are calculated per respondent:
 Middle response style (MRS), acquiescence response style (ARS), disacquiescence
 response style (DARS), extreme response style (ERS) and
 non-extreme response style (NERS).</p>
@@ -106,12 +99,25 @@ non-extreme response style (NERS).</p>
 means that higher numerical values indicate agreement and lower numerical values
 indicate disagreement. MRS can only be calculated if the scale has a numeric midpoint.</p>
 <p>Also note that the response style literature is fragmented (Bhaktha et al., 2024).
-Response styles calculated in <code>resquin</code> are based on van Vaerenbergh &amp; Thomas (2024).
+Response styles calculated with <code>resp_styles()</code> are based on van Vaerenbergh &amp; Thomas (2024).
 However, we used the name non-extreme response style (NERS) instead of mild response style,
 to emphasize that NERS it the inverse of ERS. Both appear in the literature
 (for a NERS example see Wetzel et al. (2013)). Consult literature in your field
 of research to find appropriate names for the response style indicators calculated here.</p>
     </div>
+    <div class="section level2">
+    <h2 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a></h2>
+
+
+<p><code>resp_styles()</code> assumes that the input data frame is structured in the following way:</p><ul><li><p>The data frame is in wide format, meaning each row represents one respondent,
+each column represents one variable.</p></li>
+<li><p>The variables are in same the order as the questions respondents
+saw while taking the survey.</p></li>
+<li><p>Reverse keyed variables are in their original form. No items were recoded.</p></li>
+<li><p>All responses have integer values.</p></li>
+<li><p>Questions have the same number of response options.</p></li>
+<li><p>Missing values are set to <code>NA</code>.</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Bhaktha, Nivedita, Henning Silber, and Clemens Lechner. 2024. „Characterizing response quality in surveys with multi-item scales: A unified framework“. OSF-preprtint: https://osf.io/9gs67/
