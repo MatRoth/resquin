@@ -63,10 +63,13 @@ For information on how to use `resquin` see the vignettes [Getting started with 
 can use one of the following commands:
 
 ```{r eval=FALSE}
-# Installing resquin with devtools
+# Install resquin via CRAN
+install.packages("resquin")
+
+# Install development version of resquin with devtools
 devtools::install_github("https://github.com/MatRoth/resquin")
 
-# Installing resquin with pak
+# Install development version of resquin with pak
 pak::pak("https://github.com/MatRoth/resquin")
 ```
 

@@ -54,10 +54,13 @@ practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 can use one of the following commands:
 
 ``` r
-# Installing resquin with devtools
+# Install resquin via CRAN
+install.packages("resquin")
+
+# Install development version of resquin with devtools
 devtools::install_github("https://github.com/MatRoth/resquin")
 
-# Installing resquin with pak
+# Install development version of resquin with pak
 pak::pak("https://github.com/MatRoth/resquin")
 ```
 

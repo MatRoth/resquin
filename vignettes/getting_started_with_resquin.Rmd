@@ -31,7 +31,7 @@ input data frame is structured in the following way:
     while taking the survey.
 -   All responses have integer values.
 -   Missing values are set to `NA`.
--   (For `resp_styles`) Reverse keyed variables are in their original form. No items were
+-   (For `resp_styles()`) Reverse keyed variables are in their original form. No items were
     recoded.
 
 ### Example dataset of survey responses

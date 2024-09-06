@@ -7,7 +7,8 @@
 resp_styles(x, scale_min, scale_max, min_valid_responses = 1, normalize = TRUE)
 }
 \arguments{
-\item{x}{A data frame containing survey responses in wide format.}
+\item{x}{A data frame containing survey responses in wide format. For more information
+see section "Data requirements" below.}
 
 \item{scale_min}{numeric. Minimum of scale provided.}
 
@@ -33,22 +34,10 @@ Calculates response style indicators for matrix questions or multi-item scales.
 }
 \details{
 Response styles capture systematic shifts in respondents response behavior.
-\code{resp_styles} is aimed at multi-item scales or matrix questions which use the same number of
+\code{resp_styles()} is aimed at multi-item scales or matrix questions which use the same number of
 response options for many questions.
 
-The functions assumes that the input data frame is structured in the following way:
-\itemize{
-\item The data frame is in wide format, meaning each row represents one respondent,
-each column represents one variable.
-\item The variables are in same the order as the questions respondents
-saw while taking the survey.
-\item Reverse keyed variables are in their original form. No items were recoded.
-\item All responses have integer values.
-\item Questions have the same number of response options.
-\item Missing values are set to \code{NA}.
-}
-
-The following response style indicators are calculated per respondent:
+#' The following response style indicators are calculated per respondent:
 Middle response style (MRS), acquiescence response style (ARS), disacquiescence
 response style (DARS), extreme response style (ERS) and
 non-extreme response style (NERS).
@@ -67,12 +56,27 @@ means that higher numerical values indicate agreement and lower numerical values
 indicate disagreement. MRS can only be calculated if the scale has a numeric midpoint.
 
 Also note that the response style literature is fragmented (Bhaktha et al., 2024).
-Response styles calculated in \code{resquin} are based on van Vaerenbergh & Thomas (2024).
+Response styles calculated with \code{resp_styles()} are based on van Vaerenbergh & Thomas (2024).
 However, we used the name non-extreme response style (NERS) instead of mild response style,
 to emphasize that NERS it the inverse of ERS. Both appear in the literature
 (for a NERS example see Wetzel et al. (2013)). Consult literature in your field
 of research to find appropriate names for the response style indicators calculated here.
 }
+\section{Data requirements}{
+
+\code{resp_styles()} assumes that the input data frame is structured in the following way:
+\itemize{
+\item The data frame is in wide format, meaning each row represents one respondent,
+each column represents one variable.
+\item The variables are in same the order as the questions respondents
+saw while taking the survey.
+\item Reverse keyed variables are in their original form. No items were recoded.
+\item All responses have integer values.
+\item Questions have the same number of response options.
+\item Missing values are set to \code{NA}.
+}
+}
+
 \examples{
 # A test data set with ten respondents
 # and responses to three survey questions

@@ -16,7 +16,7 @@
 #'    \item ii_mean: intra-individual mean
 #'    \item ii_median: intra-individual median
 #'    \item ii_sd:  intra-individual standard deviation
-#'    \item mahal: Mahalanobis distance per respondent.
+#'    \item mahal: mahalanobis distance per respondent.
 #' }
 #'
 #' Intra-individual response variability (ii_sd) has been
