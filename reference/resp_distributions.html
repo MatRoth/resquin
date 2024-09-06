@@ -21,7 +21,7 @@ questions."></head><body>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting_started_with_resquin.html">Getting started with resquin</a></li>
-    <li><a class="dropdown-item" href="../articles/resquin_in_practice.html">Using resquin in practice</a></li>
+    <li><a class="dropdown-item" href="../articles/resquin_in_practice.html">resquin in practice</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -68,23 +68,19 @@ a respondent must have to calculate response quality indicators. Default is 1.</
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Returns a data frame with response quality indicators per respondent.
 Dimensions:</p><ul><li><p>Rows: Equal to number of rows in x.</p></li>
-<li><p>Columns: 9, one for each response distribution indictator</p></li>
+<li><p>Columns: Six, one for each response distribution indicator.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The following response distribution indicators are calculated per respondent:</p><ul><li><p>n_valid: number of within person valid answers</p></li>
-<li><p>n_na: number of within person missing answers</p></li>
-<li><p>prop_na: proportion of missing responses within respondents</p></li>
+    <p>The following response distribution indicators are calculated per respondent:</p><ul><li><p>n_na: number of intra-individual missing answers</p></li>
+<li><p>prop_na: proportion of intra-individual missing responses</p></li>
 <li><p>ii_mean: intra-individual mean</p></li>
 <li><p>ii_median: intra-individual median</p></li>
-<li><p>ii_median_abs_dev: intra-individual median absolute deviation</p></li>
 <li><p>ii_sd:  intra-individual standard deviation</p></li>
-<li><p>ii_var: intra-individual variance</p></li>
 <li><p>mahal: Mahalanobis distance per respondent.</p></li>
-</ul><p>Intra-individual response variability indicators (ii_sd, ii_var) have been
+</ul><p>Intra-individual response variability (ii_sd) has been
 proposed to measure insufficient effort responding (Dunn et al., 2018) and to
-distinguish between random and conscientious responding (Marjanovic et al, 2015).
-ii_median_abs_dev is added as a robust alternative.</p>
+distinguish between random and conscientious responding (Marjanovic et al, 2015).</p>
 <p>Intra-individual location indicators can be used to asses the average location
 of responses on a set of questions (ii_mean, ii_median).</p>
 <p>Mahalanobis distance is a outlier detection indicator. It represents the distance
@@ -118,7 +114,7 @@ latent variable (Marjanovic et al., 2015).</p></li>
 
 
 <p>Under certain circumstances, the mahalanobis distance can not be calculated.
-This may be if there is high collinearity (correlation between indicators) or
+This may be if there is high collinearity (correlation between variables) or
 if there are to many missing values.
 Although this can happen in survey research data, this message can also
 indicate that something in the data is "off" due to one of the reasons stated
@@ -158,17 +154,17 @@ doi: 10.1016/j.paid.2014.08.021.</p>
 <span class="r-in"><span><span class="co"># Calculate response distribution indicators</span></span></span>
 <span class="r-in"><span><span class="fu">resp_distributions</span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    n_valid n_na prop_na ii_mean ii_sd ii_var ii_median ii_median_abs_dev mahal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        3    0    0.00    1.33  0.58   0.33         1                 0  2.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        3    0    0.00    3.67  1.53   2.33         4                 1  1.60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        3    0    0.00    2.67  0.58   0.33         3                 0  1.38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        2    1    0.33      NA    NA     NA        NA                NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        3    0    0.00    3.33  0.58   0.33         3                 0  0.97</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        3    0    0.00    2.33  1.53   2.33         2                 1  1.38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        2    1    0.33      NA    NA     NA        NA                NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        3    0    0.00    2.67  2.08   4.33         2                 1  1.88</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        1    2    0.67      NA    NA     NA        NA                NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       0    3    1.00      NA    NA     NA        NA                NA    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    n_na prop_na ii_mean ii_sd ii_median mahal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0    0.00    1.33  0.58         1  2.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     0    0.00    3.67  1.53         4  1.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     0    0.00    2.67  0.58         3  1.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1    0.33      NA    NA        NA    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     0    0.00    3.33  0.58         3  0.97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     0    0.00    2.33  1.53         2  1.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     1    0.33      NA    NA        NA    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     0    0.00    2.67  2.08         2  1.88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     2    0.67      NA    NA        NA    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    3    1.00      NA    NA        NA    NA</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include respondents with NA values by decreasing the</span></span></span>
 <span class="r-in"><span><span class="co"># necessary number of valid responses per respondent.</span></span></span>
@@ -177,17 +173,17 @@ doi: 10.1016/j.paid.2014.08.021.</p>
 <span class="r-in"><span>      x <span class="op">=</span> <span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>      min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    n_valid n_na prop_na ii_mean ii_sd ii_var ii_median ii_median_abs_dev mahal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        3    0    0.00    1.33  0.58   0.33       1.0               0.0  2.27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        3    0    0.00    3.67  1.53   2.33       4.0               1.0  1.68</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        3    0    0.00    2.67  0.58   0.33       3.0               0.0  1.05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        2    1    0.33    4.00  1.41   2.00       4.0               1.0  2.21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        3    0    0.00    3.33  0.58   0.33       3.0               0.0  1.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        3    0    0.00    2.33  1.53   2.33       2.0               1.0  1.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        2    1    0.33    3.50  0.71   0.50       3.5               0.5  0.71</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        3    0    0.00    2.67  2.08   4.33       2.0               1.0  2.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        1    2    0.67    3.00   NaN    NaN       3.0               0.0  0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       0    3    1.00      NA    NA     NA        NA                NA    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    n_na prop_na ii_mean ii_sd ii_median mahal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0    0.00    1.33  0.58       1.0  2.27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     0    0.00    3.67  1.53       4.0  1.68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     0    0.00    2.67  0.58       3.0  1.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1    0.33    4.00  1.41       4.0  2.21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     0    0.00    3.33  0.58       3.0  1.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     0    0.00    2.33  1.53       2.0  1.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     1    0.33    3.50  0.71       3.5  0.71</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     0    0.00    2.67  2.08       2.0  2.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     2    0.67    3.00   NaN       3.0  0.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    3    1.00      NA    NA        NA    NA</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
