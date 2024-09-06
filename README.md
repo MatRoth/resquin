@@ -50,8 +50,8 @@ practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
 ## Installation
 
-`resquin` is available via github. To install `resquin` from github, you
-can use one of the following commands:
+`resquin` is available via CRAN and github. To install `resquin` from
+CRAN or github, you can use one of the following commands:
 
 ``` r
 # Install resquin via CRAN

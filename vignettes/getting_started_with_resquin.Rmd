@@ -132,18 +132,16 @@ round(results_resp_distributions,2)
 
 The resulting data frame contains eight columns:
 
--   n_na: number of within person missing answers
+-   n_na: number of intra-individual missing answers
 
--   prop_na: proportion of missing responses within respondents
+-   prop_na: proportion of intra-individual missing responses
 
 -   ii_mean: intra-individual mean
 
 -   ii_median: intra-individual median
 
--   ii_median_abs_dev: intra-individual median absolute deviation
-
 -   ii_sd: intra-individual standard deviation
 
--   ii_var: intra-individual variance
-
 -   mahal: Mahalanobis distance per respondent.
+
+You can learn more about the response distribution indicators using `?resp_distributions``

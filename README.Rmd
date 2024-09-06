@@ -59,8 +59,8 @@ For information on how to use `resquin` see the vignettes [Getting started with 
 
 ## Installation
 
-`resquin` is available via github. To install `resquin` from github, you
-can use one of the following commands:
+`resquin` is available via CRAN and github. To install `resquin` from CRAN or 
+github, you can use one of the following commands:
 
 ```{r eval=FALSE}
 # Install resquin via CRAN
