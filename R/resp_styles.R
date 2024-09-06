@@ -136,8 +136,10 @@ resp_styles <- function(x,
   output$ERS[!na_mask] <- rowSums(x[!na_mask,] == scale_min|x[!na_mask,] == scale_max,na.rm=T)
   output$NERS[!na_mask]<- rowSums(x[!na_mask,] != scale_min & x[!na_mask,] != scale_max,na.rm=T)
 
+  # Change type
   output <- as.data.frame(output)
 
+  # Contiditional normalization
   if(normalize) output <- output/rowSums(!is.na(x))
 
   return(output)

@@ -11,21 +11,17 @@
 #' @details
 #' The following response distribution indicators are calculated per respondent:
 #' \itemize{
-#'    \item n_valid: number of within person valid answers
-#'    \item n_na: number of within person missing answers
-#'    \item prop_na: proportion of missing responses within respondents
+#'    \item n_na: number of intra-individual missing answers
+#'    \item prop_na: proportion of intra-individual missing responses
 #'    \item ii_mean: intra-individual mean
 #'    \item ii_median: intra-individual median
-#'    \item ii_median_abs_dev: intra-individual median absolute deviation
 #'    \item ii_sd:  intra-individual standard deviation
-#'    \item ii_var: intra-individual variance
 #'    \item mahal: Mahalanobis distance per respondent.
 #' }
 #'
-#' Intra-individual response variability indicators (ii_sd, ii_var) have been
+#' Intra-individual response variability (ii_sd) has been
 #' proposed to measure insufficient effort responding (Dunn et al., 2018) and to
 #' distinguish between random and conscientious responding (Marjanovic et al, 2015).
-#' ii_median_abs_dev is added as a robust alternative.
 #'
 #' Intra-individual location indicators can be used to asses the average location
 #' of responses on a set of questions (ii_mean, ii_median).
@@ -54,7 +50,7 @@
 #'
 #' @section Mahalanobis distance could not be calculated:
 #' Under certain circumstances, the mahalanobis distance can not be calculated.
-#' This may be if there is high collinearity (correlation between indicators) or
+#' This may be if there is high collinearity (correlation between variables) or
 #' if there are to many missing values.
 #' Although this can happen in survey research data, this message can also
 #' indicate that something in the data is "off" due to one of the reasons stated
@@ -64,7 +60,7 @@
 #' @returns Returns a data frame with response quality indicators per respondent.
 #'  Dimensions:
 #'  * Rows: Equal to number of rows in x.
-#'  * Columns: 9, one for each response distribution indictator
+#'  * Columns: Six, one for each response distribution indicator.
 #'
 #' @author Matthias Roth, Matthias Bluemke & Clemens Lechner
 #'
@@ -108,7 +104,10 @@ resp_distributions <- function(x, min_valid_responses = 1) {
   # Set globally as min_valid_responses controls behavior on missing data
   na.rm <- T
 
+  # General input checks
   input_check(x)
+
+  # Function specif input checks
   if(!is.numeric(min_valid_responses)) cli::cli_abort(
     c("!" = "Argument 'min_valid_responses' must be numeric.")
   )
@@ -126,7 +125,6 @@ resp_distributions <- function(x, min_valid_responses = 1) {
       }
     }
 
-
   # Break if na_mask is equal to number of respondents
   if(all(na_mask)){
     cli::cli_abort(c("!" = "No response quality indicators were calculated as the proportion of missing data per respondent is larger than defined in {.var min_valid_responses}."))
@@ -134,20 +132,16 @@ resp_distributions <- function(x, min_valid_responses = 1) {
 
   # Calculate response quality indicators
   output <-list()
+
   # Missing numbers (for all respondents)
-  output$n_valid <- rowSums(!is.na(x))
   output$n_na <- rowSums(is.na(x))
   output$prop_na <- (output$n_na/ncol(x))
 
   # Response quality indicators for respondents with less missings than min_valid_responses
   output$ii_mean[!na_mask] <- rowMeans(x[!na_mask,],na.rm)
   output$ii_sd[!na_mask] <- sqrt(rowSums((x[!na_mask,]-output$ii_mean[!na_mask])^2,na.rm)/(rowSums(!is.na(x[!na_mask,]),na.rm)-1))
-  output$ii_var <- output$ii_sd^2
   output$ii_median[!na_mask] <- apply(x[!na_mask,],1,stats::median,na.rm)
-  output$ii_median_abs_dev[!na_mask] <- apply((abs(x[!na_mask,]-output$ii_median[!na_mask])),
-                                               1,
-                                               stats::median,
-                                               na.rm)
+
 
   # Mahalanobis distance can fail due to singular matrix
   tryCatch(

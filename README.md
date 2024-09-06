@@ -64,7 +64,7 @@ pak::pak("https://github.com/MatRoth/resquin")
 ## Getting started
 
 To use `resquin`, supply a data frame containing survey responses in
-wide format to either `resp_styles()` or `resp_distributions`.
+wide format to either `resp_styles()` or `resp_distributions()`.
 
 ``` r
 # load resquin
@@ -109,7 +109,7 @@ resp_styles(x = testdata,
 # Calculate response distribution indicators per respondent
 resp_distributions(x = testdata) |>
   round(2)
-#>    n_valid n_na prop_na wr_mean wr_sd wr_var wr_median wr_median_abs_dev mahal
+#>    n_valid n_na prop_na ii_mean ii_sd ii_var ii_median ii_median_abs_dev mahal
 #> 1        3    0    0.00    1.33  0.58   0.33         1                 0  2.04
 #> 2        3    0    0.00    3.67  1.53   2.33         4                 1  1.60
 #> 3        3    0    0.00    2.67  0.58   0.33         3                 0  1.38

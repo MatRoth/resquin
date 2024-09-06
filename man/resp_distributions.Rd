@@ -18,7 +18,7 @@ Returns a data frame with response quality indicators per respondent.
 Dimensions:
 \itemize{
 \item Rows: Equal to number of rows in x.
-\item Columns: 9, one for each response distribution indictator
+\item Columns: Six, one for each response distribution indicator.
 }
 }
 \description{
@@ -28,21 +28,17 @@ questions.
 \details{
 The following response distribution indicators are calculated per respondent:
 \itemize{
-\item n_valid: number of within person valid answers
-\item n_na: number of within person missing answers
-\item prop_na: proportion of missing responses within respondents
+\item n_na: number of intra-individual missing answers
+\item prop_na: proportion of intra-individual missing responses
 \item ii_mean: intra-individual mean
 \item ii_median: intra-individual median
-\item ii_median_abs_dev: intra-individual median absolute deviation
 \item ii_sd:  intra-individual standard deviation
-\item ii_var: intra-individual variance
 \item mahal: Mahalanobis distance per respondent.
 }
 
-Intra-individual response variability indicators (ii_sd, ii_var) have been
+Intra-individual response variability (ii_sd) has been
 proposed to measure insufficient effort responding (Dunn et al., 2018) and to
 distinguish between random and conscientious responding (Marjanovic et al, 2015).
-ii_median_abs_dev is added as a robust alternative.
 
 Intra-individual location indicators can be used to asses the average location
 of responses on a set of questions (ii_mean, ii_median).
@@ -80,7 +76,7 @@ latent variable (Marjanovic et al., 2015).
 \section{Mahalanobis distance could not be calculated}{
 
 Under certain circumstances, the mahalanobis distance can not be calculated.
-This may be if there is high collinearity (correlation between indicators) or
+This may be if there is high collinearity (correlation between variables) or
 if there are to many missing values.
 Although this can happen in survey research data, this message can also
 indicate that something in the data is "off" due to one of the reasons stated

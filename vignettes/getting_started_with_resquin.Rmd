@@ -17,8 +17,8 @@ knitr::opts_chunk$set(
 ## An introduction to `resquin`
 
 This short tutorial describe the functions in `resquin` and how you can use them
-on a technical level. For a more substantive introduction see the vignette 
-[Using resquin in practice](resquin_in_practice.html).
+on a technical level. For a more substantive introduction see the (forthcoming) 
+article [Using resquin in practice](resquin_in_practice.html).
 
 Functions in `resquin` calculate response quality indicators for survey
 data stored in a data frame or tibble. The functions assume that the

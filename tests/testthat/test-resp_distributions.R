@@ -33,9 +33,6 @@ test_that("resp_distributions input tests", {
 
 test_that("resp_distributions output tests", {
   expect_equal(resp_distributions(testdata,
-                       min_valid_responses = 0)$n_valid,
-               c(0,1,2,2,1,1,1,3,3,3,3,3))
-  expect_equal(resp_distributions(testdata,
                        min_valid_responses = 0)$n_na,
                c(3,2,1,1,2,2,2,0,0,0,0,0))
   expect_equal(resp_distributions(testdata,
@@ -58,25 +55,9 @@ test_that("resp_distributions output tests", {
                  median(c(1,1,1)),
                  median(c(3,3,4))))
   expect_equal(resp_distributions(testdata,
-                       min_valid_responses = 0)$ii_median_abs_dev,
-               c(NA,
-                 median(abs(c(2,NA,NA))-2,na.rm=T),
-                 median(abs(c(3,4,NA)-median(c(3,4,NA),  na.rm=T)),na.rm=T),
-                 median(abs(c(1,NA,5)-median(c(1,NA,5),  na.rm=T)),na.rm=T),
-                 median(abs(c(NA,2,NA)-median(c(NA,2,NA),na.rm=T)),na.rm=T),
-                 median(abs(c(NA,NA,3)-median(c(NA,NA,3),na.rm=T)),na.rm=T),
-                 median(abs(c(5,NA,NA)-median(c(5,NA,NA),na.rm=T)),na.rm=T),
-
-                 median(abs(c(2,5,3)-median(c(2,5,3), na.rm=T)),na.rm=T),
-                 median(abs(c(1,4,5)-median(c(1,4,5), na.rm=T)),na.rm=T),
-                 median(abs(c(4,3,2)-median(c(4,3,2), na.rm=T)),na.rm=T),
-                 median(abs(c(1,1,1)-median(c(1,1,1), na.rm=T)),na.rm=T),
-                 median(abs(c(3,3,4)-median(c(3,3,4), na.rm=T)),na.rm=T)))
-  expect_equal(resp_distributions(testdata,
                min_valid_responses = 0)$ii_sd,
                testdata |>
                  apply(1,sd,na.rm=T))
-  #TODO Mahalanobis distance test
   expect_equal(resp_distributions(testdata,
                        min_valid_responses = 0)$mahal,
     {mahal_res <- resquin:::mahalanobis_na(x = testdata,

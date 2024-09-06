@@ -73,7 +73,7 @@ pak::pak("https://github.com/MatRoth/resquin")
 ## Getting started
 
 To use `resquin`, supply a data frame containing survey responses in wide format 
-to either `resp_styles()` or `resp_distributions`.
+to either `resp_styles()` or `resp_distributions()`.
 
 ```{r}
 # load resquin
