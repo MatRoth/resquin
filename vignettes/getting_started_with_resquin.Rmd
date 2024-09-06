@@ -2,7 +2,7 @@
 title: "Getting started with resquin"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{DQAres Tutorial}
+  %\VignetteIndexEntry{resquin tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 This short tutorial describe the functions in `resquin` and how you can use them
 on a technical level. For a more substantive introduction see the (forthcoming) 
-article [Using resquin in practice](resquin_in_practice.html).
+article [Using resquin in practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
 Functions in `resquin` calculate response quality indicators for survey
 data stored in a data frame or tibble. The functions assume that the
