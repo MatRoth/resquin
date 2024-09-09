@@ -1,5 +1,6 @@
 # resquin 0.0.2
-* Changes in response to license description in DESCRIPTION and removed License.md
+* Changes in response to CRAN team. Changed license description in DESCRIPTION
+and removed License.md
 * Removed warning on development version at the start of the readme.md
 
 # resquin 0.0.1
