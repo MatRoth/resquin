@@ -12,10 +12,6 @@ status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.or
 
 ## About
 
-**`resquin` is currently in development and should only be used with
-caution. This message will be removed once the package is released on
-CRAN.**
-
 `resquin` (**res**ponse **qu**ality **in**dicators) provides functions
 to calculate survey data quality indicators to help identifying
 low-quality responses ([Bhaktha, Silber, and Lechner
