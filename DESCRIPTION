@@ -1,6 +1,6 @@
 Package: resquin
 Title: Response Quality Indicators for Survey Research
-Version: 0.0.2
+Version: 0.0.2.9000
 Authors@R: c(
     person(given = "Matthias", family = "Roth", email = "matthias.roth@gesis.org",
            role = c("aut", "cre","cph"), comment = c(ORCID = "0000-0003-4369-8106")),

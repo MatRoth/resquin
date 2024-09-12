@@ -1,3 +1,5 @@
+# resquin (development version)
+
 # resquin 0.0.2
 * Changes in response to CRAN team. Changed license description in DESCRIPTION
 and removed License.md
