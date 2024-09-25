@@ -37,7 +37,7 @@ Response styles capture systematic shifts in respondents response behavior.
 \code{resp_styles()} is aimed at multi-item scales or matrix questions which use the same number of
 response options for many questions.
 
-#' The following response style indicators are calculated per respondent:
+The following response style indicators are calculated per respondent:
 Middle response style (MRS), acquiescence response style (ARS), disacquiescence
 response style (DARS), extreme response style (ERS) and
 non-extreme response style (NERS).
@@ -109,7 +109,9 @@ resp_styles(testdata,
 }
 \references{
 Bhaktha, Nivedita, Henning Silber, and Clemens Lechner. 2024. „Characterizing response quality in surveys with multi-item scales: A unified framework“. OSF-preprtint: https://osf.io/9gs67/
+
 van Vaerenbergh, Y., and T. D. Thomas. 2013. „Response Styles in Survey Research: A Literature Review of Antecedents, Consequences, and Remedies“. International Journal of Public Opinion Research 25(2):195–217. doi: 10.1093/ijpor/eds021.
+
 Wetzel, Eunike, Claus H. Carstensen, und Jan R. Böhnke. 2013. „Consistency of Extreme Response Style and Non-Extreme Response Style across Traits“. Journal of Research in Personality 47(2):178–89. doi: 10.1016/j.jrp.2012.10.010.
 }
 \seealso{
