@@ -115,17 +115,17 @@ resp_styles(x = testdata,
 # Calculate response distribution indicators per respondent
 resp_distributions(x = testdata) |>
   round(2)
-#>    n_valid n_na prop_na ii_mean ii_sd ii_var ii_median ii_median_abs_dev mahal
-#> 1        3    0    0.00    1.33  0.58   0.33         1                 0  2.04
-#> 2        3    0    0.00    3.67  1.53   2.33         4                 1  1.60
-#> 3        3    0    0.00    2.67  0.58   0.33         3                 0  1.38
-#> 4        2    1    0.33      NA    NA     NA        NA                NA    NA
-#> 5        3    0    0.00    3.33  0.58   0.33         3                 0  0.97
-#> 6        3    0    0.00    2.33  1.53   2.33         2                 1  1.38
-#> 7        2    1    0.33      NA    NA     NA        NA                NA    NA
-#> 8        3    0    0.00    2.67  2.08   4.33         2                 1  1.88
-#> 9        1    2    0.67      NA    NA     NA        NA                NA    NA
-#> 10       0    3    1.00      NA    NA     NA        NA                NA    NA
+#>    n_na prop_na ii_mean ii_sd ii_median mahal
+#> 1     0    0.00    1.33  0.58         1  2.04
+#> 2     0    0.00    3.67  1.53         4  1.60
+#> 3     0    0.00    2.67  0.58         3  1.38
+#> 4     1    0.33      NA    NA        NA    NA
+#> 5     0    0.00    3.33  0.58         3  0.97
+#> 6     0    0.00    2.33  1.53         2  1.38
+#> 7     1    0.33      NA    NA        NA    NA
+#> 8     0    0.00    2.67  2.08         2  1.88
+#> 9     2    0.67      NA    NA        NA    NA
+#> 10    3    1.00      NA    NA        NA    NA
 ```
 
 For a more information on how to use `resquin` see the vignettes
