@@ -144,4 +144,4 @@ The resulting data frame contains eight columns:
 
 -   mahal: Mahalanobis distance per respondent.
 
-You can learn more about the response distribution indicators using `?resp_distributions``
+You can learn more about the response distribution indicators using `?resp_distributions`
