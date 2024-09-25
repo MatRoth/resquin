@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.or
 
 <!-- badges: end -->
 
-<a href="https://matroth.github.io/resquin/"><img src="man/figures/logo.jpg" align="right" height="122" alt="resquin website" /></a>
+<a href="https://matroth.github.io/resquin/"><img src="man/figures/logo.jpg" align="right" height="90" alt="resquin website" /></a>
 
 ## About
 
