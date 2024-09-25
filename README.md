@@ -44,6 +44,11 @@ resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin
 and [resquin in
 practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
+`resquin` is still under active development. Please use github
+[issues](https://github.com/MatRoth/resquin/issues) to file questions
+and bug reports or send them directly to <matthias.roth@gesis.org>. We
+are happy to receive feedback!
+
 ## Installation
 
 `resquin` is available via CRAN and github. To install `resquin` from
