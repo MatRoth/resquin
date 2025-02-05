@@ -39,16 +39,16 @@ response options for many questions.
 
 The following response style indicators are calculated per respondent:
 Middle response style (MRS), acquiescence response style (ARS), disacquiescence
-response style (DARS), extreme response style (ERS) and
+response style (DRS), extreme response style (ERS) and
 non-extreme response style (NERS).
 
 The response style indicators are calculated in the following way
 \itemize{
 \item MRS: Sum of mid point responses.
 \item ARS: Sum of responses larger than midpoint.
-\item DARS: Sum of responses lower than midpoint.
+\item DRS: Sum of responses lower than midpoint.
 \item ERS: Sum of lowest or highest category responses.
-\item NERS: Sum of responses between lowest and highest respnose category.
+\item NERS: Sum of responses between lowest and highest response category.
 }
 
 Note that ARS and DRS assume that the polarity of the scale is positive. This

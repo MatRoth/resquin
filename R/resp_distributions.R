@@ -105,15 +105,8 @@ resp_distributions <- function(x, min_valid_responses = 1) {
   na.rm <- T
 
   # General input checks
-  input_check(x)
+  input_check(x,min_valid_responses)
 
-  # Function specif input checks
-  if(!is.numeric(min_valid_responses)) cli::cli_abort(
-    c("!" = "Argument 'min_valid_responses' must be numeric.")
-  )
-  if(min_valid_responses >1|min_valid_responses<0) cli::cli_abort(
-    c("!" = "Argument 'min_valid_responses' must be between or equal to 0 and 1.")
-  )
 
   # Truncate response quality indicators where n valid responses is < min_valid_responses
   na_mask <- if(min_valid_responses== 0){

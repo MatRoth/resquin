@@ -12,6 +12,9 @@ test_that("resp_styles input tests", {
   expect_error(resp_styles(testdata,scale_min = T, scale_max = 5, min_valid_responses = 0.5),
                regexp = "Argument 'scale_min' must be numeric.")
   expect_error(resp_styles(testdata,scale_min = 1, scale_max = 5, min_valid_responses = 5,
+                           normalize = "test"),
+               regexp = "Argument 'min_valid_responses' must be between or equal to 0")
+  expect_error(resp_styles(testdata,scale_min = 1, scale_max = 5, min_valid_responses = 0.5,
                       normalize = "test"),
                regexp = "Argument 'normalize' must be logical.")
   expect_error(resp_styles(testdata,scale_min = 1, scale_max = 5,min_valid_responses = -1),

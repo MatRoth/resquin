@@ -1,10 +1,19 @@
 #' Performs input check applicable to all data quality functions in the package
 #' @noRd
-input_check <- function(x){
+input_check <- function(x,min_valid_responses){
   # Check if input is data frame
   if(!is.data.frame(x)) cli::cli_abort(
     c("!" = "x must be a data.frame or a tibble.",
       "x"  = "You have supplied a(n) {.cls {class(x)}}."))
+
+  if(!is.numeric(min_valid_responses)) cli::cli_abort(
+    c("!" = "Argument 'min_valid_responses' must be numeric.")
+  )
+
+  if(min_valid_responses >1|min_valid_responses<0) cli::cli_abort(
+    c("!" = "Argument 'min_valid_responses' must be between or equal to 0 and 1.")
+  )
+
 
   # Check if input is convertible to integer without loss of precision
   int_errors <- purrr::imap(x,
@@ -42,7 +51,7 @@ input_check_resp_styles <- function(x,
                                scale_max,
                                min_valid_responses,
                                normalize){
-  input_check(x)
+  input_check(x,min_valid_responses)
   if(!is.numeric(scale_min)) cli::cli_abort(
     c("!" = "Argument 'scale_min' must be numeric.")
   )
@@ -51,12 +60,6 @@ input_check_resp_styles <- function(x,
   )
   if(!is.logical(normalize)) cli::cli_abort(
     c("!" = "Argument 'normalize' must be logical.")
-  )
-  if(!is.numeric(min_valid_responses)) cli::cli_abort(
-    c("!" = "Argument 'min_valid_responses' must be numeric.")
-  )
-  if(min_valid_responses >1|min_valid_responses<0) cli::cli_abort(
-    c("!" = "Argument 'min_valid_responses' must be between or equal to 0 and 1.")
   )
 
   unique_response_options <- x |>
