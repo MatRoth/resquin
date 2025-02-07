@@ -1,7 +1,7 @@
 # resquin (development version)
 * Added resp_nondifferentiation() as a new function for calculating 
-straighlining indicators.
-* Added resp_nondifferentiation() to readme and getting started vigniette.
+straightlining indicators.
+* Added resp_nondifferentiation() to readme and getting started vignette.
 
 # resquin 0.0.2
 * Changes in response to CRAN team. Changed license description in DESCRIPTION

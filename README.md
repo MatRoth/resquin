@@ -16,12 +16,12 @@ status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.or
 to calculate survey data quality indicators to help identifying
 low-quality responses ([Bhaktha, Silber, and Lechner
 2024](#ref-bhaktha); [Curran 2016](#ref-curran2016); [Vaerenbergh and
-Thomas 2013](#ref-vanvaerenbergh2013)). `resp_styles()` and
-`resp_distributions()` provide response quality indicators geared
-towards multi-item scales or matrix questions. Both multi-item scales
-and matrix questions present survey respondents with multiple questions
-which have the same response format, meaning the same number and
-labeling of response options.
+Thomas 2013](#ref-vanvaerenbergh2013)). `resp_styles()`,
+`resp_distributions()` and \`resp_nondifferentiation()\`\` provide
+response quality indicators geared towards multi-item scales or matrix
+questions. Both multi-item scales and matrix questions present survey
+respondents with multiple questions which have the same response format,
+meaning the same number and labeling of response options.
 
 At the moment, `resquin` provides three functions:
 
@@ -74,7 +74,8 @@ pak::pak("https://github.com/MatRoth/resquin")
 ## Getting started
 
 To use `resquin`, supply a data frame containing survey responses in
-wide format to either `resp_styles()` or `resp_distributions()`.
+wide format to either `resp_styles()`, `resp_distributions()` or
+`resp_nondifferentiation()`.
 
 ``` r
 # load resquin
