@@ -145,3 +145,45 @@ The resulting data frame contains eight columns:
 -   mahal: Mahalanobis distance per respondent.
 
 You can learn more about the response distribution indicators using `?resp_distributions`
+
+### `resp_nondifferentiation`: Response nondifferentiation indicators
+`resp_nondifferentiation` calculates indicators primarily measuring what is known
+as straightlining. However, different indicators measure different aspects of straightlining.
+While *Simple Nondifferentiation* just measures whether respondents used the same response
+option for all questions, other indicators such as the *Mean Root of Pairs Method* or 
+the *Scale Point Variation Method* provide continuous values of nondifferentiation,
+measuring how varied the choice of response options for each respondent is.
+
+`resp_nondifferentiation` works just like `resp_distributions()` and `resp_styles()`.
+```{r}
+results_resp_nondifferentiation <- resp_nondifferentiation(
+  x = testdata,
+  min_valid_responses = 1) # Excludes respondents with less than 100% valid responses
+
+round(results_resp_nondifferentiation,2)
+```
+
+The resulting dataframe contains four columns containing indicators described
+in Kim et al. (2017):
+
+-   simple_nondifferentiation: Respondents are assigned 1 or 0 depending on 
+    whether all responses have the same value (1) or not (0).
+-   mean_root_pairs: Mean of the root of the absolute differences between
+    all pairs in a multi-item scale or matrix questions. It ranges from 0
+    (least straightlining) to 1 (most straightlining). 
+-   max_identical_rating: Proportion of the most commonly selected
+    response option among all responses in a multi-item scale or matrix questions.
+    It ranges from 0 (least straightlining) to 1 (most straightlining).
+-   scale_point_variation: The measure becomes larger if respondents use
+    more scales points in a multi-item scale or matrix questions.
+
+You can learn more about the the response nondifferentiation indicators using 
+`?resp_nondifferentiation`.
+
+### References
+Kim, Yujin, Jennifer Dykema, John Stevenson, Penny Black, and D. Paul Moberg. 2019.
+“Straightlining: Overview of Measurement, Comparison of Indicators, and Effects in
+Mail–Web Mixed-Mode Surveys.” Social Science Computer Review 37(2):214–33.
+doi: 10.1177/0894439317752406.
+
+

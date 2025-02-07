@@ -74,7 +74,6 @@
 #'    round(2)
 
 
-#' @export
 resp_patterns <- function(x, min_valid_responses = 1) {
   # Set globally as min_valid_responses controls behavior on missing data
   na.rm <- T

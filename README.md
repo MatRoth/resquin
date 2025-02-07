@@ -23,20 +23,26 @@ and matrix questions present survey respondents with multiple questions
 which have the same response format, meaning the same number and
 labeling of response options.
 
-At the moment, `resquin` provides two functions:
+At the moment, `resquin` provides three functions:
 
 - `resp_styles()` - Calculates response style indicators (e.g. extreme
   response style or middle response style).
 - `resp_distributions()` - Calculates response distribution indicators
   (e.g. intra-individual mean and standard deviation over a set of
   survey questions).
+- `resp_nondifferentiation()` - Calculates response nondifferentiation
+  indicators. Nondifferentiation indicators primarily measure
+  straightlining. The indicators differ in how straightlining is
+  operationalized.
 
 Two more functions are planned:
 
-- `resp_patterns` - Calculates response pattern indicators (e.g.
-  straightlining)
+- `resp_patterns` - Calculates response pattern indicators (e.g. long
+  string analysis )
 - `resp_times` - Calculates response time indicators (e.g. median item
-  response time)
+  response time). Whether this function will be implemented in this
+  package is still under deliberation. Response times come in different
+  formats and wrangling them may require their own package.
 
 For information on how to use `resquin` see the vignettes [Getting
 started with
@@ -124,6 +130,32 @@ resp_distributions(x = testdata) |>
 #> 8     0    0.00    2.67  2.08         2  1.88
 #> 9     2    0.67      NA    NA        NA    NA
 #> 10    3    1.00      NA    NA        NA    NA
+
+# Calculate response nondifferentiation indicator per respondent
+resp_nondifferentiation(x = testdata) |> 
+  round(2)
+#>    simple_nondifferentiation mean_root_pairs max_identical_rating
+#> 1                          0            1.00                 0.67
+#> 2                          0            0.21                 0.33
+#> 3                          0            1.00                 0.67
+#> 4                         NA              NA                   NA
+#> 5                          0            1.00                 0.67
+#> 6                          0            0.21                 0.33
+#> 7                         NA              NA                   NA
+#> 8                          0            0.00                 0.33
+#> 9                         NA              NA                   NA
+#> 10                        NA              NA                   NA
+#>    scale_point_variation
+#> 1                   0.44
+#> 2                   0.67
+#> 3                   0.44
+#> 4                     NA
+#> 5                   0.44
+#> 6                   0.67
+#> 7                     NA
+#> 8                   0.67
+#> 9                     NA
+#> 10                    NA
 ```
 
 For a more information on how to use `resquin` see the vignettes

@@ -60,6 +60,7 @@
 #'  * Columns: Five, one for each response style indicator.
 #'
 #' @seealso [resp_distributions()] for calculating response distribution indicators.
+#' [resp_nondifferentiation()] for calculating response nondifferentiation indicators.
 #'
 #' @author Matthias Roth, Matthias Bluemke & Clemens Lechner
 #'

@@ -65,6 +65,7 @@
 #' @author Matthias Roth, Matthias Bluemke & Clemens Lechner
 #'
 #' @seealso [resp_styles()] for calculating response style indicators.
+#' [resp_nondifferentiation()] for calculating response nondifferentiation indicators.
 #'
 #' @references Dunn, Alexandra M., Eric D. Heggestad, Linda R. Shanock, and Nels Theilgard. 2018.
 #' “Intra-Individual Response Variability as an Indicator of Insufficient Effort Responding:

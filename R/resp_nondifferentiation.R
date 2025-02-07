@@ -8,15 +8,37 @@
 #' @param min_valid_responses numeric between 0 and 1. Defines the share of valid responses
 #' a respondent must have to calculate response quality indicators. Default is 1.
 #' @details
-#' The following response nondifferentiation indicators are calculated per respondent:
+#' Response nondifferentiation is the result of response behavior in which respondents deviate
+#' from an ideal response process. Optimal response behavior is termed optimizing, while deviations from
+#' optimal response behavior are termed satisficing (Krosnik, 1991). Optimizing describes a behavior in which
+#' respondents go through all steps of comprehension, retrieval, judgment, and response selection. When satisficing,
+#' respondents skip all or parts of the optimal response process. Satisficing can lead to non-response, "don't know"
+#' responses, random responding or nondifferentiation. The later is targeted by the function `resp_nondifferentiation()`.
+#'
+#' Nondifferentiation is characterized by respondents choosing similar or even the same response options regardless of the
+#' content of the question. Multiple indicators for response nondifferentiation have been developed.
+#' For `resp_nondifferentiation()`, the following response nondifferentiation indicators described by Kim et al. (2017) are calculated per respondent:
 #' \itemize{
-#'    \item n_na: number of intra-individual missing answers
+#'    \item Simple Nondifferentiation: Respondents are assigned 1 or 0 depending on
+#'    whether all responses have the same value (1) or not (0).
+#'    \item Mean Root of Pairs Method: Mean of the root of the absolute differences between all pairs in a multi-item
+#'    scale or matrix questions. It ranges from 0 (least straightlining) to 1 (most straightlining). The indicator is rescaled to be
+#'    inbetween the minimum and maximum of all values. This means that including/excluding responses or respondents into the calculation
+#'    changes the indicators values.
+#'    \item Maximum Identical Rating Method: Proportion of the most commonly selected response option among all responses in a multi-item
+#'    scale or matrix questions. It ranges from 0 (least straightlining) to 1 (most straightlining).
+#'    \item Scale Point Variation Method: The probability of differentiation is defined as \eqn{1-\Sigma{p_i^2}},
+#'     where \eqn{p_i} is the proportion of the values rated at each scale point on a rating scale and \eqn{i} indicates the number of scale points.
+#'     The measure becomes larger if respondents use more scales points in a multi-item scale or matrix questions.
 #' }
 #'
-
+#' It should be noted that Kim et al. (2017) average the response nondifferentiation indicators to obtain an aggregate
+#' measure for response nondifferentiation. To do so, the `summary()` function can be called on the
+#' results of `resp_nondifferentiation()`.
+#'
 #'
 #' @section Data requirements:
-#' `resp_styles()` assumes that the input data frame is structured in the following way:
+#' `resp_nondifferentiationf()` assumes that the input data frame is structured in the following way:
 #' * The data frame is in wide format, meaning each row represents one respondent,
 #' each column represents one variable.
 #' * The variables are in same the order as the questions respondents
@@ -27,18 +49,22 @@
 #' * Missing values are set to `NA`.
 #'
 #'
-#' @returns Returns a data frame with response quality indicators per respondent.
+#' @returns Returns a data frame with response nondifferentiation indicators per respondent.
 #'  Dimensions:
 #'  * Rows: Equal to number of rows in x.
-#'  * Columns:
+#'  * Columns: Four, one corresponding to each response nondifferentiation indicator.
 #' @author Matthias Roth
 #'
 #' @seealso [resp_styles()] for calculating response style indicators.
+#'  [resp_distributions()] for calculating response distribution indicators.
 #'
 #' @references Kim, Yujin, Jennifer Dykema, John Stevenson, Penny Black, and D. Paul Moberg. 2019.
 #' “Straightlining: Overview of Measurement, Comparison of Indicators, and Effects in Mail–Web Mixed-Mode Surveys.”
 #'  Social Science Computer Review 37(2):214–33. doi: 10.1177/0894439317752406.
 #'
+#'  Krosnick, Jon A. 1991. “Response Strategies for Coping with the Cognitive Demands
+#'  of Attitude Measures in Surveys.”
+#'  Applied Cognitive Psychology 5(3):213–36. doi: 10.1002/acp.2350050305.
 #'
 #' @examples
 #' # A small test data set with ten respondents
@@ -49,21 +75,26 @@
 #'   var_b = c(2,5,2,3,4,1,NA,2,NA,NA),
 #'   var_c = c(1,2,3,NA,3,4,4,5,NA,NA))
 #'
-#' # Calculate response distribution indicators
-#' resp_distributions(x = testdata) |>
+#' # Calculate response nondifferentiation indicators
+#' resp_nondifferentiation(x = testdata) |>
 #'     round(2)
 #'
 #' # Include respondents with NA values by decreasing the
 #' # necessary number of valid responses per respondent.
 #'
-#' resp_distributions(
+#' resp_nondifferentiation(
 #'       x = testdata,
 #'       min_valid_responses = 0.2) |>
 #'    round(2)
+#'
+#' resp_nondifferentiation(
+#'      x = testdata,
+#'      min_valid_responses = 0.2) |>
+#'   summary() # To obtain aggregate measures of response nondifferentiation
 
 
 #' @export
-resp_nondif <- function(x, min_valid_responses = 1){
+resp_nondifferentiation <- function(x, min_valid_responses = 1){
   # Input check
   input_check(x,min_valid_responses)
 
@@ -87,7 +118,7 @@ resp_nondif <- function(x, min_valid_responses = 1){
   # Simple non differentiation
   output$simple_nondifferentiation[!na_mask] <- apply(X = x[!na_mask,],
                                            MARGIN = 1,
-                                           FUN = \(cur_row) length(unique(cur_row)) == 1)
+                                           FUN = \(cur_row) as.numeric(length(unique(cur_row)) == 1))
   # Mean root of pairs method
   output$mean_root_pairs[!na_mask] <- apply(X = x[!na_mask,],
                                             MARGIN = 1,

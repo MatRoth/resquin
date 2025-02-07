@@ -119,6 +119,7 @@ doi: 10.1016/j.paid.2014.08.021.
 }
 \seealso{
 \code{\link[=resp_styles]{resp_styles()}} for calculating response style indicators.
+\code{\link[=resp_nondifferentiation]{resp_nondifferentiation()}} for calculating response nondifferentiation indicators.
 }
 \author{
 Matthias Roth, Matthias Bluemke & Clemens Lechner
