@@ -71,7 +71,7 @@
 <div class="section level2">
 <h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
-<p><code>resquin</code> (<strong>res</strong>ponse <strong>qu</strong>ality <strong>in</strong>dicators) provides functions to calculate survey data quality indicators to help identifying low-quality responses (<a href="#ref-bhaktha">Bhaktha, Silber, and Lechner 2024</a>; <a href="#ref-curran2016">Curran 2016</a>; <a href="#ref-vanvaerenbergh2013">Vaerenbergh and Thomas 2013</a>). <code><a href="reference/resp_styles.html">resp_styles()</a></code> and <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> provide response quality indicators geared towards multi-item scales or matrix questions. Both multi-item scales and matrix questions present survey respondents with multiple questions which have the same response format, meaning the same number and labeling of response options.</p>
+<p><code>resquin</code> (<strong>res</strong>ponse <strong>qu</strong>ality <strong>in</strong>dicators) provides functions to calculate survey data quality indicators to help identifying low-quality responses (<a href="#ref-bhaktha">Bhaktha, Silber, and Lechner 2024</a>; <a href="#ref-curran2016">Curran 2016</a>; <a href="#ref-vanvaerenbergh2013">Vaerenbergh and Thomas 2013</a>). <code><a href="reference/resp_styles.html">resp_styles()</a></code>, <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> and `resp_nondifferentiation()`` provide response quality indicators geared towards multi-item scales or matrix questions. Both multi-item scales and matrix questions present survey respondents with multiple questions which have the same response format, meaning the same number and labeling of response options.</p>
 <p>At the moment, <code>resquin</code> provides three functions:</p>
 <ul>
 <li>
@@ -108,7 +108,7 @@
 <div class="section level2">
 <h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
 </h2>
-<p>To use <code>resquin</code>, supply a data frame containing survey responses in wide format to either <code><a href="reference/resp_styles.html">resp_styles()</a></code> or <code><a href="reference/resp_distributions.html">resp_distributions()</a></code>.</p>
+<p>To use <code>resquin</code>, supply a data frame containing survey responses in wide format to either <code><a href="reference/resp_styles.html">resp_styles()</a></code>, <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> or <code><a href="reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load resquin</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MatRoth/resquin" class="external-link">resquin</a></span><span class="op">)</span></span>
