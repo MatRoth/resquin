@@ -233,6 +233,75 @@ responses</p></li>
 <p>You can learn more about the response distribution indicators using
 <code><a href="../reference/resp_distributions.html">?resp_distributions</a></code></p>
 </div>
+<div class="section level3">
+<h3 id="resp_nondifferentiation-response-nondifferentiation-indicators">
+<code>resp_nondifferentiation</code>: Response nondifferentiation
+indicators<a class="anchor" aria-label="anchor" href="#resp_nondifferentiation-response-nondifferentiation-indicators"></a>
+</h3>
+<p><code>resp_nondifferentiation</code> calculates indicators primarily
+measuring what is known as straightlining. However, different indicators
+measure different aspects of straightlining. While <em>Simple
+Nondifferentiation</em> just measures whether respondents used the same
+response option for all questions, other indicators such as the <em>Mean
+Root of Pairs Method</em> or the <em>Scale Point Variation Method</em>
+provide continuous values of nondifferentiation, measuring how varied
+the choice of response options for each respondent is.</p>
+<p><code>resp_nondifferentiation</code> works just like
+<code><a href="../reference/resp_distributions.html">resp_distributions()</a></code> and <code><a href="../reference/resp_styles.html">resp_styles()</a></code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">results_resp_nondifferentiation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
+<span>  min_valid_responses <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Excludes respondents with less than 100% valid responses</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">results_resp_nondifferentiation</span>,<span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    simple_nondifferentiation mean_root_pairs max_identical_rating</span></span>
+<span><span class="co">#&gt; 1                          0            1.00                 0.67</span></span>
+<span><span class="co">#&gt; 2                          0            0.21                 0.33</span></span>
+<span><span class="co">#&gt; 3                          0            1.00                 0.67</span></span>
+<span><span class="co">#&gt; 4                         NA              NA                   NA</span></span>
+<span><span class="co">#&gt; 5                          0            1.00                 0.67</span></span>
+<span><span class="co">#&gt; 6                          0            0.21                 0.33</span></span>
+<span><span class="co">#&gt; 7                         NA              NA                   NA</span></span>
+<span><span class="co">#&gt; 8                          0            0.00                 0.33</span></span>
+<span><span class="co">#&gt; 9                         NA              NA                   NA</span></span>
+<span><span class="co">#&gt; 10                        NA              NA                   NA</span></span>
+<span><span class="co">#&gt;    scale_point_variation</span></span>
+<span><span class="co">#&gt; 1                   0.44</span></span>
+<span><span class="co">#&gt; 2                   0.67</span></span>
+<span><span class="co">#&gt; 3                   0.44</span></span>
+<span><span class="co">#&gt; 4                     NA</span></span>
+<span><span class="co">#&gt; 5                   0.44</span></span>
+<span><span class="co">#&gt; 6                   0.67</span></span>
+<span><span class="co">#&gt; 7                     NA</span></span>
+<span><span class="co">#&gt; 8                   0.67</span></span>
+<span><span class="co">#&gt; 9                     NA</span></span>
+<span><span class="co">#&gt; 10                    NA</span></span></code></pre></div>
+<p>The resulting dataframe contains four columns containing indicators
+described in Kim et al. (2017):</p>
+<ul>
+<li>simple_nondifferentiation: Respondents are assigned 1 or 0 depending
+on whether all responses have the same value (1) or not (0).</li>
+<li>mean_root_pairs: Mean of the root of the absolute differences
+between all pairs in a multi-item scale or matrix questions. It ranges
+from 0 (least straightlining) to 1 (most straightlining).</li>
+<li>max_identical_rating: Proportion of the most commonly selected
+response option among all responses in a multi-item scale or matrix
+questions. It ranges from 0 (least straightlining) to 1 (most
+straightlining).</li>
+<li>scale_point_variation: The measure becomes larger if respondents use
+more scales points in a multi-item scale or matrix questions.</li>
+</ul>
+<p>You can learn more about the the response nondifferentiation
+indicators using <code><a href="../reference/resp_nondifferentiation.html">?resp_nondifferentiation</a></code>.</p>
+</div>
+<div class="section level3">
+<h3 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h3>
+<p>Kim, Yujin, Jennifer Dykema, John Stevenson, Penny Black, and D. Paul
+Moberg. 2019. “Straightlining: Overview of Measurement, Comparison of
+Indicators, and Effects in Mail–Web Mixed-Mode Surveys.” Social Science
+Computer Review 37(2):214–33. doi: 10.1177/0894439317752406.</p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

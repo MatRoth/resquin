@@ -72,19 +72,21 @@
 <h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
 <p><code>resquin</code> (<strong>res</strong>ponse <strong>qu</strong>ality <strong>in</strong>dicators) provides functions to calculate survey data quality indicators to help identifying low-quality responses (<a href="#ref-bhaktha">Bhaktha, Silber, and Lechner 2024</a>; <a href="#ref-curran2016">Curran 2016</a>; <a href="#ref-vanvaerenbergh2013">Vaerenbergh and Thomas 2013</a>). <code><a href="reference/resp_styles.html">resp_styles()</a></code> and <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> provide response quality indicators geared towards multi-item scales or matrix questions. Both multi-item scales and matrix questions present survey respondents with multiple questions which have the same response format, meaning the same number and labeling of response options.</p>
-<p>At the moment, <code>resquin</code> provides two functions:</p>
+<p>At the moment, <code>resquin</code> provides three functions:</p>
 <ul>
 <li>
 <code><a href="reference/resp_styles.html">resp_styles()</a></code> - Calculates response style indicators (e.g. extreme response style or middle response style).</li>
 <li>
 <code><a href="reference/resp_distributions.html">resp_distributions()</a></code> - Calculates response distribution indicators (e.g. intra-individual mean and standard deviation over a set of survey questions).</li>
+<li>
+<code><a href="reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code> - Calculates response nondifferentiation indicators. Nondifferentiation indicators primarily measure straightlining. The indicators differ in how straightlining is operationalized.</li>
 </ul>
 <p>Two more functions are planned:</p>
 <ul>
 <li>
-<code>resp_patterns</code> - Calculates response pattern indicators (e.g. straightlining)</li>
+<code>resp_patterns</code> - Calculates response pattern indicators (e.g. long string analysis )</li>
 <li>
-<code>resp_times</code> - Calculates response time indicators (e.g. median item response time)</li>
+<code>resp_times</code> - Calculates response time indicators (e.g. median item response time). Whether this function will be implemented in this package is still under deliberation. Response times come in different formats and wrangling them may require their own package.</li>
 </ul>
 <p>For information on how to use <code>resquin</code> see the vignettes <a href="https://matroth.github.io/resquin/articles/getting_started_with_resquin.html">Getting started with resquin</a> and <a href="https://matroth.github.io/resquin/articles/resquin_in_practice.html">resquin in practice</a>.</p>
 <p><code>resquin</code> is still under active development. Please use github <a href="https://github.com/MatRoth/resquin/issues" class="external-link">issues</a> to file questions and bug reports or send them directly to <a href="mailto:matthias.roth@gesis.org" class="email">matthias.roth@gesis.org</a>. We are happy to receive feedback!</p>
@@ -160,7 +162,33 @@
 <span><span class="co">#&gt; 7     1    0.33      NA    NA        NA    NA</span></span>
 <span><span class="co">#&gt; 8     0    0.00    2.67  2.08         2  1.88</span></span>
 <span><span class="co">#&gt; 9     2    0.67      NA    NA        NA    NA</span></span>
-<span><span class="co">#&gt; 10    3    1.00      NA    NA        NA    NA</span></span></code></pre></div>
+<span><span class="co">#&gt; 10    3    1.00      NA    NA        NA    NA</span></span>
+<span></span>
+<span><span class="co"># Calculate response nondifferentiation indicator per respondent</span></span>
+<span><span class="fu"><a href="reference/resp_nondifferentiation.html">resp_nondifferentiation</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    simple_nondifferentiation mean_root_pairs max_identical_rating</span></span>
+<span><span class="co">#&gt; 1                          0            1.00                 0.67</span></span>
+<span><span class="co">#&gt; 2                          0            0.21                 0.33</span></span>
+<span><span class="co">#&gt; 3                          0            1.00                 0.67</span></span>
+<span><span class="co">#&gt; 4                         NA              NA                   NA</span></span>
+<span><span class="co">#&gt; 5                          0            1.00                 0.67</span></span>
+<span><span class="co">#&gt; 6                          0            0.21                 0.33</span></span>
+<span><span class="co">#&gt; 7                         NA              NA                   NA</span></span>
+<span><span class="co">#&gt; 8                          0            0.00                 0.33</span></span>
+<span><span class="co">#&gt; 9                         NA              NA                   NA</span></span>
+<span><span class="co">#&gt; 10                        NA              NA                   NA</span></span>
+<span><span class="co">#&gt;    scale_point_variation</span></span>
+<span><span class="co">#&gt; 1                   0.44</span></span>
+<span><span class="co">#&gt; 2                   0.67</span></span>
+<span><span class="co">#&gt; 3                   0.44</span></span>
+<span><span class="co">#&gt; 4                     NA</span></span>
+<span><span class="co">#&gt; 5                   0.44</span></span>
+<span><span class="co">#&gt; 6                   0.67</span></span>
+<span><span class="co">#&gt; 7                     NA</span></span>
+<span><span class="co">#&gt; 8                   0.67</span></span>
+<span><span class="co">#&gt; 9                     NA</span></span>
+<span><span class="co">#&gt; 10                    NA</span></span></code></pre></div>
 <p>For a more information on how to use <code>resquin</code> see the vignettes <a href="https://matroth.github.io/resquin/articles/getting_started_with_resquin.html">Getting started with resquin</a> and <a href="https://matroth.github.io/resquin/articles/resquin_in_practice.html">resquin in practice</a>.</p>
 </div>
 </div>
