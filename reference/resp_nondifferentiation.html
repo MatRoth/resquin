@@ -139,28 +139,20 @@ Applied Cognitive Psychology 5(3):213–36. doi: 10.1002/acp.2350050305.</p>
 <span class="r-in"><span><span class="co"># Calculate response nondifferentiation indicators</span></span></span>
 <span class="r-in"><span><span class="fu">resp_nondifferentiation</span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    simple_nondifferentiation mean_root_pairs max_identical_rating</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          0            1.00                 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                          0            0.21                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                          0            1.00                 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                         NA              NA                   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                          0            1.00                 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                          0            0.21                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                         NA              NA                   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                          0            0.00                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                         NA              NA                   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                        NA              NA                   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    scale_point_variation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   0.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                   0.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   0.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                   0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                   0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>                         0            1                    0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>                         0            0.21                 0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>                         0            1                    0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>                        <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>                         0            1                    0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>                         0            0.21                 0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>                        <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>                         0            0                    0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>                        <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>                        <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: scale_point_variation &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include respondents with NA values by decreasing the</span></span></span>
 <span class="r-in"><span><span class="co"># necessary number of valid responses per respondent.</span></span></span>
@@ -169,28 +161,20 @@ Applied Cognitive Psychology 5(3):213–36. doi: 10.1002/acp.2350050305.</p>
 <span class="r-in"><span>      x <span class="op">=</span> <span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>      min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    simple_nondifferentiation mean_root_pairs max_identical_rating</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          0            0.58                 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                          0            0.12                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                          0            0.58                 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                          0            0.70                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                          0            0.58                 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                          0            0.12                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                          0            0.79                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                          0            0.00                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                          0            1.00                 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                        NA              NA                   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    scale_point_variation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   0.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                   0.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                   0.78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   0.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                   0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                   0.78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                   0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                   0.89</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>                         0            0.58                 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>                         0            0.12                 0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>                         0            0.58                 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>                         0            0.7                  0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>                         0            0.58                 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>                         0            0.12                 0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>                         0            0.79                 0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>                         0            0                    0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>                         0            1                    0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>                        <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: scale_point_variation &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">resp_nondifferentiation</span><span class="op">(</span></span></span>
 <span class="r-in"><span>     x <span class="op">=</span> <span class="va">testdata</span>,</span></span>

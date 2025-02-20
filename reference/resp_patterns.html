@@ -46,7 +46,13 @@ questions.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">resp_patterns</span><span class="op">(</span><span class="va">x</span>, min_valid_responses <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">resp_patterns</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  min_valid_responses <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  <span class="va">defined_patterns</span>,</span>
+<span>  <span class="va">arbitrary_patterns</span>,</span>
+<span>  min_repetitions <span class="op">=</span> <span class="fl">2</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -60,7 +66,18 @@ see section "Data requirements" below.</p></dd>
 
 <dt id="arg-min-valid-responses">min_valid_responses<a class="anchor" aria-label="anchor" href="#arg-min-valid-responses"></a></dt>
 <dd><p>numeric between 0 and 1. Defines the share of valid responses
-a respondent must have to calculate response quality indicators. Default is 1.</p></dd>
+a respondent must have to calculate response pattern indicators. Default is 1.</p></dd>
+
+
+<dt id="arg-defined-patterns">defined_patterns<a class="anchor" aria-label="anchor" href="#arg-defined-patterns"></a></dt>
+<dd><p>A character vector with patterns to search for. Will not be
+computed if not specified or if an empty vector is supplied.</p></dd>
+
+
+<dt id="arg-arbitrary-patterns">arbitrary_patterns<a class="anchor" aria-label="anchor" href="#arg-arbitrary-patterns"></a></dt>
+<dd><p>A vector of integer values or a list containing vectors of
+integer values. The values determine the pattern that should be searched for.
+Will not be computed if not specified or if 0 is supplied.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -71,13 +88,55 @@ Dimensions:</p><ul><li><p>Rows: Equal to number of rows in x.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The following response distribution indicators are calculated per respondent:</p><ul><li><p>n_na: number of intra-individual missing answers</p></li>
+    <p>The following response distribution indicators are calculated per respondent:</p><ul><li><p>n_transitions: Number of times two consecutive response options differ.</p></li>
+<li><p>mean_string_length: Mean length of strings of identical answers.</p></li>
+<li><p>longest_string_length: Longest length of string of identical answers.</p></li>
+<li><p>(optional) defined_pattern: A list column that contains one named vector
+per respondent. The names of the vector are repeating patterns found in the
+responses of a respondent. The values of the vector are how often the pattern
+specified in the argument "defined_patterns" occurs. See section "Defined patterns" for
+more information.</p></li>
+<li><p>(optional) arbitrary_patterns: A list column that contains one named vector
+per respondent. The names of the vector are repeating patterns found in the
+responses of a respondent. The values of the vector are how often the pattern
+occurred. See "Arbitrary patterns" for more information.</p></li>
 </ul></div>
     <div class="section level2">
-    <h2 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a></h2>
+    <h2 id="defined-and-arbitrary-pattern-indicators-">Defined and arbitrary pattern indicators:<a class="anchor" aria-label="anchor" href="#defined-and-arbitrary-pattern-indicators-"></a></h2>
+    <p>Responses of an individual respondent can follow patterns, such as zig-zagging
+across the response scale over multiple items. There might be a-priori knowledge
+which response patterns could occur and might be indicative of low quality
+responding. For this case the defined_patterns argument can be used to specify
+one or more patterns whose presence will be checked for each respondent. If
+no a-priori knowledge exists, it is possible to check for all patterns of a
+specified length.</p><div class="section">
+<h3 id="defined-patterns-">Defined patterns:<a class="anchor" aria-label="anchor" href="#defined-patterns-"></a></h3>
 
 
-<p><code><a href="resp_styles.html">resp_styles()</a></code> assumes that the input data frame is structured in the following way:</p><ul><li><p>The data frame is in wide format, meaning each row represents one respondent,
+<p>A pattern is defined by providing one ore more patterns in a character vector.
+A few examples: resp_patterns(x,defined_patterns =" checks how
+often the response pattern "123" occurs in the responses of a single respondent.
+c("123","321") checks how often
+the two patterns "123" and "321" occur individually the responses of a single
+respondent. There can be an arbitrary number of patterns</p>
+</div>
+
+<div class="section">
+<h3 id="arbitrary-patterns">Arbitrary patterns<a class="anchor" aria-label="anchor" href="#arbitrary-patterns"></a></h3>
+
+
+<p>Checks for arbitrary patterns are defined by providing one ore more integer values
+in a numeric vector. The integers must be larger or equal to two. A few examples:
+resp_patterns(x,arbitrary_patterns = 2) will check for sequences of responses
+of length two which repeat at least two times.
+resp_patterns(x,arbitrary_patterns = c(2,3,4,5)) will check for sequences of responses
+of length two, three, four and five that repeat at least two times.</p>
+</div>
+
+    </div>
+    <div class="section level2">
+    <h2 id="data-requirements-">Data requirements:<a class="anchor" aria-label="anchor" href="#data-requirements-"></a></h2>
+    <p><code>resp_patterns()</code> assumes that the input data frame is structured in the following way:</p><ul><li><p>The data frame is in wide format, meaning each row represents one respondent,
 each column represents one variable.</p></li>
 <li><p>The variables are in same the order as the questions respondents
 saw while taking the survey.</p></li>
@@ -88,23 +147,19 @@ saw while taking the survey.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Dunn, Alexandra M., Eric D. Heggestad, Linda R. Shanock, and Nels Theilgard. 2018.
-“Intra-Individual Response Variability as an Indicator of Insufficient Effort Responding:
-Comparison to Other Indicators and Relationships with Individual Differences.”
-Journal of Business and Psychology 33(1):105–21. doi: 10.1007/s10869-016-9479-0.</p>
-<p>Marjanovic, Zdravko, Ronald Holden, Ward Struthers, Robert Cribbie,
-and Esther Greenglass. 2015. “The Inter-Item Standard Deviation (ISD):
-An Index That Discriminates between Conscientious and Random Responders.”
-Personality and Individual Differences 84:79–83.
-doi: 10.1016/j.paid.2014.08.021.</p>
+    <p>Curran, P. G. (2016). Methods for the detection of carelessly
+invalid responses in survey data.
+Journal of Experimental Social Psychology, 66, 4–19. https://doi.org/10.1016/j.jesp.2015.07.006</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="resp_styles.html">resp_styles()</a></code> for calculating response style indicators.</p></div>
+    <div class="dont-index"><p><code><a href="resp_styles.html">resp_styles()</a></code> for calculating response style indicators.
+<code><a href="resp_distributions.html">resp_distributions()</a></code> for calculating response distribution indicators.
+<code><a href="resp_nondifferentiation.html">resp_nondifferentiation()</a></code> for calculating response nondifferentiation indicators.</p></div>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
-    <p>Matthias Roth</p>
+    <p>Matthias Roth, Thomas Knopf</p>
     </div>
 
     <div class="section level2">
@@ -120,17 +175,19 @@ doi: 10.1016/j.paid.2014.08.021.</p>
 <span class="r-in"><span><span class="co"># Calculate response distribution indicators</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="resp_distributions.html">resp_distributions</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    n_na prop_na ii_mean ii_sd ii_median mahal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0    0.00    1.33  0.58         1  2.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     0    0.00    3.67  1.53         4  1.60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     0    0.00    2.67  0.58         3  1.38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1    0.33      NA    NA        NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     0    0.00    3.33  0.58         3  0.97</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     0    0.00    2.33  1.53         2  1.38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     1    0.33      NA    NA        NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     0    0.00    2.67  2.08         2  1.88</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     2    0.67      NA    NA        NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    3    1.00      NA    NA        NA    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     n_na prop_na ii_mean ii_sd ii_median mahal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     0    0       1.33  0.58         1  2.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     0    0       3.67  1.53         4  1.6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     0    0       2.67  0.58         3  1.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     1    0.33   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     0    0       3.33  0.58         3  0.97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     0    0       2.33  1.53         2  1.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     1    0.33   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     0    0       2.67  2.08         2  1.88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     2    0.67   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     3    1      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include respondents with NA values by decreasing the</span></span></span>
 <span class="r-in"><span><span class="co"># necessary number of valid responses per respondent.</span></span></span>
@@ -139,17 +196,19 @@ doi: 10.1016/j.paid.2014.08.021.</p>
 <span class="r-in"><span>      x <span class="op">=</span> <span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>      min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    n_na prop_na ii_mean ii_sd ii_median mahal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0    0.00    1.33  0.58       1.0  2.27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     0    0.00    3.67  1.53       4.0  1.68</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     0    0.00    2.67  0.58       3.0  1.05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1    0.33    4.00  1.41       4.0  2.21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     0    0.00    3.33  0.58       3.0  1.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     0    0.00    2.33  1.53       2.0  1.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     1    0.33    3.50  0.71       3.5  0.71</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     0    0.00    2.67  2.08       2.0  2.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     2    0.67    3.00   NaN       3.0  0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    3    1.00      NA    NA        NA    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     n_na prop_na ii_mean  ii_sd ii_median mahal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     0    0       1.33   0.58       1    2.27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     0    0       3.67   1.53       4    1.68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     0    0       2.67   0.58       3    1.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     1    0.33    4      1.41       4    2.21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     0    0       3.33   0.58       3    1.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     0    0       2.33   1.53       2    1.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     1    0.33    3.5    0.71       3.5  0.71</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     0    0       2.67   2.08       2    2.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     2    0.67    3    <span style="color: #BB0000;">NaN</span>          3    0.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     3    1      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>   <span style="color: #BB0000;">NA</span>   </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
