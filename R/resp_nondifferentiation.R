@@ -147,5 +147,5 @@ resp_nondifferentiation <- function(x, min_valid_responses = 1){
     FUN = \(cur_row) 1-sum((table(cur_row)/length(cur_row))^2,na.rm=T))
 
   #Return output
-  as.data.frame(output)
+  tibble::as_tibble(output)
 }

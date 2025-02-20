@@ -4,14 +4,27 @@
 \alias{resp_patterns}
 \title{Compute response pattern indicators}
 \usage{
-resp_patterns(x, min_valid_responses = 1)
+resp_patterns(
+  x,
+  min_valid_responses = 1,
+  defined_patterns,
+  arbitrary_patterns,
+  min_repetitions = 2
+)
 }
 \arguments{
 \item{x}{A data frame containing survey responses in wide format. For more information
 see section "Data requirements" below.}
 
 \item{min_valid_responses}{numeric between 0 and 1. Defines the share of valid responses
-a respondent must have to calculate response quality indicators. Default is 1.}
+a respondent must have to calculate response pattern indicators. Default is 1.}
+
+\item{defined_patterns}{A character vector with patterns to search for. Will not be
+computed if not specified or if an empty vector is supplied.}
+
+\item{arbitrary_patterns}{A vector of integer values or a list containing vectors of
+integer values. The values determine the pattern that should be searched for.
+Will not be computed if not specified or if 0 is supplied.}
 }
 \value{
 Returns a data frame with response quality indicators per respondent.
@@ -28,12 +41,51 @@ questions.
 \details{
 The following response distribution indicators are calculated per respondent:
 \itemize{
-\item n_na: number of intra-individual missing answers
+\item n_transitions: Number of times two consecutive response options differ.
+\item mean_string_length: Mean length of strings of identical answers.
+\item longest_string_length: Longest length of string of identical answers.
+\item (optional) defined_pattern: A list column that contains one named vector
+per respondent. The names of the vector are repeating patterns found in the
+responses of a respondent. The values of the vector are how often the pattern
+specified in the argument "defined_patterns" occurs. See section "Defined patterns" for
+more information.
+\item (optional) arbitrary_patterns: A list column that contains one named vector
+per respondent. The names of the vector are repeating patterns found in the
+responses of a respondent. The values of the vector are how often the pattern
+occurred. See "Arbitrary patterns" for more information.
 }
 }
-\section{Data requirements}{
+\section{Defined and arbitrary pattern indicators:}{
+Responses of an individual respondent can follow patterns, such as zig-zagging
+across the response scale over multiple items. There might be a-priori knowledge
+which response patterns could occur and might be indicative of low quality
+responding. For this case the defined_patterns argument can be used to specify
+one or more patterns whose presence will be checked for each respondent. If
+no a-priori knowledge exists, it is possible to check for all patterns of a
+specified length.
+\subsection{Defined patterns:}{
 
-\code{resp_styles()} assumes that the input data frame is structured in the following way:
+A pattern is defined by providing one ore more patterns in a character vector.
+A few examples: resp_patterns(x,defined_patterns =" checks how
+often the response pattern "123" occurs in the responses of a single respondent.
+c("123","321") checks how often
+the two patterns "123" and "321" occur individually the responses of a single
+respondent. There can be an arbitrary number of patterns
+}
+
+\subsection{Arbitrary patterns}{
+
+Checks for arbitrary patterns are defined by providing one ore more integer values
+in a numeric vector. The integers must be larger or equal to two. A few examples:
+resp_patterns(x,arbitrary_patterns = 2) will check for sequences of responses
+of length two which repeat at least two times.
+resp_patterns(x,arbitrary_patterns = c(2,3,4,5)) will check for sequences of responses
+of length two, three, four and five that repeat at least two times.
+}
+}
+
+\section{Data requirements:}{
+\code{resp_patterns()} assumes that the input data frame is structured in the following way:
 \itemize{
 \item The data frame is in wide format, meaning each row represents one respondent,
 each column represents one variable.
@@ -68,20 +120,15 @@ resp_distributions(
    round(2)
 }
 \references{
-Dunn, Alexandra M., Eric D. Heggestad, Linda R. Shanock, and Nels Theilgard. 2018.
-“Intra-Individual Response Variability as an Indicator of Insufficient Effort Responding:
-Comparison to Other Indicators and Relationships with Individual Differences.”
-Journal of Business and Psychology 33(1):105–21. doi: 10.1007/s10869-016-9479-0.
-
-Marjanovic, Zdravko, Ronald Holden, Ward Struthers, Robert Cribbie,
-and Esther Greenglass. 2015. “The Inter-Item Standard Deviation (ISD):
-An Index That Discriminates between Conscientious and Random Responders.”
-Personality and Individual Differences 84:79–83.
-doi: 10.1016/j.paid.2014.08.021.
+Curran, P. G. (2016). Methods for the detection of carelessly
+invalid responses in survey data.
+Journal of Experimental Social Psychology, 66, 4–19. https://doi.org/10.1016/j.jesp.2015.07.006
 }
 \seealso{
 \code{\link[=resp_styles]{resp_styles()}} for calculating response style indicators.
+\code{\link[=resp_distributions]{resp_distributions()}} for calculating response distribution indicators.
+\code{\link[=resp_nondifferentiation]{resp_nondifferentiation()}} for calculating response nondifferentiation indicators.
 }
 \author{
-Matthias Roth
+Matthias Roth, Thomas Knopf
 }

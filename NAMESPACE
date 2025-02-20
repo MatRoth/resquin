@@ -2,4 +2,5 @@
 
 export(resp_distributions)
 export(resp_nondifferentiation)
+export(resp_patterns)
 export(resp_styles)

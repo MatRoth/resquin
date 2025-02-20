@@ -156,9 +156,8 @@ resp_distributions <- function(x, min_valid_responses = 1) {
   )
 
 
-  # Change type
-  output <- as.data.frame(output)
-  output
+  # Change type & return
+  output <- tibble::as_tibble(output)
 }
 
 #' Modified stats::mahalanobis function which allows for NA values

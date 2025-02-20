@@ -1,7 +1,4 @@
 ## Response pattern indicators
-#n_transitions   <- length(rle_list$values) - 1
-#mean_string_length   <- mean(rle_list$lengths) |> round(2)
-#longest_string_length  <- max(rle_list$lengths)
 #
 #' Compute response pattern indicators
 #'
@@ -11,17 +8,58 @@
 #' @param x A data frame containing survey responses in wide format. For more information
 #' see section "Data requirements" below.
 #' @param min_valid_responses numeric between 0 and 1. Defines the share of valid responses
-#' a respondent must have to calculate response quality indicators. Default is 1.
+#' a respondent must have to calculate response pattern indicators. Default is 1.
+#' @param defined_patterns A character vector with patterns to search for. Will not be
+#' computed if not specified or if an empty vector is supplied.
+#' @param arbitrary_patterns A vector of integer values or a list containing vectors of
+#' integer values. The values determine the pattern that should be searched for.
+#' Will not be computed if not specified or if 0 is supplied.
+#'
 #' @details
 #' The following response distribution indicators are calculated per respondent:
 #' \itemize{
-#'    \item n_na: number of intra-individual missing answers
+#'    \item n_transitions: Number of times two consecutive response options differ.
+#'    \item mean_string_length: Mean length of strings of identical answers.
+#'    \item longest_string_length: Longest length of string of identical answers.
+#'    \item (optional) defined_pattern: A list column that contains one named vector
+#'    per respondent. The names of the vector are repeating patterns found in the
+#'    responses of a respondent. The values of the vector are how often the pattern
+#'    specified in the argument "defined_patterns" occurs. See section "Defined patterns" for
+#'    more information.
+#'    \item (optional) arbitrary_patterns: A list column that contains one named vector
+#'    per respondent. The names of the vector are repeating patterns found in the
+#'    responses of a respondent. The values of the vector are how often the pattern
+#'    occurred. See "Arbitrary patterns" for more information.
 #' }
 #'
-
+#' # Defined and arbitrary pattern indicators:
+#' Responses of an individual respondent can follow patterns, such as zig-zagging
+#' across the response scale over multiple items. There might be a-priori knowledge
+#' which response patterns could occur and might be indicative of low quality
+#' responding. For this case the defined_patterns argument can be used to specify
+#' one or more patterns whose presence will be checked for each respondent. If
+#' no a-priori knowledge exists, it is possible to check for all patterns of a
+#' specified length.
 #'
-#' @section Data requirements:
-#' `resp_styles()` assumes that the input data frame is structured in the following way:
+#' ## Defined patterns:
+#' A pattern is defined by providing one ore more patterns in a character vector.
+#' A few examples: resp_patterns(x,defined_patterns =" checks how
+#' often the response pattern "123" occurs in the responses of a single respondent.
+#'  c("123","321") checks how often
+#' the two patterns "123" and "321" occur individually the responses of a single
+#' respondent. There can be an arbitrary number of patterns
+#'
+#' ## Arbitrary patterns
+#' Checks for arbitrary patterns are defined by providing one ore more integer values
+#' in a numeric vector. The integers must be larger or equal to two. A few examples:
+#' resp_patterns(x,arbitrary_patterns = 2) will check for sequences of responses
+#' of length two which repeat at least two times.
+#' resp_patterns(x,arbitrary_patterns = c(2,3,4,5)) will check for sequences of responses
+#' of length two, three, four and five that repeat at least two times.
+#'
+#'
+#' # Data requirements:
+#' `resp_patterns()` assumes that the input data frame is structured in the following way:
 #' * The data frame is in wide format, meaning each row represents one respondent,
 #' each column represents one variable.
 #' * The variables are in same the order as the questions respondents
@@ -36,20 +74,15 @@
 #'  Dimensions:
 #'  * Rows: Equal to number of rows in x.
 #'  * Columns:
-#' @author Matthias Roth
+#' @author Matthias Roth, Thomas Knopf
 #'
 #' @seealso [resp_styles()] for calculating response style indicators.
+#' [resp_distributions()] for calculating response distribution indicators.
+#' [resp_nondifferentiation()] for calculating response nondifferentiation indicators.
 #'
-#' @references Dunn, Alexandra M., Eric D. Heggestad, Linda R. Shanock, and Nels Theilgard. 2018.
-#' “Intra-Individual Response Variability as an Indicator of Insufficient Effort Responding:
-#' Comparison to Other Indicators and Relationships with Individual Differences.”
-#' Journal of Business and Psychology 33(1):105–21. doi: 10.1007/s10869-016-9479-0.
-#'
-#' Marjanovic, Zdravko, Ronald Holden, Ward Struthers, Robert Cribbie,
-#' and Esther Greenglass. 2015. “The Inter-Item Standard Deviation (ISD):
-#' An Index That Discriminates between Conscientious and Random Responders.”
-#' Personality and Individual Differences 84:79–83.
-#' doi: 10.1016/j.paid.2014.08.021.
+#' @references  Curran, P. G. (2016). Methods for the detection of carelessly
+#'  invalid responses in survey data.
+#'  Journal of Experimental Social Psychology, 66, 4–19. https://doi.org/10.1016/j.jesp.2015.07.006
 #'
 #'
 #' @examples
@@ -73,21 +106,17 @@
 #'       min_valid_responses = 0.2) |>
 #'    round(2)
 
-
-resp_patterns <- function(x, min_valid_responses = 1) {
+#' @export
+resp_patterns <- function(x,
+                          min_valid_responses = 1,
+                          defined_patterns,
+                          arbitrary_patterns,
+                          min_repetitions = 2) {
   # Set globally as min_valid_responses controls behavior on missing data
   na.rm <- T
 
   # General input checks
-  input_check(x)
-
-  # Function specif input checks
-  if(!is.numeric(min_valid_responses)) cli::cli_abort(
-    c("!" = "Argument 'min_valid_responses' must be numeric.")
-  )
-  if(min_valid_responses >1|min_valid_responses<0) cli::cli_abort(
-    c("!" = "Argument 'min_valid_responses' must be between or equal to 0 and 1.")
-  )
+  input_check(x,min_valid_responses)
 
   # Truncate response quality indicators where n valid responses is < min_valid_responses
   na_mask <- if(min_valid_responses== 0){
@@ -108,12 +137,59 @@ resp_patterns <- function(x, min_valid_responses = 1) {
   output <-list()
 
   # Missing numbers (for all respondents)
-  output$n_na <- rowSums(is.na(x))
-  output$prop_na <- (output$n_na/ncol(x))
-  output$simple_non_differentiation[!na_mask] <- apply(x[!na_mask,],1,\(cur_row)  as.numeric((length(na.omit(unique(cur_row)))==1)))
+  output$n_transitions[!na_mask] <- apply(x[!na_mask,],1,\(cur_row) length(rle(cur_row)$values)-1)
+  output$mean_string_length[!na_mask] <- apply(x[!na_mask,],1,\(cur_row) mean(rle(cur_row)$lengths,na.rm=T))
+  output$longest_string_length[!na_mask] <- apply(x[!na_mask,],1,\(cur_row) max(rle(cur_row)$lengths,na.rm=T))
 
-  # Change type
-  output <- as.data.frame(output)
-  output
+  # Conditional execution of defined and arbitrary patterns
+  if(!missing(defined_patterns)){
+    output$defined_patterns[!na_mask] <- apply(x[!na_mask,],
+                                               1,
+                                               simplify = F,
+                                               \(cur_row){
+      purrr::map(defined_patterns,
+                 \(pat) detect_pattern(cur_row,pat)) |>
+                                                   unlist()})}
+
+  if(!missing(arbitrary_patterns)){
+    output$arbitrary_patterns[!na_mask] <- apply(x[!na_mask,],
+                                                 1,
+                                                 simplify = F,
+                                                 \(cur_row){
+      patterns <- purrr::map(arbitrary_patterns,\(n){
+        slider::slide(.x = cur_row,
+                      .after = n-1,
+                      .f = \(cur_pattern) cur_pattern)
+      }) |>
+        purrr::flatten() |>
+        purrr::keep(\(pat) length(pat) %in% arbitrary_patterns)
+
+      patterns <- purrr::map(patterns,
+                             as.character) |>
+        purrr::map_chr(paste,collapse = "_")
+
+      found_patterns <- purrr::map(patterns,
+                 \(pat) detect_pattern(cur_row,pat)) |>
+        purrr::flatten_int() |>
+        purrr::keep(\(pat) pat >= min_repetitions) |>
+        sort(decreasing = T)
+      found_patterns[unique(names(found_patterns))]
+    })}
+
+  # Change type & return
+  tibble::as_tibble(output)
 }
+
+
+# Detects individual patterns in a response string
+#' @noRd
+detect_pattern <- function(response_vector,pattern){
+  # Response string is the vector of responses
+  # pattern is the vector representing the pattern to investigate
+  response_string <- paste(response_vector,collapse = "_")
+  pattern_string <- paste(pattern,collapse = "_")
+  setNames(object = stringi::stri_count_fixed(response_string,pattern_string),
+           nm = pattern_string)
+}
+
 
