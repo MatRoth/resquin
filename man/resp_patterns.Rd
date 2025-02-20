@@ -107,14 +107,14 @@ testdata <- data.frame(
   var_b = c(2,5,2,3,4,1,NA,2,NA,NA),
   var_c = c(1,2,3,NA,3,4,4,5,NA,NA))
 
-# Calculate response distribution indicators
-resp_distributions(x = testdata) |>
+# Calculate response pattern indicators
+resp_patterns(x = testdata) |>
     round(2)
 
 # Include respondents with NA values by decreasing the
 # necessary number of valid responses per respondent.
 
-resp_distributions(
+resp_patterns(
       x = testdata,
       min_valid_responses = 0.2) |>
    round(2)
