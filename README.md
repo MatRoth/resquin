@@ -17,11 +17,11 @@ to calculate survey data quality indicators to help identifying
 low-quality responses ([Bhaktha, Silber, and Lechner
 2024](#ref-bhaktha); [Curran 2016](#ref-curran2016); [Vaerenbergh and
 Thomas 2013](#ref-vanvaerenbergh2013)). `resp_styles()`,
-`resp_distributions()` and \`resp_nondifferentiation()\`\` provide
-response quality indicators geared towards multi-item scales or matrix
-questions. Both multi-item scales and matrix questions present survey
-respondents with multiple questions which have the same response format,
-meaning the same number and labeling of response options.
+`resp_distributions()` and `resp_nondifferentiation()` provide response
+quality indicators geared towards multi-item scales or matrix questions.
+Both multi-item scales and matrix questions present survey respondents
+with multiple questions which have the same response format, meaning the
+same number and labeling of response options.
 
 At the moment, `resquin` provides three functions:
 
@@ -34,15 +34,11 @@ At the moment, `resquin` provides three functions:
   indicators. Nondifferentiation indicators primarily measure
   straightlining. The indicators differ in how straightlining is
   operationalized.
-
-Two more functions are planned:
-
 - `resp_patterns` - Calculates response pattern indicators (e.g. long
-  string analysis )
-- `resp_times` - Calculates response time indicators (e.g. median item
-  response time). Whether this function will be implemented in this
-  package is still under deliberation. Response times come in different
-  formats and wrangling them may require their own package.
+  string analysis). Currently under development
+
+(A function on response times was also planed but may require its own
+package. Data wrangling of response times is more complicated.)
 
 For information on how to use `resquin` see the vignettes [Getting
 started with
@@ -120,43 +116,54 @@ resp_styles(x = testdata,
 # Calculate response distribution indicators per respondent
 resp_distributions(x = testdata) |>
   round(2)
-#>    n_na prop_na ii_mean ii_sd ii_median mahal
-#> 1     0    0.00    1.33  0.58         1  2.04
-#> 2     0    0.00    3.67  1.53         4  1.60
-#> 3     0    0.00    2.67  0.58         3  1.38
-#> 4     1    0.33      NA    NA        NA    NA
-#> 5     0    0.00    3.33  0.58         3  0.97
-#> 6     0    0.00    2.33  1.53         2  1.38
-#> 7     1    0.33      NA    NA        NA    NA
-#> 8     0    0.00    2.67  2.08         2  1.88
-#> 9     2    0.67      NA    NA        NA    NA
-#> 10    3    1.00      NA    NA        NA    NA
+#> # A tibble: 10 × 6
+#>     n_na prop_na ii_mean ii_sd ii_median mahal
+#>    <dbl>   <dbl>   <dbl> <dbl>     <dbl> <dbl>
+#>  1     0    0       1.33  0.58         1  2.04
+#>  2     0    0       3.67  1.53         4  1.6 
+#>  3     0    0       2.67  0.58         3  1.38
+#>  4     1    0.33   NA    NA           NA NA   
+#>  5     0    0       3.33  0.58         3  0.97
+#>  6     0    0       2.33  1.53         2  1.38
+#>  7     1    0.33   NA    NA           NA NA   
+#>  8     0    0       2.67  2.08         2  1.88
+#>  9     2    0.67   NA    NA           NA NA   
+#> 10     3    1      NA    NA           NA NA
 
 # Calculate response nondifferentiation indicator per respondent
 resp_nondifferentiation(x = testdata) |> 
   round(2)
+#> # A tibble: 10 × 4
 #>    simple_nondifferentiation mean_root_pairs max_identical_rating
-#> 1                          0            1.00                 0.67
-#> 2                          0            0.21                 0.33
-#> 3                          0            1.00                 0.67
-#> 4                         NA              NA                   NA
-#> 5                          0            1.00                 0.67
-#> 6                          0            0.21                 0.33
-#> 7                         NA              NA                   NA
-#> 8                          0            0.00                 0.33
-#> 9                         NA              NA                   NA
-#> 10                        NA              NA                   NA
-#>    scale_point_variation
-#> 1                   0.44
-#> 2                   0.67
-#> 3                   0.44
-#> 4                     NA
-#> 5                   0.44
-#> 6                   0.67
-#> 7                     NA
-#> 8                   0.67
-#> 9                     NA
-#> 10                    NA
+#>                        <dbl>           <dbl>                <dbl>
+#>  1                         0            1                    0.67
+#>  2                         0            0.21                 0.33
+#>  3                         0            1                    0.67
+#>  4                        NA           NA                   NA   
+#>  5                         0            1                    0.67
+#>  6                         0            0.21                 0.33
+#>  7                        NA           NA                   NA   
+#>  8                         0            0                    0.33
+#>  9                        NA           NA                   NA   
+#> 10                        NA           NA                   NA   
+#> # ℹ 1 more variable: scale_point_variation <dbl>
+
+# Calculate response pattern indicators
+resp_patterns(x = testdata) |> 
+  round(2)
+#> # A tibble: 10 × 3
+#>    n_transitions mean_string_length longest_string_length
+#>            <dbl>              <dbl>                 <dbl>
+#>  1             2                  1                     1
+#>  2             2                  1                     1
+#>  3             2                  1                     1
+#>  4            NA                 NA                    NA
+#>  5             2                  1                     1
+#>  6             2                  1                     1
+#>  7            NA                 NA                    NA
+#>  8             2                  1                     1
+#>  9            NA                 NA                    NA
+#> 10            NA                 NA                    NA
 ```
 
 For a more information on how to use `resquin` see the vignettes
