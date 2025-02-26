@@ -2,7 +2,7 @@
 % Please edit documentation in R/resp_patterns.R
 \name{resp_patterns}
 \alias{resp_patterns}
-\title{Compute response pattern indicators}
+\title{Compute response pattern indicators (under development)}
 \usage{
 resp_patterns(
   x,
