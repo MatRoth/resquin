@@ -19,8 +19,8 @@ see section "Data requirements" below.}
 \item{min_valid_responses}{numeric between 0 and 1. Defines the share of valid responses
 a respondent must have to calculate response pattern indicators. Default is 1.}
 
-\item{defined_patterns}{A character vector with patterns to search for. Will not be
-computed if not specified or if an empty vector is supplied.}
+\item{defined_patterns}{A vector of integer values with patterns to search for or a list of integer vectors.
+Will not be computed if not specified or if an empty vector is supplied.}
 
 \item{arbitrary_patterns}{A vector of integer values or a list containing vectors of
 integer values. The values determine the pattern that should be searched for.
@@ -31,7 +31,8 @@ Returns a data frame with response quality indicators per respondent.
 Dimensions:
 \itemize{
 \item Rows: Equal to number of rows in x.
-\item Columns:
+\item Columns: Three response pattern indicators + one column for defined patterns
+if specified + one column for arbitrary patterns (if specified).
 }
 }
 \description{
@@ -53,6 +54,8 @@ more information.
 per respondent. The names of the vector are repeating patterns found in the
 responses of a respondent. The values of the vector are how often the pattern
 occurred. See "Arbitrary patterns" for more information.
+\item (optional) min_repetitions: Defines number of times an arbitrary pattern
+has to be repeated to be retained in the results.
 }
 }
 \section{Defined and arbitrary pattern indicators:}{
@@ -68,8 +71,8 @@ specified length.
 A pattern is defined by providing one ore more patterns in a character vector.
 A few examples: resp_patterns(x,defined_patterns =" checks how
 often the response pattern "123" occurs in the responses of a single respondent.
-c("123","321") checks how often
-the two patterns "123" and "321" occur individually the responses of a single
+list(c(1,2,3),c(3,2,1)) checks how often
+the two patterns 1 2 3 and 3 2 1 occur individually the responses of a single
 respondent. There can be an arbitrary number of patterns
 }
 

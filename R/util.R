@@ -47,10 +47,10 @@ input_check <- function(x,min_valid_responses){
 #' Performs input checks specific to resp_styles
 #' @noRd
 input_check_resp_styles <- function(x,
-                               scale_min,
-                               scale_max,
-                               min_valid_responses,
-                               normalize){
+                                    scale_min,
+                                    scale_max,
+                                    min_valid_responses,
+                                    normalize){
   input_check(x,min_valid_responses)
   if(!is.numeric(scale_min)) cli::cli_abort(
     c("!" = "Argument 'scale_min' must be numeric.")
@@ -74,4 +74,62 @@ input_check_resp_styles <- function(x,
     "{paste(names(unique_response_options),collapse = ' ')}")
   )
   return(NULL)
+}
+
+input_check_resp_patterns <- function(x,
+                                      min_valid_responses,
+                                      defined_patterns,
+                                      arbitrary_patterns,
+                                      min_repetitions){
+  input_check(x,min_valid_responses)
+
+  if(!missing(defined_patterns)){
+    if(is.list(defined_patterns)){
+      within_list_type_ok <- all(purrr::map_lgl(defined_patterns,\(cur_elem) all(is.quasi_integer(cur_elem))))
+      if(!within_list_type_ok) cli::cli_abort(c(
+        "!" = "Elements in the list supplied to `defined_patterns` are not numeric integers.",
+        "i" = "Use numeric vectors with integer values of possible response options in the list supplied to `defined_patterns`"))
+    } else {
+      if(!is.quasi_integer(defined_patterns)){cli::cli_abort(c(
+        "!" = "`defined_patterns` is not of type list or a vector not of numeric integers.",
+        "i" = "`defined_patterns` requires a numeric vector of integer values representing response patterns (e.g. c(1,2,3)) or a list
+        of vectors with integer values representing response options (e.g. list(c(1,2,3),c(3,2,1))."))
+      }
+    }
+  }
+
+  if(!missing(arbitrary_patterns)){
+    if(!is.quasi_integer(arbitrary_patterns)){
+      cli::cli_abort(c(
+        "!" = "`arbitrary_patterns` is not of type list or of type numeric.",
+        "i" = "`arbitrary_patterns` requires a numeric vector of integer values defining the length of patterns to search for."))
+    } else {if(any(arbitrary_patterns < 2)){
+      cli::cli_abort(c(
+        "!" = "At least one element supplied to `arbitrary_patterns` is smaller than two.",
+        "i" = "`arbitrary_patterns` requires a numeric integer value larger or equal two."))
+      }
+    }
+  }
+
+  if(!is.quasi_integer(min_repetitions)){
+    cli::cli_abort(c(
+      "!" = "`min_repitions` is not of type list or of type numeric.",
+      "i" = "`min_repitions` requires a numeric integer value."))
+  } else{
+    if(min_repetitions < 2){
+      cli::cli_abort(c(
+        "!" = "`min_repitions` is smaller than two.",
+        "i" = "`min_repitions` requires a numeric integer value larger or equal two."))
+    }
+  }
+  return(NULL)
+}
+
+
+
+#' @noRd
+#' Check if numeric vector can be coerced to integer without loss of precision
+is.quasi_integer <- function(vec){
+  tryCatch(is.integer(vctrs::vec_cast(vec,to = integer()))&is.numeric(vec),
+           error = \(e) F)
 }
