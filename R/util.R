@@ -125,10 +125,8 @@ input_check_resp_patterns <- function(x,
   return(NULL)
 }
 
-
-
-#' @noRd
 #' Check if numeric vector can be coerced to integer without loss of precision
+#' @noRd
 is.quasi_integer <- function(vec){
   tryCatch(is.integer(vctrs::vec_cast(vec,to = integer()))&is.numeric(vec),
            error = \(e) F)

@@ -32,7 +32,7 @@ Dimensions:
 \itemize{
 \item Rows: Equal to number of rows in x.
 \item Columns: Three response pattern indicators + one column for defined patterns
-if specified + one column for arbitrary patterns (if specified).
+(if specified) + one column for arbitrary patterns (if specified).
 }
 }
 \description{
@@ -69,10 +69,10 @@ specified length.
 \subsection{Defined patterns:}{
 
 A pattern is defined by providing one ore more patterns in a character vector.
-A few examples: resp_patterns(x,defined_patterns =" checks how
+A few examples: \verb{resp_patterns(x,defined_patterns = c(1,2,3)} checks how
 often the response pattern "123" occurs in the responses of a single respondent.
-list(c(1,2,3),c(3,2,1)) checks how often
-the two patterns 1 2 3 and 3 2 1 occur individually the responses of a single
+\code{list(c(1,2,3),c(3,2,1))} checks how often
+the two patterns 1 2 3 and 3 2 1 occur individually in the responses of a single
 respondent. There can be an arbitrary number of patterns
 }
 
@@ -80,9 +80,9 @@ respondent. There can be an arbitrary number of patterns
 
 Checks for arbitrary patterns are defined by providing one ore more integer values
 in a numeric vector. The integers must be larger or equal to two. A few examples:
-resp_patterns(x,arbitrary_patterns = 2) will check for sequences of responses
+\code{resp_patterns(x,arbitrary_patterns = 2)} will check for sequences of responses
 of length two which repeat at least two times.
-resp_patterns(x,arbitrary_patterns = c(2,3,4,5)) will check for sequences of responses
+\code{resp_patterns(x,arbitrary_patterns = c(2,3,4,5))} will check for sequences of responses
 of length two, three, four and five that repeat at least two times.
 }
 }
