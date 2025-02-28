@@ -133,69 +133,69 @@
 <span>            scale_min <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>            scale_max <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># Specify scale minimum and maximum</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     MRS  ARS  DRS  ERS NERS</span></span>
-<span><span class="co">#&gt; 1  0.00 0.00 1.00 0.67 0.33</span></span>
-<span><span class="co">#&gt; 2  0.00 0.67 0.33 0.33 0.67</span></span>
-<span><span class="co">#&gt; 3  0.67 0.00 0.33 0.00 1.00</span></span>
-<span><span class="co">#&gt; 4    NA   NA   NA   NA   NA</span></span>
-<span><span class="co">#&gt; 5  0.67 0.33 0.00 0.00 1.00</span></span>
-<span><span class="co">#&gt; 6  0.00 0.33 0.67 0.33 0.67</span></span>
-<span><span class="co">#&gt; 7    NA   NA   NA   NA   NA</span></span>
-<span><span class="co">#&gt; 8  0.00 0.33 0.67 0.67 0.33</span></span>
-<span><span class="co">#&gt; 9    NA   NA   NA   NA   NA</span></span>
-<span><span class="co">#&gt; 10   NA   NA   NA   NA   NA</span></span>
+<span><span class="co">#&gt;    id  MRS  ARS  DRS  ERS NERS</span></span>
+<span><span class="co">#&gt; 1   1 0.00 0.00 1.00 0.67 0.33</span></span>
+<span><span class="co">#&gt; 2   2 0.00 0.67 0.33 0.33 0.67</span></span>
+<span><span class="co">#&gt; 3   3 0.67 0.00 0.33 0.00 1.00</span></span>
+<span><span class="co">#&gt; 4   4   NA   NA   NA   NA   NA</span></span>
+<span><span class="co">#&gt; 5   5 0.67 0.33 0.00 0.00 1.00</span></span>
+<span><span class="co">#&gt; 6   6 0.00 0.33 0.67 0.33 0.67</span></span>
+<span><span class="co">#&gt; 7   7   NA   NA   NA   NA   NA</span></span>
+<span><span class="co">#&gt; 8   8 0.00 0.33 0.67 0.67 0.33</span></span>
+<span><span class="co">#&gt; 9   9   NA   NA   NA   NA   NA</span></span>
+<span><span class="co">#&gt; 10 10   NA   NA   NA   NA   NA</span></span>
 <span></span>
 <span><span class="co"># Calculate response distribution indicators per respondent</span></span>
 <span><span class="fu"><a href="reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 6</span></span>
-<span><span class="co">#&gt;     n_na prop_na ii_mean ii_sd ii_median mahal</span></span>
-<span><span class="co">#&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1     0    0       1.33  0.58         1  2.04</span></span>
-<span><span class="co">#&gt;  2     0    0       3.67  1.53         4  1.6 </span></span>
-<span><span class="co">#&gt;  3     0    0       2.67  0.58         3  1.38</span></span>
-<span><span class="co">#&gt;  4     1    0.33   NA    NA           NA NA   </span></span>
-<span><span class="co">#&gt;  5     0    0       3.33  0.58         3  0.97</span></span>
-<span><span class="co">#&gt;  6     0    0       2.33  1.53         2  1.38</span></span>
-<span><span class="co">#&gt;  7     1    0.33   NA    NA           NA NA   </span></span>
-<span><span class="co">#&gt;  8     0    0       2.67  2.08         2  1.88</span></span>
-<span><span class="co">#&gt;  9     2    0.67   NA    NA           NA NA   </span></span>
-<span><span class="co">#&gt; 10     3    1      NA    NA           NA NA</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 7</span></span>
+<span><span class="co">#&gt;       id  n_na prop_na ii_mean ii_sd ii_median mahal</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1     1     0    0       1.33  0.58         1  2.04</span></span>
+<span><span class="co">#&gt;  2     2     0    0       3.67  1.53         4  1.6 </span></span>
+<span><span class="co">#&gt;  3     3     0    0       2.67  0.58         3  1.38</span></span>
+<span><span class="co">#&gt;  4     4     1    0.33   NA    NA           NA NA   </span></span>
+<span><span class="co">#&gt;  5     5     0    0       3.33  0.58         3  0.97</span></span>
+<span><span class="co">#&gt;  6     6     0    0       2.33  1.53         2  1.38</span></span>
+<span><span class="co">#&gt;  7     7     1    0.33   NA    NA           NA NA   </span></span>
+<span><span class="co">#&gt;  8     8     0    0       2.67  2.08         2  1.88</span></span>
+<span><span class="co">#&gt;  9     9     2    0.67   NA    NA           NA NA   </span></span>
+<span><span class="co">#&gt; 10    10     3    1      NA    NA           NA NA</span></span>
 <span></span>
 <span><span class="co"># Calculate response nondifferentiation indicator per respondent</span></span>
 <span><span class="fu"><a href="reference/resp_nondifferentiation.html">resp_nondifferentiation</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 4</span></span>
-<span><span class="co">#&gt;    simple_nondifferentiation mean_root_pairs max_identical_rating</span></span>
-<span><span class="co">#&gt;                        &lt;dbl&gt;           &lt;dbl&gt;                &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1                         0            1                    0.67</span></span>
-<span><span class="co">#&gt;  2                         0            0.21                 0.33</span></span>
-<span><span class="co">#&gt;  3                         0            1                    0.67</span></span>
-<span><span class="co">#&gt;  4                        NA           NA                   NA   </span></span>
-<span><span class="co">#&gt;  5                         0            1                    0.67</span></span>
-<span><span class="co">#&gt;  6                         0            0.21                 0.33</span></span>
-<span><span class="co">#&gt;  7                        NA           NA                   NA   </span></span>
-<span><span class="co">#&gt;  8                         0            0                    0.33</span></span>
-<span><span class="co">#&gt;  9                        NA           NA                   NA   </span></span>
-<span><span class="co">#&gt; 10                        NA           NA                   NA   </span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 5</span></span>
+<span><span class="co">#&gt;       id simple_nondifferentiation mean_root_pairs max_identical_rating</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt;                     &lt;dbl&gt;           &lt;dbl&gt;                &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1     1                         0            1                    0.67</span></span>
+<span><span class="co">#&gt;  2     2                         0            0.21                 0.33</span></span>
+<span><span class="co">#&gt;  3     3                         0            1                    0.67</span></span>
+<span><span class="co">#&gt;  4     4                        NA           NA                   NA   </span></span>
+<span><span class="co">#&gt;  5     5                         0            1                    0.67</span></span>
+<span><span class="co">#&gt;  6     6                         0            0.21                 0.33</span></span>
+<span><span class="co">#&gt;  7     7                        NA           NA                   NA   </span></span>
+<span><span class="co">#&gt;  8     8                         0            0                    0.33</span></span>
+<span><span class="co">#&gt;  9     9                        NA           NA                   NA   </span></span>
+<span><span class="co">#&gt; 10    10                        NA           NA                   NA   </span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: scale_point_variation &lt;dbl&gt;</span></span>
 <span></span>
 <span><span class="co"># Calculate response pattern indicators</span></span>
-<span><span class="fu"><a href="reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="fu"><a href="reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span> <span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 3</span></span>
-<span><span class="co">#&gt;    n_transitions mean_string_length longest_string_length</span></span>
-<span><span class="co">#&gt;            &lt;dbl&gt;              &lt;dbl&gt;                 &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1             2                  1                     1</span></span>
-<span><span class="co">#&gt;  2             2                  1                     1</span></span>
-<span><span class="co">#&gt;  3             2                  1                     1</span></span>
-<span><span class="co">#&gt;  4            NA                 NA                    NA</span></span>
-<span><span class="co">#&gt;  5             2                  1                     1</span></span>
-<span><span class="co">#&gt;  6             2                  1                     1</span></span>
-<span><span class="co">#&gt;  7            NA                 NA                    NA</span></span>
-<span><span class="co">#&gt;  8             2                  1                     1</span></span>
-<span><span class="co">#&gt;  9            NA                 NA                    NA</span></span>
-<span><span class="co">#&gt; 10            NA                 NA                    NA</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span><span class="co">#&gt;       id n_transitions mean_string_length longest_string_length</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt;         &lt;dbl&gt;              &lt;dbl&gt;                 &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1     1             2                  1                     1</span></span>
+<span><span class="co">#&gt;  2     2             2                  1                     1</span></span>
+<span><span class="co">#&gt;  3     3             2                  1                     1</span></span>
+<span><span class="co">#&gt;  4     4            NA                 NA                    NA</span></span>
+<span><span class="co">#&gt;  5     5             2                  1                     1</span></span>
+<span><span class="co">#&gt;  6     6             2                  1                     1</span></span>
+<span><span class="co">#&gt;  7     7            NA                 NA                    NA</span></span>
+<span><span class="co">#&gt;  8     8             2                  1                     1</span></span>
+<span><span class="co">#&gt;  9     9            NA                 NA                    NA</span></span>
+<span><span class="co">#&gt; 10    10            NA                 NA                    NA</span></span></code></pre></div>
 <p>For a more information on how to use <code>resquin</code> see the vignettes <a href="https://matroth.github.io/resquin/articles/getting_started_with_resquin.html">Getting started with resquin</a> and <a href="https://matroth.github.io/resquin/articles/resquin_in_practice.html">resquin in practice</a>.</p>
 </div>
 </div>

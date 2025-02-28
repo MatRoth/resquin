@@ -63,35 +63,35 @@ see section "Data requirements" below.</p></dd>
 
 
 <dt id="arg-scale-min">scale_min<a class="anchor" aria-label="anchor" href="#arg-scale-min"></a></dt>
-<dd><p>numeric. Minimum of scale provided.</p></dd>
+<dd><p>Numeric of length 1. Minimum of scale provided.</p></dd>
 
 
 <dt id="arg-scale-max">scale_max<a class="anchor" aria-label="anchor" href="#arg-scale-max"></a></dt>
-<dd><p>numeric. Maximum of scale provided.</p></dd>
+<dd><p>Numeric of length 1. Maximum of scale provided.</p></dd>
 
 
 <dt id="arg-min-valid-responses">min_valid_responses<a class="anchor" aria-label="anchor" href="#arg-min-valid-responses"></a></dt>
-<dd><p>numeric between 0 and 1. Defines the share of valid responses
+<dd><p>Numeric between 0 and 1 of length 1. Defines the share of valid responses
 a respondent must have to calculate response style indicators.</p></dd>
 
 
 <dt id="arg-normalize">normalize<a class="anchor" aria-label="anchor" href="#arg-normalize"></a></dt>
-<dd><p>logical. If <em>TRUE</em>, counts of response style indicators will
+<dd><p>logical of length 1. If <em>TRUE</em>, counts of response style indicators will
 be divided by the number of non-missing responses per respondent. Default is
 <em>TRUE</em>.</p></dd>
 
 
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p>default is T. Alternatively, a numeric or character vector of unique values identifying
-each respondent can be supplied. Needs to be of the same length as the number of rows of <code>x</code>. If the default value is supplied
-a column named <code>id</code> with integer ids will be created.</p></dd>
+<dd><p>default is <code>True</code>. If the default value is supplied
+a column named <code>id</code> with integer ids will be created. If <code>False</code> is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of <code>x</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Returns a data frame with response style indicators
 per respondent.</p><ul><li><p>Rows: Equal to number of rows in x.</p></li>
-<li><p>Columns: Six: One id column plus one for each response style indicator.</p></li>
+<li><p>Columns: Five for each response style indicator + id column (if specified).</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>

@@ -66,7 +66,7 @@ see section "Data requirements" below.</p></dd>
 
 
 <dt id="arg-min-valid-responses">min_valid_responses<a class="anchor" aria-label="anchor" href="#arg-min-valid-responses"></a></dt>
-<dd><p>numeric between 0 and 1. Defines the share of valid responses
+<dd><p>Numeric between 0 and 1 of length 1. Defines the share of valid responses
 a respondent must have to calculate response pattern indicators. Default is 1.</p></dd>
 
 
@@ -82,9 +82,9 @@ Will not be computed if not specified or if 0 is supplied.</p></dd>
 
 
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p>default is T. Alternatively, a numeric or character vector of unique values identifying
-each respondent can be supplied. Needs to be of the same length as the number of rows of <code>x</code>. If the default value is supplied
-a column named <code>id</code> with integer ids will be created.</p></dd>
+<dd><p>default is <code>True</code>. If the default value is supplied
+a column named <code>id</code> with integer ids will be created. If <code>False</code> is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of <code>x</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -92,7 +92,7 @@ a column named <code>id</code> with integer ids will be created.</p></dd>
     <p>Returns a data frame with response quality indicators per respondent.
 Dimensions:</p><ul><li><p>Rows: Equal to number of rows in x.</p></li>
 <li><p>Columns: Three response pattern indicators + one column for defined patterns
-(if specified) + one column for arbitrary patterns (if specified).</p></li>
+(if specified) + one column for arbitrary patterns (if specified) + one id column (if specified).</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -185,7 +185,19 @@ Journal of Experimental Social Psychology, 66, 4–19. https://doi.org/10.1016/j
 <span class="r-in"><span><span class="co"># Calculate response pattern indicators</span></span></span>
 <span class="r-in"><span><span class="fu">resp_patterns</span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in resp_patterns(x = testdata):</span> object 'testdata' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id n_transitions mean_string_length longest_string_length</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include respondents with NA values by decreasing the</span></span></span>
 <span class="r-in"><span><span class="co"># necessary number of valid responses per respondent.</span></span></span>
@@ -194,7 +206,19 @@ Journal of Experimental Social Psychology, 66, 4–19. https://doi.org/10.1016/j
 <span class="r-in"><span>      x <span class="op">=</span> <span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>      min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in resp_patterns(x = testdata, min_valid_responses = 0.2):</span> object 'testdata' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id n_transitions mean_string_length longest_string_length</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9             2                  1                     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

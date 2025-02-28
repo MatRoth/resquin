@@ -59,21 +59,21 @@ see section "Data requirements" below.</p></dd>
 
 
 <dt id="arg-min-valid-responses">min_valid_responses<a class="anchor" aria-label="anchor" href="#arg-min-valid-responses"></a></dt>
-<dd><p>numeric between 0 and 1. Defines the share of valid responses
+<dd><p>Numeric between 0 and 1 of length 1. Defines the share of valid responses
 a respondent must have to calculate response quality indicators. Default is 1.</p></dd>
 
 
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p>default is T. Alternatively, a numeric or character vector of unique values identifying
-each respondent can be supplied. Needs to be of the same length as the number of rows of <code>x</code>. If the default value is supplied
-a column named <code>id</code> with integer ids will be created.</p></dd>
+<dd><p>default is <code>True</code>. If the default value is supplied
+a column named <code>id</code> with integer ids will be created. If <code>False</code> is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of <code>x</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Returns a data frame with response nondifferentiation indicators per respondent.
 Dimensions:</p><ul><li><p>Rows: Equal to number of rows in x.</p></li>
-<li><p>Columns: Four, one corresponding to each response nondifferentiation indicator.</p></li>
+<li><p>Columns: Four response nondifferentiation indicator columns + id column (if specified).</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
