@@ -14,6 +14,9 @@
 #' @param arbitrary_patterns A vector of integer values or a list containing vectors of
 #' integer values. The values determine the pattern that should be searched for.
 #' Will not be computed if not specified or if 0 is supplied.
+#' @param id default is T. Alternatively, a numeric or character vector of unique values identifying
+#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`. If the default value is supplied
+#' a column named `id` with integer ids will be created.
 #'
 #' @details
 #' The following response distribution indicators are calculated per respondent:
@@ -114,7 +117,8 @@ resp_patterns <- function(x,
                           min_valid_responses = 1,
                           defined_patterns,
                           arbitrary_patterns,
-                          min_repetitions = 2) {
+                          min_repetitions = 2,
+                          id = T) {
   # Set globally as min_valid_responses controls behavior on missing data
   na.rm <- T
 
@@ -124,6 +128,7 @@ resp_patterns <- function(x,
   check_call <- as.list(match.call())[2:length(as.list(match.call()))]
   check_call["min_valid_responses"] <- min_valid_responses
   check_call["min_repetitions"] <- min_repetitions
+  check_call["id"] <- id
   do.call(what = input_check_resp_patterns,
           args = check_call)
 
@@ -144,6 +149,7 @@ resp_patterns <- function(x,
 
   # Calculate response quality indicators
   output <-list()
+  if(isTRUE(id)) output$id <- 1:nrow(x) else output$id <- id
 
   # Missing numbers (for all respondents)
   output$n_transitions[!na_mask] <- apply(x[!na_mask,],1,\(cur_row) length(rle(cur_row)$values)-1)

@@ -9,7 +9,8 @@ resp_patterns(
   min_valid_responses = 1,
   defined_patterns,
   arbitrary_patterns,
-  min_repetitions = 2
+  min_repetitions = 2,
+  id = T
 )
 }
 \arguments{
@@ -25,6 +26,10 @@ Will not be computed if not specified or if an empty vector is supplied.}
 \item{arbitrary_patterns}{A vector of integer values or a list containing vectors of
 integer values. The values determine the pattern that should be searched for.
 Will not be computed if not specified or if 0 is supplied.}
+
+\item{id}{default is T. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}. If the default value is supplied
+a column named \code{id} with integer ids will be created.}
 }
 \value{
 Returns a data frame with response quality indicators per respondent.

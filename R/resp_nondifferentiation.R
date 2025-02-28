@@ -7,6 +7,10 @@
 #' see section "Data requirements" below.
 #' @param min_valid_responses numeric between 0 and 1. Defines the share of valid responses
 #' a respondent must have to calculate response quality indicators. Default is 1.
+#' @param id default is T. Alternatively, a numeric or character vector of unique values identifying
+#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`. If the default value is supplied
+#' a column named `id` with integer ids will be created.
+#'
 #' @details
 #' Response nondifferentiation is the result of response behavior in which respondents deviate
 #' from an ideal response process. Optimal response behavior is termed optimizing, while deviations from
@@ -94,9 +98,9 @@
 
 
 #' @export
-resp_nondifferentiation <- function(x, min_valid_responses = 1){
+resp_nondifferentiation <- function(x, min_valid_responses = 1,id = T){
   # Input check
-  input_check(x,min_valid_responses)
+  input_check(x,min_valid_responses,id)
 
   # Truncate response quality indicators where number of valid responses is not >= min_valid_responses
   na_mask <- if(min_valid_responses== 0){
@@ -115,6 +119,7 @@ resp_nondifferentiation <- function(x, min_valid_responses = 1){
 
   # Prepare and return output
   output <- list()
+  if(isTRUE(id)) output$id <- 1:nrow(x) else output$id <- id
   # Simple non differentiation
   output$simple_nondifferentiation[!na_mask] <- apply(X = x[!na_mask,],
                                            MARGIN = 1,

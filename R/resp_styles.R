@@ -11,6 +11,9 @@
 #' @param normalize logical. If *TRUE*, counts of response style indicators will
 #'  be divided by the number of non-missing responses per respondent. Default is
 #'  *TRUE*.
+#' @param id default is T. Alternatively, a numeric or character vector of unique values identifying
+#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`. If the default value is supplied
+#' a column named `id` with integer ids will be created.
 #'
 #' @details
 #'
@@ -57,7 +60,7 @@
 #' @returns Returns a data frame with response style indicators
 #'  per respondent.
 #'  * Rows: Equal to number of rows in x.
-#'  * Columns: Five, one for each response style indicator.
+#'  * Columns: Six: One id column plus one for each response style indicator.
 #'
 #' @seealso [resp_distributions()] for calculating response distribution indicators.
 #' [resp_nondifferentiation()] for calculating response nondifferentiation indicators.
@@ -105,9 +108,15 @@ resp_styles <- function(x,
                    scale_min,
                    scale_max,
                    min_valid_responses = 1,
-                   normalize = TRUE) {
+                   normalize = TRUE,
+                   id = T) {
   # Input check
-  input_check_resp_styles(x,scale_min,scale_max,min_valid_responses,normalize)
+  input_check_resp_styles(x,
+                          scale_min,
+                          scale_max,
+                          min_valid_responses,
+                          normalize,
+                          id)
 
   # Truncate response quality indicators where number of valid responses is not >= min_valid_responses
   na_mask <- if(min_valid_responses== 0){
@@ -141,10 +150,14 @@ resp_styles <- function(x,
   output$NERS[!na_mask]<- rowSums(x[!na_mask,] != scale_min & x[!na_mask,] != scale_max,na.rm=T)
 
   # Change type
-  output <- as.data.frame(output)
+  output <- tibble::as_tibble(output)
 
   # Contiditional normalization
   if(normalize) output <- output/rowSums(!is.na(x))
+
+  id <- if(isTRUE(id)) 1:nrow(x) else id
+  output <- cbind(id,output)
+
 
   return(output)
 }

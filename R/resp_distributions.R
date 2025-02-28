@@ -7,6 +7,9 @@
 #' see section "Data requirements" below.
 #' @param min_valid_responses numeric between 0 and 1. Defines the share of valid responses
 #' a respondent must have to calculate response quality indicators. Default is 1.
+#' @param id default is T. Alternatively, a numeric or character vector of unique values identifying
+#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`. If the default value is supplied
+#' a column named `id` with integer ids will be created.
 #'
 #' @details
 #' The following response distribution indicators are calculated per respondent:
@@ -101,12 +104,12 @@
 #'    round(2)
 #'
 #' @export
-resp_distributions <- function(x, min_valid_responses = 1) {
+resp_distributions <- function(x, min_valid_responses = 1,id = T) {
   # Set globally as min_valid_responses controls behavior on missing data
   na.rm <- T
 
   # General input checks
-  input_check(x,min_valid_responses)
+  input_check(x,min_valid_responses,id)
 
 
   # Truncate response quality indicators where n valid responses is < min_valid_responses
@@ -126,6 +129,7 @@ resp_distributions <- function(x, min_valid_responses = 1) {
 
   # Calculate response quality indicators
   output <-list()
+  if(isTRUE(id)) output$id <- 1:nrow(x) else output$id <- id
 
   # Missing numbers (for all respondents)
   output$n_na <- rowSums(is.na(x))
@@ -158,6 +162,7 @@ resp_distributions <- function(x, min_valid_responses = 1) {
 
   # Change type & return
   output <- tibble::as_tibble(output)
+  output
 }
 
 #' Modified stats::mahalanobis function which allows for NA values

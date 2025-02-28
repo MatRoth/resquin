@@ -1,10 +1,10 @@
 #' Performs input check applicable to all data quality functions in the package
 #' @noRd
-input_check <- function(x,min_valid_responses){
+input_check <- function(x,min_valid_responses,id){
   # Check if input is data frame
   if(!is.data.frame(x)) cli::cli_abort(
     c("!" = "x must be a data.frame or a tibble.",
-      "x"  = "You have supplied a(n) {.cls {class(x)}}."))
+      "x" = "You have supplied a(n) {.cls {class(x)}}."))
 
   if(!is.numeric(min_valid_responses)) cli::cli_abort(
     c("!" = "Argument 'min_valid_responses' must be numeric.")
@@ -13,6 +13,18 @@ input_check <- function(x,min_valid_responses){
   if(min_valid_responses >1|min_valid_responses<0) cli::cli_abort(
     c("!" = "Argument 'min_valid_responses' must be between or equal to 0 and 1.")
   )
+
+  if(!isTRUE(id)){
+    if(!(is.numeric(id)|is.character(id)))cli::cli_abort(
+      c("!" = "id is not of type numeric or character",
+        "x"  = "Supply an `id` variable of type numeric or character"))
+    if(length(id) != nrow(x)) cli::cli_abort(
+      c("!" = "`id` variable is not the same length as the number of row of x",
+        "x" = "Supply an `id` variable with the same number of elements as there are rows in x"))
+    if(length(unique(id)) != length(id)) cli::cli_abort(
+      c("!" = "Elements in `id` are not unique.",
+        "x" = "Supply an `id` variable which uniquely identifies each respondent by position."))
+  }
 
 
   # Check if input is convertible to integer without loss of precision
@@ -50,8 +62,10 @@ input_check_resp_styles <- function(x,
                                     scale_min,
                                     scale_max,
                                     min_valid_responses,
-                                    normalize){
-  input_check(x,min_valid_responses)
+                                    normalize,
+                                    id){
+  input_check(x,min_valid_responses,id)
+
   if(!is.numeric(scale_min)) cli::cli_abort(
     c("!" = "Argument 'scale_min' must be numeric.")
   )
@@ -76,12 +90,14 @@ input_check_resp_styles <- function(x,
   return(NULL)
 }
 
+# Performs input checks specific to resp_patterns
 input_check_resp_patterns <- function(x,
                                       min_valid_responses,
                                       defined_patterns,
                                       arbitrary_patterns,
-                                      min_repetitions){
-  input_check(x,min_valid_responses)
+                                      min_repetitions,
+                                      id){
+  input_check(x,min_valid_responses,id)
 
   if(!missing(defined_patterns)){
     if(is.list(defined_patterns)){
@@ -106,7 +122,7 @@ input_check_resp_patterns <- function(x,
     } else {if(any(arbitrary_patterns < 2)){
       cli::cli_abort(c(
         "!" = "At least one element supplied to `arbitrary_patterns` is smaller than two.",
-        "i" = "`arbitrary_patterns` requires a numeric integer value larger or equal two."))
+        "i" = "`arbitrary_patterns` requires that all numeric integer values are larger or equal two."))
       }
     }
   }

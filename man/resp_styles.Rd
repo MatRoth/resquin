@@ -4,7 +4,14 @@
 \alias{resp_styles}
 \title{Compute response style indicators}
 \usage{
-resp_styles(x, scale_min, scale_max, min_valid_responses = 1, normalize = TRUE)
+resp_styles(
+  x,
+  scale_min,
+  scale_max,
+  min_valid_responses = 1,
+  normalize = TRUE,
+  id = T
+)
 }
 \arguments{
 \item{x}{A data frame containing survey responses in wide format. For more information
@@ -20,13 +27,17 @@ a respondent must have to calculate response style indicators.}
 \item{normalize}{logical. If \emph{TRUE}, counts of response style indicators will
 be divided by the number of non-missing responses per respondent. Default is
 \emph{TRUE}.}
+
+\item{id}{default is T. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}. If the default value is supplied
+a column named \code{id} with integer ids will be created.}
 }
 \value{
 Returns a data frame with response style indicators
 per respondent.
 \itemize{
 \item Rows: Equal to number of rows in x.
-\item Columns: Five, one for each response style indicator.
+\item Columns: Six: One id column plus one for each response style indicator.
 }
 }
 \description{

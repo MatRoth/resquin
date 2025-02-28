@@ -4,7 +4,7 @@
 \alias{resp_nondifferentiation}
 \title{Compute response nondifferentiation indicators}
 \usage{
-resp_nondifferentiation(x, min_valid_responses = 1)
+resp_nondifferentiation(x, min_valid_responses = 1, id = T)
 }
 \arguments{
 \item{x}{A data frame containing survey responses in wide format. For more information
@@ -12,6 +12,10 @@ see section "Data requirements" below.}
 
 \item{min_valid_responses}{numeric between 0 and 1. Defines the share of valid responses
 a respondent must have to calculate response quality indicators. Default is 1.}
+
+\item{id}{default is T. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}. If the default value is supplied
+a column named \code{id} with integer ids will be created.}
 }
 \value{
 Returns a data frame with response nondifferentiation indicators per respondent.
