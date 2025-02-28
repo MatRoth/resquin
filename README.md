@@ -23,7 +23,7 @@ Both multi-item scales and matrix questions present survey respondents
 with multiple questions which have the same response format, meaning the
 same number and labeling of response options.
 
-At the moment, `resquin` provides three functions:
+At the moment, `resquin` provides four functions:
 
 - `resp_styles()` - Calculates response style indicators (e.g. extreme
   response style or middle response style).
@@ -33,7 +33,7 @@ At the moment, `resquin` provides three functions:
 - `resp_nondifferentiation()` - Calculates response nondifferentiation
   indicators. Nondifferentiation indicators primarily measure
   straightlining. The indicators differ in how straightlining is
-  operationalized.
+  operationalized. Currently under development.
 - `resp_patterns()` - Calculates response pattern indicators (e.g. long
   string analysis). Currently under development.
 
