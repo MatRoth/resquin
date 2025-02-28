@@ -5,11 +5,11 @@
 #'
 #' @param x A data frame containing survey responses in wide format. For more information
 #' see section "Data requirements" below.
-#' @param min_valid_responses numeric between 0 and 1. Defines the share of valid responses
+#' @param min_valid_responses Numeric between 0 and 1 of length 1. Defines the share of valid responses
 #' a respondent must have to calculate response quality indicators. Default is 1.
-#' @param id default is T. Alternatively, a numeric or character vector of unique values identifying
-#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`. If the default value is supplied
-#' a column named `id` with integer ids will be created.
+#' @param id default is `True`. If the default value is supplied
+#' a column named `id` with integer ids will be created. If `False` is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`.
 #'
 #' @details
 #' Response nondifferentiation is the result of response behavior in which respondents deviate
@@ -56,7 +56,7 @@
 #' @returns Returns a data frame with response nondifferentiation indicators per respondent.
 #'  Dimensions:
 #'  * Rows: Equal to number of rows in x.
-#'  * Columns: Four, one corresponding to each response nondifferentiation indicator.
+#'  * Columns: Four response nondifferentiation indicator columns + id column (if specified).
 #' @author Matthias Roth
 #'
 #' @seealso [resp_styles()] for calculating response style indicators.

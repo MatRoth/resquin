@@ -7,16 +7,16 @@
 #'
 #' @param x A data frame containing survey responses in wide format. For more information
 #' see section "Data requirements" below.
-#' @param min_valid_responses numeric between 0 and 1. Defines the share of valid responses
+#' @param min_valid_responses Numeric between 0 and 1 of length 1. Defines the share of valid responses
 #' a respondent must have to calculate response pattern indicators. Default is 1.
 #' @param defined_patterns A vector of integer values with patterns to search for or a list of integer vectors.
 #'  Will not be computed if not specified or if an empty vector is supplied.
 #' @param arbitrary_patterns A vector of integer values or a list containing vectors of
 #' integer values. The values determine the pattern that should be searched for.
 #' Will not be computed if not specified or if 0 is supplied.
-#' @param id default is T. Alternatively, a numeric or character vector of unique values identifying
-#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`. If the default value is supplied
-#' a column named `id` with integer ids will be created.
+#' @param id default is `True`. If the default value is supplied
+#' a column named `id` with integer ids will be created. If `False` is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`.
 #'
 #' @details
 #' The following response distribution indicators are calculated per respondent:
@@ -79,7 +79,7 @@
 #'  Dimensions:
 #'  * Rows: Equal to number of rows in x.
 #'  * Columns: Three response pattern indicators + one column for defined patterns
-#'   (if specified) + one column for arbitrary patterns (if specified).
+#'   (if specified) + one column for arbitrary patterns (if specified) + one id column (if specified).
 #' @author Matthias Roth, Thomas Knopf
 #'
 #' @seealso [resp_styles()] for calculating response style indicators.
@@ -125,10 +125,13 @@ resp_patterns <- function(x,
   # General input checks
 
   # Create call
-  check_call <- as.list(match.call())[2:length(as.list(match.call()))]
-  check_call["min_valid_responses"] <- min_valid_responses
-  check_call["min_repetitions"] <- min_repetitions
-  check_call["id"] <- id
+  check_call <- list()
+  check_call[["x"]] <- x
+  if(!missing(defined_patterns)) check_call[["defined_patterns"]] <- defined_patterns
+  if(!missing(arbitrary_patterns)) check_call[["arbitrary_patterns"]] <- arbitrary_patterns
+  check_call[["min_valid_responses"]] <- min_valid_responses
+  check_call[["min_repetitions"]] <- min_repetitions
+  check_call[["id"]] <- id
   do.call(what = input_check_resp_patterns,
           args = check_call)
 
@@ -145,11 +148,11 @@ resp_patterns <- function(x,
   # Break if na_mask is equal to number of respondents
   if(all(na_mask)){
     cli::cli_abort(c("!" = "No response quality indicators were calculated as the proportion of missing data per respondent is larger than defined in {.var min_valid_responses}."))
-    return(as.data.frame(output))}
+    return(tibble::as_tibble(output))}
 
   # Calculate response quality indicators
-  output <-list()
-  if(isTRUE(id)) output$id <- 1:nrow(x) else output$id <- id
+  output <- list()
+  if(isFALSE(id)) output <-list() else if(isTRUE(id)) output$id <- 1:nrow(x) else output$id <- id
 
   # Missing numbers (for all respondents)
   output$n_transitions[!na_mask] <- apply(x[!na_mask,],1,\(cur_row) length(rle(cur_row)$values)-1)

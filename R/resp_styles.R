@@ -4,16 +4,16 @@
 #'
 #' @param x A data frame containing survey responses in wide format. For more information
 #' see section "Data requirements" below.
-#' @param scale_min numeric. Minimum of scale provided.
-#' @param scale_max numeric. Maximum of scale provided.
-#' @param min_valid_responses numeric between 0 and 1. Defines the share of valid responses
+#' @param scale_min Numeric of length 1. Minimum of scale provided.
+#' @param scale_max Numeric of length 1. Maximum of scale provided.
+#' @param min_valid_responses Numeric between 0 and 1 of length 1. Defines the share of valid responses
 #' a respondent must have to calculate response style indicators.
-#' @param normalize logical. If *TRUE*, counts of response style indicators will
+#' @param normalize logical of length 1. If *TRUE*, counts of response style indicators will
 #'  be divided by the number of non-missing responses per respondent. Default is
 #'  *TRUE*.
-#' @param id default is T. Alternatively, a numeric or character vector of unique values identifying
-#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`. If the default value is supplied
-#' a column named `id` with integer ids will be created.
+#' @param id default is `True`. If the default value is supplied
+#' a column named `id` with integer ids will be created. If `False` is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+#' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`.
 #'
 #' @details
 #'
@@ -60,7 +60,7 @@
 #' @returns Returns a data frame with response style indicators
 #'  per respondent.
 #'  * Rows: Equal to number of rows in x.
-#'  * Columns: Six: One id column plus one for each response style indicator.
+#'  * Columns: Five for each response style indicator + id column (if specified).
 #'
 #' @seealso [resp_distributions()] for calculating response distribution indicators.
 #' [resp_nondifferentiation()] for calculating response nondifferentiation indicators.
@@ -155,7 +155,8 @@ resp_styles <- function(x,
   # Contiditional normalization
   if(normalize) output <- output/rowSums(!is.na(x))
 
-  id <- if(isTRUE(id)) 1:nrow(x) else id
+  # Add id in front
+  id <- if(isFALSE(id)) return(output) else if(isTRUE(id)) 1:nrow(x) else id
   output <- cbind(id,output)
 
 

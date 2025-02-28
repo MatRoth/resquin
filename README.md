@@ -101,69 +101,69 @@ resp_styles(x = testdata,
             scale_min = 1,
             scale_max = 5) |> # Specify scale minimum and maximum
   round(2)
-#>     MRS  ARS  DRS  ERS NERS
-#> 1  0.00 0.00 1.00 0.67 0.33
-#> 2  0.00 0.67 0.33 0.33 0.67
-#> 3  0.67 0.00 0.33 0.00 1.00
-#> 4    NA   NA   NA   NA   NA
-#> 5  0.67 0.33 0.00 0.00 1.00
-#> 6  0.00 0.33 0.67 0.33 0.67
-#> 7    NA   NA   NA   NA   NA
-#> 8  0.00 0.33 0.67 0.67 0.33
-#> 9    NA   NA   NA   NA   NA
-#> 10   NA   NA   NA   NA   NA
+#>    id  MRS  ARS  DRS  ERS NERS
+#> 1   1 0.00 0.00 1.00 0.67 0.33
+#> 2   2 0.00 0.67 0.33 0.33 0.67
+#> 3   3 0.67 0.00 0.33 0.00 1.00
+#> 4   4   NA   NA   NA   NA   NA
+#> 5   5 0.67 0.33 0.00 0.00 1.00
+#> 6   6 0.00 0.33 0.67 0.33 0.67
+#> 7   7   NA   NA   NA   NA   NA
+#> 8   8 0.00 0.33 0.67 0.67 0.33
+#> 9   9   NA   NA   NA   NA   NA
+#> 10 10   NA   NA   NA   NA   NA
 
 # Calculate response distribution indicators per respondent
 resp_distributions(x = testdata) |>
   round(2)
-#> # A tibble: 10 × 6
-#>     n_na prop_na ii_mean ii_sd ii_median mahal
-#>    <dbl>   <dbl>   <dbl> <dbl>     <dbl> <dbl>
-#>  1     0    0       1.33  0.58         1  2.04
-#>  2     0    0       3.67  1.53         4  1.6 
-#>  3     0    0       2.67  0.58         3  1.38
-#>  4     1    0.33   NA    NA           NA NA   
-#>  5     0    0       3.33  0.58         3  0.97
-#>  6     0    0       2.33  1.53         2  1.38
-#>  7     1    0.33   NA    NA           NA NA   
-#>  8     0    0       2.67  2.08         2  1.88
-#>  9     2    0.67   NA    NA           NA NA   
-#> 10     3    1      NA    NA           NA NA
+#> # A tibble: 10 × 7
+#>       id  n_na prop_na ii_mean ii_sd ii_median mahal
+#>    <dbl> <dbl>   <dbl>   <dbl> <dbl>     <dbl> <dbl>
+#>  1     1     0    0       1.33  0.58         1  2.04
+#>  2     2     0    0       3.67  1.53         4  1.6 
+#>  3     3     0    0       2.67  0.58         3  1.38
+#>  4     4     1    0.33   NA    NA           NA NA   
+#>  5     5     0    0       3.33  0.58         3  0.97
+#>  6     6     0    0       2.33  1.53         2  1.38
+#>  7     7     1    0.33   NA    NA           NA NA   
+#>  8     8     0    0       2.67  2.08         2  1.88
+#>  9     9     2    0.67   NA    NA           NA NA   
+#> 10    10     3    1      NA    NA           NA NA
 
 # Calculate response nondifferentiation indicator per respondent
 resp_nondifferentiation(x = testdata) |> 
   round(2)
-#> # A tibble: 10 × 4
-#>    simple_nondifferentiation mean_root_pairs max_identical_rating
-#>                        <dbl>           <dbl>                <dbl>
-#>  1                         0            1                    0.67
-#>  2                         0            0.21                 0.33
-#>  3                         0            1                    0.67
-#>  4                        NA           NA                   NA   
-#>  5                         0            1                    0.67
-#>  6                         0            0.21                 0.33
-#>  7                        NA           NA                   NA   
-#>  8                         0            0                    0.33
-#>  9                        NA           NA                   NA   
-#> 10                        NA           NA                   NA   
+#> # A tibble: 10 × 5
+#>       id simple_nondifferentiation mean_root_pairs max_identical_rating
+#>    <dbl>                     <dbl>           <dbl>                <dbl>
+#>  1     1                         0            1                    0.67
+#>  2     2                         0            0.21                 0.33
+#>  3     3                         0            1                    0.67
+#>  4     4                        NA           NA                   NA   
+#>  5     5                         0            1                    0.67
+#>  6     6                         0            0.21                 0.33
+#>  7     7                        NA           NA                   NA   
+#>  8     8                         0            0                    0.33
+#>  9     9                        NA           NA                   NA   
+#> 10    10                        NA           NA                   NA   
 #> # ℹ 1 more variable: scale_point_variation <dbl>
 
 # Calculate response pattern indicators
-resp_patterns(x = testdata) |> 
+resp_patterns(x = testdata ) |> 
   round(2)
-#> # A tibble: 10 × 3
-#>    n_transitions mean_string_length longest_string_length
-#>            <dbl>              <dbl>                 <dbl>
-#>  1             2                  1                     1
-#>  2             2                  1                     1
-#>  3             2                  1                     1
-#>  4            NA                 NA                    NA
-#>  5             2                  1                     1
-#>  6             2                  1                     1
-#>  7            NA                 NA                    NA
-#>  8             2                  1                     1
-#>  9            NA                 NA                    NA
-#> 10            NA                 NA                    NA
+#> # A tibble: 10 × 4
+#>       id n_transitions mean_string_length longest_string_length
+#>    <dbl>         <dbl>              <dbl>                 <dbl>
+#>  1     1             2                  1                     1
+#>  2     2             2                  1                     1
+#>  3     3             2                  1                     1
+#>  4     4            NA                 NA                    NA
+#>  5     5             2                  1                     1
+#>  6     6             2                  1                     1
+#>  7     7            NA                 NA                    NA
+#>  8     8             2                  1                     1
+#>  9     9            NA                 NA                    NA
+#> 10    10            NA                 NA                    NA
 ```
 
 For a more information on how to use `resquin` see the vignettes

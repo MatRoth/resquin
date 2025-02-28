@@ -14,13 +14,16 @@ input_check <- function(x,min_valid_responses,id){
     c("!" = "Argument 'min_valid_responses' must be between or equal to 0 and 1.")
   )
 
-  if(!isTRUE(id)){
+  if(!is.logical(id) & (length(id) == 1)) cli::cli_abort(
+    c("!" = "id is not of type logical with length one or a numeric or character vector with length equal to the number of rows of x.",
+      "x"  = "Supply an `id` variable of type logical or a vector of type numeric or character."))
+  if(!isTRUE(id) & (length(id) > 1)){
     if(!(is.numeric(id)|is.character(id)))cli::cli_abort(
-      c("!" = "id is not of type numeric or character",
-        "x"  = "Supply an `id` variable of type numeric or character"))
+      c("!" = "id is not of type numeric or character.",
+        "x"  = "Supply an `id` variable of type numeric or character."))
     if(length(id) != nrow(x)) cli::cli_abort(
       c("!" = "`id` variable is not the same length as the number of row of x",
-        "x" = "Supply an `id` variable with the same number of elements as there are rows in x"))
+        "x" = "Supply an `id` variable with the same number of elements as there are rows in x."))
     if(length(unique(id)) != length(id)) cli::cli_abort(
       c("!" = "Elements in `id` are not unique.",
         "x" = "Supply an `id` variable which uniquely identifies each respondent by position."))

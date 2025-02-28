@@ -10,19 +10,19 @@ resp_nondifferentiation(x, min_valid_responses = 1, id = T)
 \item{x}{A data frame containing survey responses in wide format. For more information
 see section "Data requirements" below.}
 
-\item{min_valid_responses}{numeric between 0 and 1. Defines the share of valid responses
+\item{min_valid_responses}{Numeric between 0 and 1 of length 1. Defines the share of valid responses
 a respondent must have to calculate response quality indicators. Default is 1.}
 
-\item{id}{default is T. Alternatively, a numeric or character vector of unique values identifying
-each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}. If the default value is supplied
-a column named \code{id} with integer ids will be created.}
+\item{id}{default is \code{True}. If the default value is supplied
+a column named \code{id} with integer ids will be created. If \code{False} is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}.}
 }
 \value{
 Returns a data frame with response nondifferentiation indicators per respondent.
 Dimensions:
 \itemize{
 \item Rows: Equal to number of rows in x.
-\item Columns: Four, one corresponding to each response nondifferentiation indicator.
+\item Columns: Four response nondifferentiation indicator columns + id column (if specified).
 }
 }
 \description{

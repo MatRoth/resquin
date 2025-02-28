@@ -17,27 +17,27 @@ resp_styles(
 \item{x}{A data frame containing survey responses in wide format. For more information
 see section "Data requirements" below.}
 
-\item{scale_min}{numeric. Minimum of scale provided.}
+\item{scale_min}{Numeric of length 1. Minimum of scale provided.}
 
-\item{scale_max}{numeric. Maximum of scale provided.}
+\item{scale_max}{Numeric of length 1. Maximum of scale provided.}
 
-\item{min_valid_responses}{numeric between 0 and 1. Defines the share of valid responses
+\item{min_valid_responses}{Numeric between 0 and 1 of length 1. Defines the share of valid responses
 a respondent must have to calculate response style indicators.}
 
-\item{normalize}{logical. If \emph{TRUE}, counts of response style indicators will
+\item{normalize}{logical of length 1. If \emph{TRUE}, counts of response style indicators will
 be divided by the number of non-missing responses per respondent. Default is
 \emph{TRUE}.}
 
-\item{id}{default is T. Alternatively, a numeric or character vector of unique values identifying
-each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}. If the default value is supplied
-a column named \code{id} with integer ids will be created.}
+\item{id}{default is \code{True}. If the default value is supplied
+a column named \code{id} with integer ids will be created. If \code{False} is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}.}
 }
 \value{
 Returns a data frame with response style indicators
 per respondent.
 \itemize{
 \item Rows: Equal to number of rows in x.
-\item Columns: Six: One id column plus one for each response style indicator.
+\item Columns: Five for each response style indicator + id column (if specified).
 }
 }
 \description{

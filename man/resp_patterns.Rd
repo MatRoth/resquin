@@ -17,7 +17,7 @@ resp_patterns(
 \item{x}{A data frame containing survey responses in wide format. For more information
 see section "Data requirements" below.}
 
-\item{min_valid_responses}{numeric between 0 and 1. Defines the share of valid responses
+\item{min_valid_responses}{Numeric between 0 and 1 of length 1. Defines the share of valid responses
 a respondent must have to calculate response pattern indicators. Default is 1.}
 
 \item{defined_patterns}{A vector of integer values with patterns to search for or a list of integer vectors.
@@ -27,9 +27,9 @@ Will not be computed if not specified or if an empty vector is supplied.}
 integer values. The values determine the pattern that should be searched for.
 Will not be computed if not specified or if 0 is supplied.}
 
-\item{id}{default is T. Alternatively, a numeric or character vector of unique values identifying
-each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}. If the default value is supplied
-a column named \code{id} with integer ids will be created.}
+\item{id}{default is \code{True}. If the default value is supplied
+a column named \code{id} with integer ids will be created. If \code{False} is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
+each respondent can be supplied. Needs to be of the same length as the number of rows of \code{x}.}
 }
 \value{
 Returns a data frame with response quality indicators per respondent.
@@ -37,7 +37,7 @@ Dimensions:
 \itemize{
 \item Rows: Equal to number of rows in x.
 \item Columns: Three response pattern indicators + one column for defined patterns
-(if specified) + one column for arbitrary patterns (if specified).
+(if specified) + one column for arbitrary patterns (if specified) + one id column (if specified).
 }
 }
 \description{

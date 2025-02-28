@@ -23,7 +23,7 @@ test_that("resp_styles input tests", {
                regexp = "Argument 'min_valid_responses' must be numeric.")
   expect_error(resp_styles(testdata,scale_min = 1, scale_max = 5,min_valid_responses = T),
                regexp = "Argument 'min_valid_responses' must be numeric.")
-  expect_error(resp_styles(as.matrix(testdata),scale_min = 1, scale_max = 5,),
+  expect_error(resp_styles(as.matrix(testdata),scale_min = 1, scale_max = 5),
                regexp = "x must be a data.frame or a tibble")
   expect_error(resp_styles(T),
                regexp = "x must be a data.frame or a tibble")
