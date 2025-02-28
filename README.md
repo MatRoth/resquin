@@ -149,7 +149,7 @@ resp_nondifferentiation(x = testdata) |>
 #> # ℹ 1 more variable: scale_point_variation <dbl>
 
 # Calculate response pattern indicators
-resp_patterns(x = testdata ) |> 
+resp_patterns(x = testdata) |> 
   round(2)
 #> # A tibble: 10 × 4
 #>       id n_transitions mean_string_length longest_string_length
