@@ -1,7 +1,12 @@
 # resquin (development version)
-* Added resp_nondifferentiation() as a new function for calculating 
+* Added `resp_nondifferentiation()` as a new function for calculating 
 straightlining indicators.
-* Added resp_nondifferentiation() to readme and getting started vignette.
+* Added `resp_nondifferentiation()` to readme and getting started vignette.
+* Added `resp_patterns()` as a new function.
+* Added `id` column to all outputs to make it easier to identify respondents or
+merge function outputs to data frames. `id` is either `True` for an integer id,
+`False` for no `id` column, or a vector of unique integer or character values
+identifying each respondent.
 
 # resquin 0.0.2
 * Changes in response to CRAN team. Changed license description in DESCRIPTION
