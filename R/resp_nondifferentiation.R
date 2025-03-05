@@ -41,7 +41,7 @@
 #' results of `resp_nondifferentiation()`.
 #'
 #'
-#' @section Data requirements:
+#' @section Data requirements
 #' `resp_nondifferentiationf()` assumes that the input data frame is structured in the following way:
 #' * The data frame is in wide format, meaning each row represents one respondent,
 #' each column represents one variable.

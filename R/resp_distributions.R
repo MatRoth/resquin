@@ -33,7 +33,7 @@
 #' of a participants responses from the center of a multivariate normal distribution
 #' defined by the data of all respondents.
 #'
-#' @section Data requirements:
+#' @section Data requirements
 #' `resp_distributions()` assumes that data comes from multi-item scales or matrix questions,
 #' which have the same number and labeling of response options for many questions.
 #' The input data frame must be structured in the following way:
@@ -42,7 +42,7 @@
 #' * All responses have integer values.
 #' * Missing values are set to `NA`.
 #'
-#' @section Reverse coding of variables:
+#' @section Reverse coding of variables
 #' The interpretation of the indicators depends on the whether response
 #' data of negatively worded questions was reversed or not:
 #' * Do not reverse data of negatively worded questions if you want to assess
@@ -51,7 +51,7 @@
 #' responses are distributed randomly or not with respect to an assumed
 #' latent variable (Marjanovic et al., 2015).
 #'
-#' @section Mahalanobis distance could not be calculated:
+#' @section Mahalanobis distance could not be calculated
 #' Under certain circumstances, the mahalanobis distance can not be calculated.
 #' This may be if there is high collinearity (correlation between variables) or
 #' if there are to many missing values.

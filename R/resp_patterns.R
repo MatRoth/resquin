@@ -9,11 +9,13 @@
 #' see section "Data requirements" below.
 #' @param min_valid_responses Numeric between 0 and 1 of length 1. Defines the share of valid responses
 #' a respondent must have to calculate response pattern indicators. Default is 1.
-#' @param defined_patterns A vector of integer values with patterns to search for or a list of integer vectors.
+#' @param defined_patterns An optional vector of integer values with patterns to search for or a list of integer vectors.
 #'  Will not be computed if not specified or if an empty vector is supplied.
-#' @param arbitrary_patterns A vector of integer values or a list containing vectors of
+#' @param arbitrary_patterns An optional vector of integer values or a list containing vectors of
 #' integer values. The values determine the pattern that should be searched for.
 #' Will not be computed if not specified or if 0 is supplied.
+#' @param min_repetitions: Defines number of times an arbitrary pattern
+#'    has to be repeated to be retained in the results. Must be larger or equal to 2.
 #' @param id default is `True`. If the default value is supplied
 #' a column named `id` with integer ids will be created. If `False` is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
 #' each respondent can be supplied. Needs to be of the same length as the number of rows of `x`.
@@ -33,11 +35,9 @@
 #'    per respondent. The names of the vector are repeating patterns found in the
 #'    responses of a respondent. The values of the vector are how often the pattern
 #'    occurred. See "Arbitrary patterns" for more information.
-#'    \item (optional) min_repetitions: Defines number of times an arbitrary pattern
-#'    has to be repeated to be retained in the results.
 #' }
 #'
-#' # Defined and arbitrary pattern indicators:
+#' # Defined and arbitrary pattern indicators
 #' Responses of an individual respondent can follow patterns, such as zig-zagging
 #' across the response scale over multiple items. There might be a-priori knowledge
 #' which response patterns could occur and might be indicative of low quality
@@ -46,13 +46,13 @@
 #' no a-priori knowledge exists, it is possible to check for all patterns of a
 #' specified length.
 #'
-#' ## Defined patterns:
+#' ## Defined patterns
 #' A pattern is defined by providing one ore more patterns in a character vector.
 #' A few examples: `resp_patterns(x,defined_patterns = c(1,2,3)` checks how
 #' often the response pattern "123" occurs in the responses of a single respondent.
 #' `list(c(1,2,3),c(3,2,1))` checks how often
-#' the two patterns 1 2 3 and 3 2 1 occur individually in the responses of a single
-#' respondent. There can be an arbitrary number of patterns
+#' the two patterns 1,2,3 and 3,2,1 occur individually in the responses of a single
+#' respondent. There is no limit to the number of patterns.
 #'
 #' ## Arbitrary patterns
 #' Checks for arbitrary patterns are defined by providing one ore more integer values
@@ -63,7 +63,7 @@
 #' of length two, three, four and five that repeat at least two times.
 #'
 #'
-#' # Data requirements:
+#' # Data requirements
 #' `resp_patterns()` assumes that the input data frame is structured in the following way:
 #' * The data frame is in wide format, meaning each row represents one respondent,
 #' each column represents one variable.
