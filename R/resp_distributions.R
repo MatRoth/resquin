@@ -129,7 +129,16 @@ resp_distributions <- function(x, min_valid_responses = 1,id = T) {
 
   # Calculate response quality indicators
   output <-list()
-  if(isTRUE(id)) output$id <- 1:nrow(x) else output$id <- id
+
+  # Conditional id column
+  if(isTRUE(id)){
+    output$id <- 1:nrow(x)
+  } else {
+    if(!isFALSE(id)){
+      output$id <- id
+    }
+  }
+
 
   # Missing numbers (for all respondents)
   output$n_na <- rowSums(is.na(x))

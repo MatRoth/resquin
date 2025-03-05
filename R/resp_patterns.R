@@ -152,7 +152,13 @@ resp_patterns <- function(x,
 
   # Calculate response quality indicators
   output <- list()
-  if(isFALSE(id)) output <-list() else if(isTRUE(id)) output$id <- 1:nrow(x) else output$id <- id
+  if(isTRUE(id)){
+    output$id <- 1:nrow(x)
+  } else {
+    if(!isFALSE(id)){
+      output$id <- id
+    }
+  }
 
   # Missing numbers (for all respondents)
   output$n_transitions[!na_mask] <- apply(x[!na_mask,],1,\(cur_row) length(rle(cur_row)$values)-1)
@@ -199,7 +205,7 @@ resp_patterns <- function(x,
       found_patterns[unique(names(found_patterns))]
     })}
 
-  # Change type & return
+  # Change type and return
   tibble::as_tibble(output)
 }
 

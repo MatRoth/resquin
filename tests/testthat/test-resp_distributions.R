@@ -29,7 +29,7 @@ test_that("resp_distributions input tests", {
   expect_error(resp_distributions(data.frame(var_a = c(T,F),
                                   var_b = c(2,3))),
                regexp = "Non-integer data found in following columns")
-  # Extra tests for id input, should generalize to all functions
+  # Extra tests for id input
   expect_error(resp_distributions(x = testdata,
                                   id = 0),
                regexp = "id is not of type logical with length one or a numeric or character vector with length equal to the number of rows of x.")

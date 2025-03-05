@@ -181,6 +181,26 @@ by [@kim_straightlining_2019]:
 You can learn more about the the response nondifferentiation indicators using 
 `?resp_nondifferentiation`.
 
+### Using the `id` argument: Uniquely identify respondents
+
+In its default setting, all `resquin` functions provide an integer `id` column
+running from 1 to the number of respondents in a dataset. You can turn of the
+creation of the `id` column by setting `id = False`or supply a vector of unique
+ids (character or numeric).
+
+Here are examples of three options:
+```{r}
+# Default. Integer ids.
+resp_distributions(testdata)
+
+# No id column
+resp_distributions(testdata,id = F)
+
+# Custom id vectors
+custom_ids <- letters[1:nrow(testdata)]
+resp_distributions(testdata,id = custom_ids)
+```
+
 ### References
 
 

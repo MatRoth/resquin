@@ -44,6 +44,19 @@ test_that("resp_styles input tests", {
                       scale_min = 1,
                       scale_max = 5),
                regexp = "var_b")
+  # Extra tests for id input
+  expect_error(resp_styles(x = testdata,
+                                  id = 0),
+               regexp = "id is not of type logical with length one or a numeric or character vector with length equal to the number of rows of x.")
+  expect_error(resp_styles(x = testdata,
+                                  id = c(T,T)),
+               regexp = "id is not of type numeric or character")
+  expect_error(resp_styles(x = testdata,
+                                  id = c(1,2)),
+               regexp = "Supply an `id` variable with the same number of elements as there are rows in x.")
+  expect_error(resp_styles(x = testdata,
+                                  id = c(1:11,11)),
+               regexp = "Supply an `id` variable which uniquely identifies each respondent by position.")
 })
 
 

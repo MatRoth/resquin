@@ -119,7 +119,13 @@ resp_nondifferentiation <- function(x, min_valid_responses = 1,id = T){
 
   # Prepare and return output
   output <- list()
-  if(isTRUE(id)) output$id <- 1:nrow(x) else output$id <- id
+  if(isTRUE(id)){
+    output$id <- 1:nrow(x)
+  } else {
+    if(!isFALSE(id)){
+      output$id <- id
+    }
+  }
   # Simple non differentiation
   output$simple_nondifferentiation[!na_mask] <- apply(X = x[!na_mask,],
                                            MARGIN = 1,
