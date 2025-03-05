@@ -161,17 +161,19 @@ saw while taking the survey.</p></li>
 <span class="r-in"><span>            scale_min <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>            scale_max <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="co"># round to second decimal</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id  MRS  ARS  DRS  ERS NERS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 0.00 0.00 1.00 0.67 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2 0.00 0.67 0.33 0.33 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3 0.67 0.00 0.33 0.00 1.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4   NA   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   5 0.67 0.33 0.00 0.00 1.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   6 0.00 0.33 0.67 0.33 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   7   NA   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8 0.00 0.33 0.67 0.67 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9   NA   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10   NA   NA   NA   NA   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id   MRS   ARS   DRS   ERS  NERS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1  0     0     1     0.67  0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2  0     0.67  0.33  0.33  0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3  0.67  0     0.33  0     1   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4 <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5  0.67  0.33  0     0     1   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6  0     0.33  0.67  0.33  0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7 <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8  0     0.33  0.67  0.67  0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9 <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10 <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>   </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include respondents with NA values by decreasing the</span></span></span>
 <span class="r-in"><span><span class="co"># necessary number of valid responses per respondent.</span></span></span>
@@ -180,34 +182,38 @@ saw while taking the survey.</p></li>
 <span class="r-in"><span>            scale_max <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>            min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="co"># round to second decimal</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id  MRS  ARS  DRS  ERS NERS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 0.00 0.00 1.00 0.67 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2 0.00 0.67 0.33 0.33 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3 0.67 0.00 0.33 0.00 1.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4 0.50 0.50 0.00 0.50 0.50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   5 0.67 0.33 0.00 0.00 1.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   6 0.00 0.33 0.67 0.33 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   7 0.50 0.50 0.00 0.00 1.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8 0.00 0.33 0.67 0.67 0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9 1.00 0.00 0.00 0.00 1.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10   NA   NA   NA   NA   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id   MRS   ARS   DRS   ERS  NERS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1  0     0     1     0.67  0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2  0     0.67  0.33  0.33  0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3  0.67  0     0.33  0     1   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4  0.5   0.5   0     0.5   0.5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5  0.67  0.33  0     0     1   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6  0     0.33  0.67  0.33  0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7  0.5   0.5   0     0     1   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8  0     0.33  0.67  0.67  0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9  1     0     0     0     1   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10 <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>   </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get counts of responses attributable to response styles.</span></span></span>
 <span class="r-in"><span><span class="fu">resp_styles</span><span class="op">(</span><span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>            scale_min <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>            scale_max <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>            normalize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id MRS ARS DRS ERS NERS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1   0   0   3   2    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2   0   2   1   1    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3   2   0   1   0    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4  NA  NA  NA  NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   5   2   1   0   0    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   6   0   1   2   1    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   7  NA  NA  NA  NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8   0   1   2   2    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9  NA  NA  NA  NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10  NA  NA  NA  NA   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id   MRS   ARS   DRS   ERS  NERS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1     0     0     3     2     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2     0     2     1     1     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3     2     0     1     0     3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5     2     1     0     0     3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6     0     1     2     1     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8     0     1     2     2     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
