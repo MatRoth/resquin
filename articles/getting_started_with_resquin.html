@@ -290,6 +290,66 @@ more scales points in a multi-item scale or matrix questions.</li>
 <p>You can learn more about the the response nondifferentiation
 indicators using <code><a href="../reference/resp_nondifferentiation.html">?resp_nondifferentiation</a></code>.</p>
 </div>
+<div class="section level3">
+<h3 id="using-the-id-argument-uniquely-identify-respondents">Using the <code>id</code> argument: Uniquely identify
+respondents<a class="anchor" aria-label="anchor" href="#using-the-id-argument-uniquely-identify-respondents"></a>
+</h3>
+<p>In its default setting, all <code>resquin</code> functions provide an
+integer <code>id</code> column running from 1 to the number of
+respondents in a dataset. You can turn of the creation of the
+<code>id</code> column by setting <code>id = False</code>or supply a
+vector of unique ids (character or numeric).</p>
+<p>Here are examples of three options:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Default. Integer ids.</span></span>
+<span><span class="fu"><a href="../reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 7</span></span></span>
+<span><span class="co">#&gt;       id  n_na prop_na ii_mean  ii_sd ii_median  mahal</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1     0   0        1.33  0.577         1  2.04 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     0   0        3.67  1.53          4  1.60 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     0   0        2.67  0.577         3  1.38 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     1   0.333   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     0   0        3.33  0.577         3  0.970</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     0   0        2.33  1.53          2  1.38 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     1   0.333   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     0   0        2.67  2.08          2  1.88 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2   0.667   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     3   1       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span></span></span>
+<span></span>
+<span><span class="co"># No id column</span></span>
+<span><span class="fu"><a href="../reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span>,id <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 6</span></span></span>
+<span><span class="co">#&gt;     n_na prop_na ii_mean  ii_sd ii_median  mahal</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     0   0        1.33  0.577         1  2.04 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     0   0        3.67  1.53          4  1.60 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     0   0        2.67  0.577         3  1.38 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     1   0.333   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     0   0        3.33  0.577         3  0.970</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     0   0        2.33  1.53          2  1.38 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     1   0.333   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     0   0        2.67  2.08          2  1.88 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     2   0.667   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     3   1       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span></span></span>
+<span></span>
+<span><span class="co"># Custom id vectors</span></span>
+<span><span class="va">custom_ids</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="../reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span>,id <span class="op">=</span> <span class="va">custom_ids</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 7</span></span></span>
+<span><span class="co">#&gt;    id     n_na prop_na ii_mean  ii_sd ii_median  mahal</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> a         0   0        1.33  0.577         1  2.04 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> b         0   0        3.67  1.53          4  1.60 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> c         0   0        2.67  0.577         3  1.38 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> d         1   0.333   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> e         0   0        3.33  0.577         3  0.970</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> f         0   0        2.33  1.53          2  1.38 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> g         1   0.333   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> h         0   0        2.67  2.08          2  1.88 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> i         2   0.667   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> j         3   1       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+</div>
 <div class="section level3 unnumbered">
 <h3 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h3>
