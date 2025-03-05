@@ -296,10 +296,12 @@ respondents<a class="anchor" aria-label="anchor" href="#using-the-id-argument-un
 </h3>
 <p>In its default setting, all <code>resquin</code> functions provide an
 integer <code>id</code> column running from 1 to the number of
-respondents in a dataset. You can turn of the creation of the
-<code>id</code> column by setting <code>id = False</code>or supply a
-vector of unique ids (character or numeric).</p>
-<p>Here are examples of three options:</p>
+respondents in the data set supplied in <code>x</code>. You can turn of
+the creation of the <code>id</code> column by setting
+<code>id = False</code> or supply a vector of unique ids (character or
+numeric). The latter option is useful if a data set provides its own
+vector of ids.</p>
+<p>Here are examples of the three options:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Default. Integer ids.</span></span>
 <span><span class="fu"><a href="../reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span>
