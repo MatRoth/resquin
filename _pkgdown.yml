@@ -1,4 +1,5 @@
 url: https://matroth.github.io/resquin/
 template:
   bootstrap: 5
+  math-rendering: mathjax
 
