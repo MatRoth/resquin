@@ -157,7 +157,7 @@ resp_styles <- function(x,
 
   # Add id in front
   id <- if(isFALSE(id)) return(output) else if(isTRUE(id)) 1:nrow(x) else id
-  output <- cbind(id,output)
+  output <- cbind(id,output) |> tibble::as_tibble()
 
 
   return(output)
