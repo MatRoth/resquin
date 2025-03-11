@@ -322,6 +322,123 @@ arbitrary_patterns:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<p>To obtain counts of defined response patterns per respondents use the
+<code>defined_patterns</code> argument. You can either supply a single
+vector representing a response pattern, or a list of vectors
+representing multiple response patterns.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Single defined pattern</span></span>
+<span><span class="va">defined_patterns_single</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
+<span>  defined_patterns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">defined_patterns_single</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 5</span></span></span>
+<span><span class="co">#&gt;       id n_transitions mean_string_length longest_string_length defined_patterns</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1 <span style="color: #949494;">&lt;int [1]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2             2                  1                     1 <span style="color: #949494;">&lt;int [1]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3             2                  1                     1 <span style="color: #949494;">&lt;int [1]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">&lt;NULL&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5             2                  1                     1 <span style="color: #949494;">&lt;int [1]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6             2                  1                     1 <span style="color: #949494;">&lt;int [1]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">&lt;NULL&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1 <span style="color: #949494;">&lt;int [1]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">&lt;NULL&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">&lt;NULL&gt;</span></span></span>
+<span></span>
+<span><span class="co"># Multiple defined patterns</span></span>
+<span><span class="va">defined_patterns_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
+<span>  defined_patterns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> <span class="co"># wrap multiple pattern vectors into a list</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">defined_patterns_multiple</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 5</span></span></span>
+<span><span class="co">#&gt;       id n_transitions mean_string_length longest_string_length defined_patterns</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1 <span style="color: #949494;">&lt;int [4]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2             2                  1                     1 <span style="color: #949494;">&lt;int [4]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3             2                  1                     1 <span style="color: #949494;">&lt;int [4]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">&lt;NULL&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5             2                  1                     1 <span style="color: #949494;">&lt;int [4]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6             2                  1                     1 <span style="color: #949494;">&lt;int [4]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">&lt;NULL&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1 <span style="color: #949494;">&lt;int [4]&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">&lt;NULL&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">&lt;NULL&gt;</span></span></span>
+<span></span>
+<span><span class="co"># defined patterns are returned as a single list column.</span></span>
+<span><span class="co"># One way to make the data accessible is by using tidyr::unnest_wider()</span></span>
+<span><span class="co"># This way, each column represents the count of one defined pattern</span></span>
+<span></span>
+<span><span class="va">defined_patterns_multiple</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html" class="external-link">unnest_wider</a></span><span class="op">(</span><span class="va">defined_patterns</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 8</span></span></span>
+<span><span class="co">#&gt;       id n_transitions mean_string_length longest_string_length `1_2_3` `2_3_4`</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1       0       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2             2                  1                     1       0       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3             2                  1                     1       0       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5             2                  1                     1       0       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6             2                  1                     1       0       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1       0       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: `4_3_2` &lt;int&gt;, `3_2_1` &lt;int&gt;</span></span></span></code></pre></div>
+<p>Finally, you can request the detection of arbitrary response patterns
+with counts larger than one and pattern lengths longer than one using
+the <code>arbitrary_patterns</code> argument</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">arbitrary_patterns_length_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
+<span>  arbitrary_patterns <span class="op">=</span> <span class="fl">2</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">arbitrary_patterns_length_2</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 5</span></span></span>
+<span><span class="co">#&gt;       id n_transitions mean_string_length longest_string_length</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: arbitrary_patterns &lt;list&gt;</span></span></span>
+<span></span>
+<span><span class="co"># You can also request the detection of patterns of multiple </span></span>
+<span><span class="co"># lengths, in this case 2 and 3</span></span>
+<span><span class="va">arbitrary_patterns_length_2_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
+<span>  arbitrary_patterns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">arbitrary_patterns_length_2_3</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 5</span></span></span>
+<span><span class="co">#&gt;       id n_transitions mean_string_length longest_string_length</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: arbitrary_patterns &lt;list&gt;</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-the-id-argument-uniquely-identify-respondents">Using the <code>id</code> argument: Uniquely identify
@@ -335,7 +452,7 @@ the creation of the <code>id</code> column by setting
 numeric). The latter option is useful if a data set provides its own
 vector of ids.</p>
 <p>Here are examples of the three options:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Default. Integer ids.</span></span>
 <span><span class="fu"><a href="../reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 7</span></span></span>
