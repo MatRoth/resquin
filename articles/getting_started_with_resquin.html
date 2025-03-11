@@ -239,7 +239,7 @@ responses</p></li>
 </div>
 <div class="section level3">
 <h3 id="resp_nondifferentiation-response-nondifferentiation-indicators">
-<code>resp_nondifferentiation</code>: Response nondifferentiation
+<code>resp_nondifferentiation()</code>: Response nondifferentiation
 indicators<a class="anchor" aria-label="anchor" href="#resp_nondifferentiation-response-nondifferentiation-indicators"></a>
 </h3>
 <p><code>resp_nondifferentiation</code> calculates indicators primarily
@@ -291,6 +291,39 @@ more scales points in a multi-item scale or matrix questions.</li>
 indicators using <code><a href="../reference/resp_nondifferentiation.html">?resp_nondifferentiation</a></code>.</p>
 </div>
 <div class="section level3">
+<h3 id="resp_patterns-response-pattern-indicators">
+<code>resp_patterns()</code>: Response pattern indicators<a class="anchor" aria-label="anchor" href="#resp_patterns-response-pattern-indicators"></a>
+</h3>
+<p>Response patterns describe suspicious response patterns arising from
+careless or insufficient effort responding. Careless or insufficient
+effort respondents might choose the same answer option repeatedly
+(i.e. creating a long string of equal responses) or use pattern, such as
+zig-zaging, to complete a survey.</p>
+<p><code><a href="../reference/resp_patterns.html">resp_patterns()</a></code> provides three columns which contain
+longstring analysis indicators for each respondent. These three columns
+are always returned. There are two more optional columns () for the
+analysis of other repeating response patterns: defined_patterns and
+arbitrary_patterns:</p>
+<p>To obtain the three longstring analysis columns simply call
+<code><a href="../reference/resp_patterns.html">resp_patterns()</a></code>:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">results_resp_patterns</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">results_resp_patterns</span>,<span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
+<span><span class="co">#&gt;       id n_transitions mean_string_length longest_string_length</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8             2                  1                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10            <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>                    <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="using-the-id-argument-uniquely-identify-respondents">Using the <code>id</code> argument: Uniquely identify
 respondents<a class="anchor" aria-label="anchor" href="#using-the-id-argument-uniquely-identify-respondents"></a>
 </h3>
@@ -302,7 +335,7 @@ the creation of the <code>id</code> column by setting
 numeric). The latter option is useful if a data set provides its own
 vector of ids.</p>
 <p>Here are examples of the three options:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Default. Integer ids.</span></span>
 <span><span class="fu"><a href="../reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 7</span></span></span>
@@ -351,6 +384,57 @@ vector of ids.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> h         0   0        2.67  2.08          2  1.88 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> i         2   0.667   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> j         3   1       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="handling-of-missing-data-and-impact-on-the-interpretation-of-response-quality">Handling of missing data and impact on the interpretation of
+response quality<a class="anchor" aria-label="anchor" href="#handling-of-missing-data-and-impact-on-the-interpretation-of-response-quality"></a>
+</h3>
+<p>indicators</p>
+<p>The argument <code>min_valid_responses</code> can be used to control
+how many responses a respondent must have for a response quality
+indicator to be computed. Per default, <code>resquin</code> requires
+respondents to have valid responses for all questions asked
+<code>(min_valid_responses = 1)</code>. In other words, per default
+<code>resquin</code> requires respondents to have no missing values.</p>
+<p>Of course, missing values are a common occurrence in survey data,
+thus it can make sense to reduce the required share of valid responses
+in <code>min_valid_responses</code> from 1 to a lower one. This leads to
+the calculation of response quality indicator values for more
+respondents. For example, reducing <code>min_valid_responses</code> to
+0.5 would mean that respondents only have to have valid
+(i.e. non-missing) responses on 50% of the questions asked.</p>
+<p>However, allowing <code>NA</code> values (i.e. missing values) can
+change the interpretation and validity of response quality indicators.
+For example, a respondent with ten identical responses on a ten item
+scale (i.e. ten time response option “3”) has more evidence for
+straightlining then a respondent with two identical responses which are
+separated by eight <code>NA</code> values. Both would receive a 1 on the
+<code>simple_nondifferentiation</code> indicator of
+<code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code> or 1 (meaning absolute presence
+of) a Middle Response Style if the response scale had five response
+options. But should the respondents be considered to be identical in
+their extent of straightlining or Middle Response Style? This is up to
+the interpretation of the analyst.</p>
+<p>Although an increasing number of missing values per respondent can
+pose validity threats to all response quality indicators, some
+indicators are more affected by <code>NA</code> values than others.
+Indicators calculated with <code>resp_distribution()</code> are not
+affected as much by missing data, because the
+<code>resp_distribution()</code> indicators average over all response
+values. For the following response indicators missing values are more of
+a threat to validity because they conceptually rely more on the position
+of responses on the response scale:</p>
+<p><code><a href="../reference/resp_patterns.html">resp_patterns()</a></code>: - <code>mean_string_length</code> -
+Response strings with identical values can be broken by <code>NA</code>
+- <code>longest_string_length</code> - Response strings with identical
+values can be broken by <code>NA</code></p>
+<p><code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code>: -
+<code>simple_nondifferentiation</code> - Straightlining with identical
+values can be broken by <code>NA</code></p>
+<p><code><a href="../reference/resp_styles.html">resp_styles()</a></code>: - All response styles - Response strings
+with identical values can be broken by <code>NA</code></p>
+<p>In any case, it helps to report how missing values were handled in an
+analysis to increase confidence in and replicability of the results.</p>
 </div>
 <div class="section level3 unnumbered">
 <h3 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
