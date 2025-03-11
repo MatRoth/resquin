@@ -32,7 +32,8 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    tidyr
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://github.com/MatRoth/resquin, https://matroth.github.io/resquin/

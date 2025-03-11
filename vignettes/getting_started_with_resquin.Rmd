@@ -192,6 +192,61 @@ results_resp_patterns <- resp_patterns(testdata)
 round(results_resp_patterns,2)
 ```
 
+To obtain counts of defined response patterns per respondents use the `defined_patterns`
+argument. You can either supply a single vector representing a response pattern, 
+or a list of vectors representing multiple response patterns. 
+
+```{r}
+# Single defined pattern
+defined_patterns_single <- resp_patterns(
+  x = testdata,
+  defined_patterns = c(1,2,3)
+)
+defined_patterns_single
+
+# Multiple defined patterns
+defined_patterns_multiple <- resp_patterns(
+  x = testdata,
+  defined_patterns = list( # wrap multiple pattern vectors into a list
+    c(1,2,3),
+    c(2,3,4),
+    c(4,3,2),
+    c(3,2,1)
+  )
+)
+
+defined_patterns_multiple
+
+# defined patterns are returned as a single list column.
+# One way to make the data accessible is by using tidyr::unnest_wider()
+# This way, each column represents the count of one defined pattern
+
+defined_patterns_multiple |> 
+  tidyr::unnest_wider(defined_patterns)
+```
+
+Finally, you can request the detection of arbitrary response patterns with counts
+larger than one and pattern lengths longer than one using the `arbitrary_patterns`
+argument
+
+```{r}
+arbitrary_patterns_length_2 <- resp_patterns(
+  x = testdata,
+  arbitrary_patterns = 2
+)
+
+arbitrary_patterns_length_2
+
+# You can also request the detection of patterns of multiple 
+# lengths, in this case 2 and 3
+arbitrary_patterns_length_2_3 <- resp_patterns(
+  x = testdata,
+  arbitrary_patterns = c(2,3)
+)
+arbitrary_patterns_length_2_3
+```
+
+
 
 ### Using the `id` argument: Uniquely identify respondents
 
