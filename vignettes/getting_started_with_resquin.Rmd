@@ -214,8 +214,7 @@ custom_ids <- letters[1:nrow(testdata)]
 resp_distributions(testdata,id = custom_ids)
 ```
 
-### Handling of missing data and impact on the interpretation of response quality
-indicators
+### Missing data as a thread to the validity of response quality indicators
 
 The argument `min_valid_responses` can be used to control how many 
 responses a respondent must have for a response quality indicator to be computed.
@@ -250,15 +249,15 @@ For the following response indicators missing values are more of a threat to val
 because they conceptually rely more on the position of responses on the response
 scale:
 
-`resp_patterns()`:
-  - `mean_string_length` - Response strings with identical values can be broken by `NA`
-  - `longest_string_length` - Response strings with identical values can be broken by `NA`
+* `resp_patterns()`:
+    + `mean_string_length` - Response strings with identical values can be broken by `NA`.
+    + `longest_string_length` - Response strings with identical values can be broken by `NA`.
 
-`resp_nondifferentiation()`:
-  - `simple_nondifferentiation` - Straightlining with identical values can be broken by `NA`
+* `resp_nondifferentiation()`:
+    + `simple_nondifferentiation` - Straightlining with identical values can be broken by `NA`.
   
-`resp_styles()`:
-  - All response styles - Response strings with identical values can be broken by `NA`
+* `resp_styles()`:
+    + All response styles - Response strings with identical values can be broken by `NA`.
 
 In any case, it helps to report how missing values were handled in an analysis to 
 increase confidence in and replicability of the results. 
