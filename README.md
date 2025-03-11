@@ -101,17 +101,19 @@ resp_styles(x = testdata,
             scale_min = 1,
             scale_max = 5) |> # Specify scale minimum and maximum
   round(2)
-#>    id  MRS  ARS  DRS  ERS NERS
-#> 1   1 0.00 0.00 1.00 0.67 0.33
-#> 2   2 0.00 0.67 0.33 0.33 0.67
-#> 3   3 0.67 0.00 0.33 0.00 1.00
-#> 4   4   NA   NA   NA   NA   NA
-#> 5   5 0.67 0.33 0.00 0.00 1.00
-#> 6   6 0.00 0.33 0.67 0.33 0.67
-#> 7   7   NA   NA   NA   NA   NA
-#> 8   8 0.00 0.33 0.67 0.67 0.33
-#> 9   9   NA   NA   NA   NA   NA
-#> 10 10   NA   NA   NA   NA   NA
+#> # A tibble: 10 × 6
+#>       id   MRS   ARS   DRS   ERS  NERS
+#>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1     1  0     0     1     0.67  0.33
+#>  2     2  0     0.67  0.33  0.33  0.67
+#>  3     3  0.67  0     0.33  0     1   
+#>  4     4 NA    NA    NA    NA    NA   
+#>  5     5  0.67  0.33  0     0     1   
+#>  6     6  0     0.33  0.67  0.33  0.67
+#>  7     7 NA    NA    NA    NA    NA   
+#>  8     8  0     0.33  0.67  0.67  0.33
+#>  9     9 NA    NA    NA    NA    NA   
+#> 10    10 NA    NA    NA    NA    NA
 
 # Calculate response distribution indicators per respondent
 resp_distributions(x = testdata) |>

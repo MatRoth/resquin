@@ -147,7 +147,7 @@ The resulting data frame contains eight columns:
 
 You can learn more about the response distribution indicators using `?resp_distributions`
 
-### `resp_nondifferentiation`: Response nondifferentiation indicators
+### `resp_nondifferentiation()`: Response nondifferentiation indicators
 `resp_nondifferentiation` calculates indicators primarily measuring what is known
 as straightlining. However, different indicators measure different aspects of straightlining.
 While *Simple Nondifferentiation* just measures whether respondents used the same response
@@ -181,6 +181,18 @@ by [@kim_straightlining_2019]:
 You can learn more about the the response nondifferentiation indicators using 
 `?resp_nondifferentiation`.
 
+### `resp_patterns()`: Response pattern indicators
+Response patterns describe suspicious response patterns arising from careless or insufficient effort responding. Careless or insufficient effort respondents might choose the same answer option repeatedly (i.e. creating a long string of equal responses) or use pattern, such as zig-zaging, to complete a survey.
+
+`resp_patterns()` provides three columns which contain longstring analysis indicators for each respondent. These three columns are always returned. There are two more optional columns () for the analysis of other repeating response patterns: defined_patterns and arbitrary_patterns:
+
+To obtain the three longstring analysis columns simply call `resp_patterns()`:
+```{r}
+results_resp_patterns <- resp_patterns(testdata)
+round(results_resp_patterns,2)
+```
+
+
 ### Using the `id` argument: Uniquely identify respondents
 
 In its default setting, all `resquin` functions provide an integer `id` column
@@ -201,6 +213,55 @@ resp_distributions(testdata,id = F)
 custom_ids <- letters[1:nrow(testdata)]
 resp_distributions(testdata,id = custom_ids)
 ```
+
+### Handling of missing data and impact on the interpretation of response quality
+indicators
+
+The argument `min_valid_responses` can be used to control how many 
+responses a respondent must have for a response quality indicator to be computed.
+Per default, `resquin` requires respondents to have valid responses for all questions
+asked `(min_valid_responses = 1)`. In other words, per default `resquin` requires
+respondents to have no missing values. 
+
+Of course, missing values are a common occurrence in survey data, thus it can make
+sense to reduce the required share of valid responses in `min_valid_responses` from 1 to a
+lower one. This leads to the calculation of response quality indicator values 
+for more respondents. For example, reducing `min_valid_responses` to 0.5 would mean
+that respondents only have to have valid (i.e. non-missing) responses on 50% of
+the questions asked. 
+
+However, allowing `NA` values (i.e. missing values) can change the interpretation
+and validity of response quality indicators.
+For example, a respondent with ten identical responses on a ten item scale
+(i.e. ten time response option "3") has more evidence for straightlining then a respondent with two identical responses
+which are separated by eight `NA` values. Both would receive a 1 on the 
+`simple_nondifferentiation` indicator of `resp_nondifferentiation()` or 1 (meaning
+absolute presence of) a Middle Response Style if the response scale had five response options.
+But should the respondents be considered to be identical in their extent of
+straightlining or Middle Response Style? This is up to the interpretation of the 
+analyst. 
+
+Although an increasing number of missing values per respondent can pose validity
+threats to all response quality indicators, some indicators are more affected 
+by `NA` values than others. Indicators calculated with `resp_distribution()` are
+not affected as much by missing data, because the `resp_distribution()` indicators
+average over all response values.
+For the following response indicators missing values are more of a threat to validity
+because they conceptually rely more on the position of responses on the response
+scale:
+
+`resp_patterns()`:
+  - `mean_string_length` - Response strings with identical values can be broken by `NA`
+  - `longest_string_length` - Response strings with identical values can be broken by `NA`
+
+`resp_nondifferentiation()`:
+  - `simple_nondifferentiation` - Straightlining with identical values can be broken by `NA`
+  
+`resp_styles()`:
+  - All response styles - Response strings with identical values can be broken by `NA`
+
+In any case, it helps to report how missing values were handled in an analysis to 
+increase confidence in and replicability of the results. 
 
 ### References
 
