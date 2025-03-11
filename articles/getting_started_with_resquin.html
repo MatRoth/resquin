@@ -386,10 +386,9 @@ vector of ids.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> j         3   1       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="handling-of-missing-data-and-impact-on-the-interpretation-of-response-quality">Handling of missing data and impact on the interpretation of
-response quality<a class="anchor" aria-label="anchor" href="#handling-of-missing-data-and-impact-on-the-interpretation-of-response-quality"></a>
+<h3 id="missing-data-as-a-thread-to-the-validity-of-response-quality-indicators">Missing data as a thread to the validity of response quality
+indicators<a class="anchor" aria-label="anchor" href="#missing-data-as-a-thread-to-the-validity-of-response-quality-indicators"></a>
 </h3>
-<p>indicators</p>
 <p>The argument <code>min_valid_responses</code> can be used to control
 how many responses a respondent must have for a response quality
 indicator to be computed. Per default, <code>resquin</code> requires
@@ -424,15 +423,34 @@ affected as much by missing data, because the
 values. For the following response indicators missing values are more of
 a threat to validity because they conceptually rely more on the position
 of responses on the response scale:</p>
-<p><code><a href="../reference/resp_patterns.html">resp_patterns()</a></code>: - <code>mean_string_length</code> -
-Response strings with identical values can be broken by <code>NA</code>
-- <code>longest_string_length</code> - Response strings with identical
-values can be broken by <code>NA</code></p>
-<p><code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code>: -
-<code>simple_nondifferentiation</code> - Straightlining with identical
-values can be broken by <code>NA</code></p>
-<p><code><a href="../reference/resp_styles.html">resp_styles()</a></code>: - All response styles - Response strings
-with identical values can be broken by <code>NA</code></p>
+<ul>
+<li>
+<code><a href="../reference/resp_patterns.html">resp_patterns()</a></code>:
+<ul>
+<li>
+<code>mean_string_length</code> - Response strings with identical
+values can be broken by <code>NA</code>.</li>
+<li>
+<code>longest_string_length</code> - Response strings with identical
+values can be broken by <code>NA</code>.</li>
+</ul>
+</li>
+<li>
+<code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code>:
+<ul>
+<li>
+<code>simple_nondifferentiation</code> - Straightlining with
+identical values can be broken by <code>NA</code>.</li>
+</ul>
+</li>
+<li>
+<code><a href="../reference/resp_styles.html">resp_styles()</a></code>:
+<ul>
+<li>All response styles - Response strings with identical values can be
+broken by <code>NA</code>.</li>
+</ul>
+</li>
+</ul>
 <p>In any case, it helps to report how missing values were handled in an
 analysis to increase confidence in and replicability of the results.</p>
 </div>
