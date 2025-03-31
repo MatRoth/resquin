@@ -76,7 +76,7 @@ specified length.
 
 A pattern is defined by providing one ore more patterns in a character vector.
 A few examples: \verb{resp_patterns(x,defined_patterns = c(1,2,3)} checks how
-often the response pattern "123" occurs in the responses of a single respondent.
+often the response pattern 1,2,3 occurs in the responses of a single respondent.
 \code{list(c(1,2,3),c(3,2,1))} checks how often
 the two patterns 1,2,3 and 3,2,1 occur individually in the responses of a single
 respondent. There is no limit to the number of patterns.

@@ -134,7 +134,7 @@ resp_nondifferentiation <- function(x, min_valid_responses = 1,id = T){
   output$mean_root_pairs[!na_mask] <- apply(X = x[!na_mask,],
                                             MARGIN = 1,
                                             FUN = \(cur_row){
-    combinations <- combn(cur_row,2)
+    combinations <- utils::combn(cur_row,2)
     root_pairs<- combinations |>
       t() |>
       apply(MARGIN = 1,
@@ -148,7 +148,7 @@ resp_nondifferentiation <- function(x, min_valid_responses = 1,id = T){
   output$max_identical_rating[!na_mask] <- apply(X = x[!na_mask,],
                                              MARGIN = 1,
                                              FUN = \(cur_row){
-    max_identical_rating <- cur_row |> table() |> sort() |> tail(1) |> unname()
+    max_identical_rating <- cur_row |> table() |> sort() |> utils::tail(1) |> unname()
     max_identical_rating/length(cur_row) #rescale
     })
   # Scale point variation method

@@ -217,7 +217,7 @@ detect_pattern <- function(response_vector,pattern){
   # pattern is the vector representing the pattern to investigate
   response_string <- paste(response_vector,collapse = "_")
   pattern_string <- paste(pattern,collapse = "_")
-  setNames(object = stringi::stri_count_fixed(response_string,pattern_string),
+  stats::setNames(object = stringi::stri_count_fixed(response_string,pattern_string),
            nm = pattern_string)
 }
 

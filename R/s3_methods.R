@@ -20,7 +20,7 @@ tbl_sum.resp_indicator <- function(x,...) {
 
   header_prefix <- paste("Number of missings due to min_valid_responses equal to",
                          attr(x,"min_valid_responses"))
-  c(setNames(object = sum(attr(x,"na_mask")),
+  c(stats::setNames(object = sum(attr(x,"na_mask")),
              nm = header_prefix),
     default_header)
 }
@@ -52,10 +52,10 @@ summary.resp_indicator <- function(object,...){
     X = object,
     MARGIN = 2,
     FUN = \(cur_indicator){
-      quantile(x = cur_indicator,
-               probs = probs_quantiles,
-               na.rm = T,
-               names = F)
+      stats::quantile(x = cur_indicator,
+                      probs = probs_quantiles,
+                      na.rm = T,
+                      names = F)
     },
     simplify = F)
 
@@ -77,11 +77,11 @@ summary.resp_indicator <- function(object,...){
 #' Custom summary function
 #' @noRd
 #' @exportS3Method base::print
-print.summary_response_styles <- function(object,...){
+print.summary_response_styles <- function(x,...){
   cli::cli_h3("Averages of response quality indicators")
-  print(object$mean_estimates |> round(2))
+  print(x$mean_estimates |> round(2))
   cli::cli_h3("Quantiles of response quality indicators ")
-  print(object$quantile_estimates |> purrr::modify_if(is.numeric,round,2))
+  print(x$quantile_estimates |> purrr::modify_if(is.numeric,round,2))
 }
 
 #' Custom plot function
@@ -91,13 +91,13 @@ plot.resp_indicator <- function(x,y,...){
   x$id <- NULL
   x$arbitrary_patterns <- NULL
   x$defined_patterns <- NULL
-  par(mfrow = c(ncol(x),1),mar = c(2,1,1.5,2))
+  graphics::par(mfrow = c(ncol(x),1),mar = c(2,1,1.5,2))
   purrr::walk2(.x = x,
                .y = names(x),
                .f = \(cur_vals,cur_name){
-                 boxplot(x = cur_vals,
-                         main = cur_name,
-                         horizontal = T)
+                 graphics::boxplot(x = cur_vals,
+                                   main = cur_name,
+                                   horizontal = T)
                })
-  par(mfrow = c(1,1))
+  graphics::par(mfrow = c(1,1))
 }
