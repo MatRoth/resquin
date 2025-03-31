@@ -71,14 +71,19 @@ a respondent must have to calculate response pattern indicators. Default is 1.</
 
 
 <dt id="arg-defined-patterns">defined_patterns<a class="anchor" aria-label="anchor" href="#arg-defined-patterns"></a></dt>
-<dd><p>A vector of integer values with patterns to search for or a list of integer vectors.
+<dd><p>An optional vector of integer values with patterns to search for or a list of integer vectors.
 Will not be computed if not specified or if an empty vector is supplied.</p></dd>
 
 
 <dt id="arg-arbitrary-patterns">arbitrary_patterns<a class="anchor" aria-label="anchor" href="#arg-arbitrary-patterns"></a></dt>
-<dd><p>A vector of integer values or a list containing vectors of
+<dd><p>An optional vector of integer values or a list containing vectors of
 integer values. The values determine the pattern that should be searched for.
 Will not be computed if not specified or if 0 is supplied.</p></dd>
+
+
+<dt id="arg-min-repetitions">min_repetitions<a class="anchor" aria-label="anchor" href="#arg-min-repetitions"></a></dt>
+<dd><p>Defines number of times an arbitrary pattern
+has to be repeated to be retained in the results. Must be larger or equal to 2.</p></dd>
 
 
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
@@ -108,11 +113,9 @@ more information.</p></li>
 per respondent. The names of the vector are repeating patterns found in the
 responses of a respondent. The values of the vector are how often the pattern
 occurred. See "Arbitrary patterns" for more information.</p></li>
-<li><p>(optional) min_repetitions: Defines number of times an arbitrary pattern
-has to be repeated to be retained in the results.</p></li>
 </ul></div>
     <div class="section level2">
-    <h2 id="defined-and-arbitrary-pattern-indicators-">Defined and arbitrary pattern indicators:<a class="anchor" aria-label="anchor" href="#defined-and-arbitrary-pattern-indicators-"></a></h2>
+    <h2 id="defined-and-arbitrary-pattern-indicators">Defined and arbitrary pattern indicators<a class="anchor" aria-label="anchor" href="#defined-and-arbitrary-pattern-indicators"></a></h2>
     <p>Responses of an individual respondent can follow patterns, such as zig-zagging
 across the response scale over multiple items. There might be a-priori knowledge
 which response patterns could occur and might be indicative of low quality
@@ -120,15 +123,15 @@ responding. For this case the defined_patterns argument can be used to specify
 one or more patterns whose presence will be checked for each respondent. If
 no a-priori knowledge exists, it is possible to check for all patterns of a
 specified length.</p><div class="section">
-<h3 id="defined-patterns-">Defined patterns:<a class="anchor" aria-label="anchor" href="#defined-patterns-"></a></h3>
+<h3 id="defined-patterns">Defined patterns<a class="anchor" aria-label="anchor" href="#defined-patterns"></a></h3>
 
 
 <p>A pattern is defined by providing one ore more patterns in a character vector.
 A few examples: <code>resp_patterns(x,defined_patterns = c(1,2,3)</code> checks how
 often the response pattern "123" occurs in the responses of a single respondent.
 <code>list(c(1,2,3),c(3,2,1))</code> checks how often
-the two patterns 1 2 3 and 3 2 1 occur individually in the responses of a single
-respondent. There can be an arbitrary number of patterns</p>
+the two patterns 1,2,3 and 3,2,1 occur individually in the responses of a single
+respondent. There is no limit to the number of patterns.</p>
 </div>
 
 <div class="section">
@@ -145,7 +148,7 @@ of length two, three, four and five that repeat at least two times.</p>
 
     </div>
     <div class="section level2">
-    <h2 id="data-requirements-">Data requirements:<a class="anchor" aria-label="anchor" href="#data-requirements-"></a></h2>
+    <h2 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a></h2>
     <p><code>resp_patterns()</code> assumes that the input data frame is structured in the following way:</p><ul><li><p>The data frame is in wide format, meaning each row represents one respondent,
 each column represents one variable.</p></li>
 <li><p>The variables are in same the order as the questions respondents
@@ -185,7 +188,8 @@ Journal of Experimental Social Psychology, 66, 4–19. https://doi.org/10.1016/j
 <span class="r-in"><span><span class="co"># Calculate response pattern indicators</span></span></span>
 <span class="r-in"><span><span class="fu">resp_patterns</span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Number of missings due to min_valid_responses equal to 1: 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame:                                             10 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       id n_transitions mean_string_length longest_string_length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1</span>
@@ -206,7 +210,8 @@ Journal of Experimental Social Psychology, 66, 4–19. https://doi.org/10.1016/j
 <span class="r-in"><span>      x <span class="op">=</span> <span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>      min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Number of missings due to min_valid_responses equal to 0.2: 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame:                                               10 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       id n_transitions mean_string_length longest_string_length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1             2                  1                     1</span>

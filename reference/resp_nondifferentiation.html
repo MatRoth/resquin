@@ -145,7 +145,8 @@ Applied Cognitive Psychology 5(3):213–36. doi: 10.1002/acp.2350050305.</p>
 <span class="r-in"><span><span class="co"># Calculate response nondifferentiation indicators</span></span></span>
 <span class="r-in"><span><span class="fu">resp_nondifferentiation</span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Number of missings due to min_valid_responses equal to 1: 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame:                                             10 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       id simple_nondifferentiation mean_root_pairs max_identical_rating</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1                         0            1                    0.67</span>
@@ -167,7 +168,8 @@ Applied Cognitive Psychology 5(3):213–36. doi: 10.1002/acp.2350050305.</p>
 <span class="r-in"><span>      x <span class="op">=</span> <span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>      min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Number of missings due to min_valid_responses equal to 0.2: 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame:                                               10 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       id simple_nondifferentiation mean_root_pairs max_identical_rating</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1                         0            0.58                 0.67</span>
@@ -186,22 +188,23 @@ Applied Cognitive Psychology 5(3):213–36. doi: 10.1002/acp.2350050305.</p>
 <span class="r-in"><span>     x <span class="op">=</span> <span class="va">testdata</span>,</span></span>
 <span class="r-in"><span>     min_valid_responses <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># To obtain aggregate measures of response nondifferentiation</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        id        simple_nondifferentiation mean_root_pairs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Min.   : 1.00   Min.   :0                 Min.   :0.0000  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1st Qu.: 3.25   1st Qu.:0                 1st Qu.:0.1238  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Median : 5.50   Median :0                 Median :0.5774  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Mean   : 5.50   Mean   :0                 Mean   :0.4966  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3rd Qu.: 7.75   3rd Qu.:0                 3rd Qu.:0.7011  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Max.   :10.00   Max.   :0                 Max.   :1.0000  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  NA's   :1                 NA's   :1       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  max_identical_rating scale_point_variation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Min.   :0.3333       Min.   :0.4444       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1st Qu.:0.3333       1st Qu.:0.4444       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Median :0.3333       Median :0.6667       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Mean   :0.4444       Mean   :0.6420       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3rd Qu.:0.6667       3rd Qu.:0.7778       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Max.   :0.6667       Max.   :0.8889       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  NA's   :1            NA's   :1            </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Averages of response quality indicators </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> simple_nondifferentiation           mean_root_pairs      max_identical_rating </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      0.00                      0.50                      0.44 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     scale_point_variation </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      0.64 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Quantiles of response quality indicators  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   quantiles simple_nondifferentiation mean_root_pairs max_identical_rating</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 0%                                0            0                    0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 25%                               0            0.12                 0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 50%                               0            0.58                 0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 75%                               0            0.7                  0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 100%                              0            1                    0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: scale_point_variation &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
