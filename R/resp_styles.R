@@ -46,7 +46,7 @@
 #' (for a NERS example see Wetzel et al. (2013)). Consult literature in your field
 #' of research to find appropriate names for the response style indicators calculated here.
 #'
-#' @section Data requirements
+#' @section Data requirements:
 #' `resp_styles()` assumes that the input data frame is structured in the following way:
 #' * The data frame is in wide format, meaning each row represents one respondent,
 #' each column represents one variable.
@@ -157,7 +157,7 @@ resp_styles <- function(x,
 
   # Add id in front
   id <- if(isFALSE(id)) return(output) else if(isTRUE(id)) 1:nrow(x) else id
-  output <- cbind(id,output) |> tibble::as_tibble()
+  output <- cbind(id,output) |> new_resp_indicator(min_valid_responses,na_mask)
 
 
   return(output)

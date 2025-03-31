@@ -20,12 +20,15 @@ see section "Data requirements" below.}
 \item{min_valid_responses}{Numeric between 0 and 1 of length 1. Defines the share of valid responses
 a respondent must have to calculate response pattern indicators. Default is 1.}
 
-\item{defined_patterns}{A vector of integer values with patterns to search for or a list of integer vectors.
+\item{defined_patterns}{An optional vector of integer values with patterns to search for or a list of integer vectors.
 Will not be computed if not specified or if an empty vector is supplied.}
 
-\item{arbitrary_patterns}{A vector of integer values or a list containing vectors of
+\item{arbitrary_patterns}{An optional vector of integer values or a list containing vectors of
 integer values. The values determine the pattern that should be searched for.
 Will not be computed if not specified or if 0 is supplied.}
+
+\item{min_repetitions}{Defines number of times an arbitrary pattern
+has to be repeated to be retained in the results. Must be larger or equal to 2.}
 
 \item{id}{default is \code{True}. If the default value is supplied
 a column named \code{id} with integer ids will be created. If \code{False} is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
@@ -59,11 +62,9 @@ more information.
 per respondent. The names of the vector are repeating patterns found in the
 responses of a respondent. The values of the vector are how often the pattern
 occurred. See "Arbitrary patterns" for more information.
-\item (optional) min_repetitions: Defines number of times an arbitrary pattern
-has to be repeated to be retained in the results.
 }
 }
-\section{Defined and arbitrary pattern indicators:}{
+\section{Defined and arbitrary pattern indicators}{
 Responses of an individual respondent can follow patterns, such as zig-zagging
 across the response scale over multiple items. There might be a-priori knowledge
 which response patterns could occur and might be indicative of low quality
@@ -71,14 +72,14 @@ responding. For this case the defined_patterns argument can be used to specify
 one or more patterns whose presence will be checked for each respondent. If
 no a-priori knowledge exists, it is possible to check for all patterns of a
 specified length.
-\subsection{Defined patterns:}{
+\subsection{Defined patterns}{
 
 A pattern is defined by providing one ore more patterns in a character vector.
 A few examples: \verb{resp_patterns(x,defined_patterns = c(1,2,3)} checks how
 often the response pattern "123" occurs in the responses of a single respondent.
 \code{list(c(1,2,3),c(3,2,1))} checks how often
-the two patterns 1 2 3 and 3 2 1 occur individually in the responses of a single
-respondent. There can be an arbitrary number of patterns
+the two patterns 1,2,3 and 3,2,1 occur individually in the responses of a single
+respondent. There is no limit to the number of patterns.
 }
 
 \subsection{Arbitrary patterns}{
@@ -92,7 +93,7 @@ of length two, three, four and five that repeat at least two times.
 }
 }
 
-\section{Data requirements:}{
+\section{Data requirements}{
 \code{resp_patterns()} assumes that the input data frame is structured in the following way:
 \itemize{
 \item The data frame is in wide format, meaning each row represents one respondent,

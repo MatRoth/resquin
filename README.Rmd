@@ -24,7 +24,8 @@ knitr::opts_chunk$set(
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.org/package=resquin)
-
+[![R-CMD-check](https://github.com/MatRoth/resquin/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatRoth/resquin/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/MatRoth/resquin/graph/badge.svg)](https://app.codecov.io/gh/MatRoth/resquin)
 <!-- badges: end -->
 
 ## About
@@ -76,7 +77,7 @@ pak::pak("https://github.com/MatRoth/resquin")
 ## Getting started
 
 To use `resquin`, supply a data frame containing survey responses in wide format 
-to either `resp_styles()`, `resp_distributions()` or `resp_nondifferentiation()`.
+to either `resp_styles()`, `resp_distributions()`, `resp_nondifferentiation()`, `resp_patterns()`.
 
 ```{r}
 # load resquin

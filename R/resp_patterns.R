@@ -14,7 +14,7 @@
 #' @param arbitrary_patterns An optional vector of integer values or a list containing vectors of
 #' integer values. The values determine the pattern that should be searched for.
 #' Will not be computed if not specified or if 0 is supplied.
-#' @param min_repetitions: Defines number of times an arbitrary pattern
+#' @param min_repetitions Defines number of times an arbitrary pattern
 #'    has to be repeated to be retained in the results. Must be larger or equal to 2.
 #' @param id default is `True`. If the default value is supplied
 #' a column named `id` with integer ids will be created. If `False` is supplied, no id column will be created. Alternatively, a numeric or character vector of unique values identifying
@@ -49,7 +49,7 @@
 #' ## Defined patterns
 #' A pattern is defined by providing one ore more patterns in a character vector.
 #' A few examples: `resp_patterns(x,defined_patterns = c(1,2,3)` checks how
-#' often the response pattern "123" occurs in the responses of a single respondent.
+#' often the response pattern 1,2,3 occurs in the responses of a single respondent.
 #' `list(c(1,2,3),c(3,2,1))` checks how often
 #' the two patterns 1,2,3 and 3,2,1 occur individually in the responses of a single
 #' respondent. There is no limit to the number of patterns.
@@ -206,7 +206,7 @@ resp_patterns <- function(x,
     })}
 
   # Change type and return
-  tibble::as_tibble(output)
+  new_resp_indicator(output,min_valid_responses,na_mask)
 }
 
 

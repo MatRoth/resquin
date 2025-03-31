@@ -269,7 +269,7 @@ custom_ids <- letters[1:nrow(testdata)]
 resp_distributions(testdata,id = custom_ids)
 ```
 
-### Missing data as a thread to the validity of response quality indicators
+### Missing data as a threat to the validity of response quality indicators
 
 The argument `min_valid_responses` can be used to control how many 
 responses a respondent must have for a response quality indicator to be computed.
@@ -297,8 +297,8 @@ analyst.
 
 Although an increasing number of missing values per respondent can pose validity
 threats to all response quality indicators, some indicators are more affected 
-by `NA` values than others. Indicators calculated with `resp_distribution()` are
-not affected as much by missing data, because the `resp_distribution()` indicators
+by `NA` values than others. Indicators calculated with `resp_distributions()` are
+not affected as much by missing data, because the `resp_distributions()` indicators
 average over all response values.
 For the following response indicators missing values are more of a threat to validity
 because they conceptually rely more on the position of responses on the response

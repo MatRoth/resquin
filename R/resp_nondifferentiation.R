@@ -41,7 +41,7 @@
 #' results of `resp_nondifferentiation()`.
 #'
 #'
-#' @section Data requirements
+#' @section Data requirements:
 #' `resp_nondifferentiationf()` assumes that the input data frame is structured in the following way:
 #' * The data frame is in wide format, meaning each row represents one respondent,
 #' each column represents one variable.
@@ -158,5 +158,5 @@ resp_nondifferentiation <- function(x, min_valid_responses = 1,id = T){
     FUN = \(cur_row) 1-sum((table(cur_row)/length(cur_row))^2,na.rm=T))
 
   #Return output
-  tibble::as_tibble(output)
+  new_resp_indicator(output,min_valid_responses,na_mask)
 }

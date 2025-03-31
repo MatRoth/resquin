@@ -150,3 +150,5 @@ is.quasi_integer <- function(vec){
   tryCatch(is.integer(vctrs::vec_cast(vec,to = integer()))&is.numeric(vec),
            error = \(e) F)
 }
+
+
