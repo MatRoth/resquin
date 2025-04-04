@@ -132,7 +132,8 @@
 <span>            scale_min <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>            scale_max <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># Specify scale minimum and maximum</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 6</span></span>
+<span><span class="co">#&gt; # Number of missings due to min_valid_responses equal to 1: 4</span></span>
+<span><span class="co">#&gt; # A data frame:                                             10 × 6</span></span>
 <span><span class="co">#&gt;       id   MRS   ARS   DRS   ERS  NERS</span></span>
 <span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt;  1     1  0     0     1     0.67  0.33</span></span>
@@ -149,7 +150,8 @@
 <span><span class="co"># Calculate response distribution indicators per respondent</span></span>
 <span><span class="fu"><a href="reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 7</span></span>
+<span><span class="co">#&gt; # Number of missings due to min_valid_responses equal to 1: 4</span></span>
+<span><span class="co">#&gt; # A data frame:                                             10 × 7</span></span>
 <span><span class="co">#&gt;       id  n_na prop_na ii_mean ii_sd ii_median mahal</span></span>
 <span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt;  1     1     0    0       1.33  0.58         1  2.04</span></span>
@@ -166,7 +168,8 @@
 <span><span class="co"># Calculate response nondifferentiation indicator per respondent</span></span>
 <span><span class="fu"><a href="reference/resp_nondifferentiation.html">resp_nondifferentiation</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 5</span></span>
+<span><span class="co">#&gt; # Number of missings due to min_valid_responses equal to 1: 4</span></span>
+<span><span class="co">#&gt; # A data frame:                                             10 × 5</span></span>
 <span><span class="co">#&gt;       id simple_nondifferentiation mean_root_pairs max_identical_rating</span></span>
 <span><span class="co">#&gt;    &lt;dbl&gt;                     &lt;dbl&gt;           &lt;dbl&gt;                &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt;  1     1                         0            1                    0.67</span></span>
@@ -184,7 +187,8 @@
 <span><span class="co"># Calculate response pattern indicators</span></span>
 <span><span class="fu"><a href="reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">testdata</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span><span class="co">#&gt; # Number of missings due to min_valid_responses equal to 1: 4</span></span>
+<span><span class="co">#&gt; # A data frame:                                             10 × 4</span></span>
 <span><span class="co">#&gt;       id n_transitions mean_string_length longest_string_length</span></span>
 <span><span class="co">#&gt;    &lt;dbl&gt;         &lt;dbl&gt;              &lt;dbl&gt;                 &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt;  1     1             2                  1                     1</span></span>
