@@ -1,4 +1,4 @@
-# resquin (development version)
+# resquin 0.1.0
 * Added `resp_patterns()` and `resp_nondifferentiation()` as a new function.
 * Added `id` column to all outputs to make it easier to identify respondents or
 merge function outputs to data frames. `id` is either `True` for an integer id,
