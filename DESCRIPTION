@@ -25,6 +25,7 @@ RoxygenNote: 7.3.2
 Imports: 
     cli,
     purrr,
+    rlang,
     slider,
     stringi,
     tibble,

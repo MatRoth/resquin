@@ -64,6 +64,7 @@
 #'
 #' @seealso [resp_distributions()] for calculating response distribution indicators.
 #' [resp_nondifferentiation()] for calculating response nondifferentiation indicators.
+#' [resp_patterns()] for calculating response pattern indicators.
 #'
 #' @author Matthias Roth, Matthias Bluemke & Clemens Lechner
 #'

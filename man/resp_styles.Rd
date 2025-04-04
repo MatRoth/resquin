@@ -128,6 +128,7 @@ Wetzel, Eunike, Claus H. Carstensen, und Jan R. Böhnke. 2013. „Consistency of
 \seealso{
 \code{\link[=resp_distributions]{resp_distributions()}} for calculating response distribution indicators.
 \code{\link[=resp_nondifferentiation]{resp_nondifferentiation()}} for calculating response nondifferentiation indicators.
+\code{\link[=resp_patterns]{resp_patterns()}} for calculating response pattern indicators.
 }
 \author{
 Matthias Roth, Matthias Bluemke & Clemens Lechner
