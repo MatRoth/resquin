@@ -103,7 +103,8 @@ resp_styles(x = testdata,
             scale_min = 1,
             scale_max = 5) |> # Specify scale minimum and maximum
   round(2)
-#> # A tibble: 10 × 6
+#> # Number of missings due to min_valid_responses equal to 1: 4
+#> # A data frame:                                             10 × 6
 #>       id   MRS   ARS   DRS   ERS  NERS
 #>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 #>  1     1  0     0     1     0.67  0.33
@@ -120,7 +121,8 @@ resp_styles(x = testdata,
 # Calculate response distribution indicators per respondent
 resp_distributions(x = testdata) |>
   round(2)
-#> # A tibble: 10 × 7
+#> # Number of missings due to min_valid_responses equal to 1: 4
+#> # A data frame:                                             10 × 7
 #>       id  n_na prop_na ii_mean ii_sd ii_median mahal
 #>    <dbl> <dbl>   <dbl>   <dbl> <dbl>     <dbl> <dbl>
 #>  1     1     0    0       1.33  0.58         1  2.04
@@ -137,7 +139,8 @@ resp_distributions(x = testdata) |>
 # Calculate response nondifferentiation indicator per respondent
 resp_nondifferentiation(x = testdata) |> 
   round(2)
-#> # A tibble: 10 × 5
+#> # Number of missings due to min_valid_responses equal to 1: 4
+#> # A data frame:                                             10 × 5
 #>       id simple_nondifferentiation mean_root_pairs max_identical_rating
 #>    <dbl>                     <dbl>           <dbl>                <dbl>
 #>  1     1                         0            1                    0.67
@@ -155,7 +158,8 @@ resp_nondifferentiation(x = testdata) |>
 # Calculate response pattern indicators
 resp_patterns(x = testdata) |> 
   round(2)
-#> # A tibble: 10 × 4
+#> # Number of missings due to min_valid_responses equal to 1: 4
+#> # A data frame:                                             10 × 4
 #>       id n_transitions mean_string_length longest_string_length
 #>    <dbl>         <dbl>              <dbl>                 <dbl>
 #>  1     1             2                  1                     1
