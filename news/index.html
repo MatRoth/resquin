@@ -38,10 +38,12 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="resquin-development-version">resquin (development version)<a class="anchor" aria-label="anchor" href="#resquin-development-version"></a></h2>
-<ul><li>Added <code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code> as a new function for calculating straightlining indicators.</li>
-<li>Added <code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code> to readme and getting started vignette.</li>
-<li>Added <code><a href="../reference/resp_patterns.html">resp_patterns()</a></code> as a new function.</li>
+<ul><li>Added <code><a href="../reference/resp_patterns.html">resp_patterns()</a></code> and <code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code> as a new function.</li>
 <li>Added <code>id</code> column to all outputs to make it easier to identify respondents or merge function outputs to data frames. <code>id</code> is either <code>True</code> for an integer id, <code>False</code> for no <code>id</code> column, or a vector of unique integer or character values identifying each respondent.</li>
+<li>Added <code><a href="../reference/flag_resp.html">flag_resp()</a></code> function to quickly create and compare different flagging strategies based on response quality indicators.</li>
+<li>Added s3 types to outputs of <code>resp_*()</code> and <code><a href="../reference/flag_resp.html">flag_resp()</a></code> functions.</li>
+<li>Added s3 print, summary and plot methods for outputs of <code>resp_*()</code> functions.</li>
+<li>Added s3 summary method for <code><a href="../reference/flag_resp.html">flag_resp()</a></code> output.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.2" id="resquin-002">resquin 0.0.2<a class="anchor" aria-label="anchor" href="#resquin-002"></a></h2><p class="text-muted">CRAN release: 2024-09-11</p>
