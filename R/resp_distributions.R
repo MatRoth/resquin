@@ -51,15 +51,24 @@
 #' responses are distributed randomly or not with respect to an assumed
 #' latent variable (Marjanovic et al., 2015).
 #'
-#' @section Mahalanobis distance could not be calculated:
+#' @section Mahalanobis distance:
 #' Under certain circumstances, the mahalanobis distance can not be calculated.
 #' This may be if there is high collinearity (correlation between variables) or
 #' if there are to many missing values.
 #' Although this can happen in survey research data, this message can also
 #' indicate that something in the data is "off" due to one of the reasons stated
 #' above. A manual inspection for low-quality responses can be a next step.
-#
 #'
+#' A second issue with the calculation of mahalanobis distance values is, that it
+#' requires all data to be non-missing. This is the case if min_valid_responses = 1.
+#' However, if missing values are allowed, we use within respondent mean imputation
+#' to allow the calculation of mahalanobis distance values. This may lead to nonsensical
+#' mahalanobis distance values if the share of missing responses of a respondent is large
+#' and the respondent would actually have answered differently from their average
+#' response. If you want to calculate mahalanobis distance values for respondents
+#' with missing values, it is advisable to take a careful approach. Investigate missing patterns and
+#' compare results between different levels of min_valid_responses.
+#
 #' @returns Returns a data frame with response quality indicators per respondent.
 #'  Dimensions:
 #'  * Rows: Equal to number of rows in x.
@@ -155,7 +164,7 @@ resp_distributions <- function(x, min_valid_responses = 1,id = T) {
     expr = {output$mahal[!na_mask] <- mahalanobis_na(
       x = x[!na_mask,],
       center = colMeans(x[!na_mask,],na.rm = T),
-      cov = stats::cov(x = x[!na_mask,],
+      cov = stats::cov(x = x[!na_mask,], # cov uses pairwise complete obs to allow for missings
                 use = "pairwise.complete.obs"))},
 
     error = function(e){
@@ -175,11 +184,21 @@ resp_distributions <- function(x, min_valid_responses = 1,id = T) {
 }
 
 #' Modified stats::mahalanobis function which allows for NA values
+#' by using mean imputation.
 #' @noRd
 mahalanobis_na<-\(x,center,cov){
+  # mean imputation for missing values
+  x <- x |>
+    apply(1,
+          \(cur_row){
+            cur_row[is.na(cur_row)]<-mean(cur_row,na.rm=T)
+            cur_row}) |>
+    t()
+
   x <- as.matrix(x)
   x <- sweep(x, 2L, center)
   cov <- solve(cov)
-  x[is.na(x)] <- 0 #set NA to 0 to propagate numerical value instead of NA
+
+  #x[is.na(x)] <- rowMeans(x,na.rm=T) #set NA to 0 to propagate numerical value instead of NA
   sqrt(rowSums(x %*% cov * x))
 }
