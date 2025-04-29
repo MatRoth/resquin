@@ -79,6 +79,8 @@ test_that("resp_distributions output tests", {
                                      use = "pairwise.complete.obs"))
     mahal_res[1] <- NA
     mahal_res})
+  expect_equal(object = resp_distributions(testdata,min_valid_responses = 1)$mahal |> stats::na.omit() |> as.numeric(),
+               expected = testdata[8:12,] |> stats::mahalanobis(colMeans(testdata[8:12,] ),cov(testdata[8:12,] )) |> sqrt() |> as.numeric())
 })
 
 
