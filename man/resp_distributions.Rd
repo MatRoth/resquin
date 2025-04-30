@@ -77,7 +77,13 @@ latent variable (Marjanovic et al., 2015).
 }
 }
 
-\section{Mahalanobis distance could not be calculated}{
+\section{Mahalanobis distance}{
+
+Mahalanobis distance differs from other computed indicators in that its value
+represents the distance of the respondents responses to a set of average responses
+of the sample. Thus, the mahalanobis distance relates the individual to the sample
+whereas other indicators in \code{resp_distributions()} describe the response distribution
+of a single respondent.
 
 Under certain circumstances, the mahalanobis distance can not be calculated.
 This may be if there is high collinearity (correlation between variables) or
@@ -85,6 +91,16 @@ if there are to many missing values.
 Although this can happen in survey research data, this message can also
 indicate that something in the data is "off" due to one of the reasons stated
 above. A manual inspection for low-quality responses can be a next step.
+
+A second issue with the calculation of mahalanobis distance values is, that it
+requires all data to be non-missing. This is the case if min_valid_responses = 1.
+However, if missing values are allowed, we use within respondent mean imputation
+to allow the calculation of mahalanobis distance values. This may lead to nonsensical
+mahalanobis distance values if the share of missing responses of a respondent is large
+and the respondent would actually have answered differently from their average
+response. If you want to calculate mahalanobis distance values for respondents
+with missing values, it is advisable to take a careful approach. Investigate missing patterns and
+compare results between different levels of min_valid_responses.
 }
 
 \examples{

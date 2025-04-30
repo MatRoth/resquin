@@ -52,6 +52,12 @@
 #' latent variable (Marjanovic et al., 2015).
 #'
 #' @section Mahalanobis distance:
+#' Mahalanobis distance differs from other computed indicators in that its value
+#' represents the distance of the respondents responses to a set of average responses
+#' of the sample. Thus, the mahalanobis distance relates the individual to the sample
+#' whereas other indicators in `resp_distributions()` describe the response distribution
+#' of a single respondent.
+#'
 #' Under certain circumstances, the mahalanobis distance can not be calculated.
 #' This may be if there is high collinearity (correlation between variables) or
 #' if there are to many missing values.
