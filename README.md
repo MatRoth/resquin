@@ -19,11 +19,12 @@ to calculate survey data quality indicators to help identifying
 low-quality responses ([Bhaktha, Silber, and Lechner
 2024](#ref-bhaktha); [Curran 2016](#ref-curran2016); [Vaerenbergh and
 Thomas 2013](#ref-vanvaerenbergh2013)). `resp_styles()`,
-`resp_distributions()`, `resp_nondifferentiation()` and `resp_patters()`
-provide response quality indicators geared towards multi-item scales or
-matrix questions. Both multi-item scales and matrix questions present
-survey respondents with multiple questions which have the same response
-format, meaning the same number and labeling of response options.
+`resp_distributions()`, `resp_nondifferentiation()` and
+`resp_patterns()` provide response quality indicators geared towards
+multi-item scales or matrix questions. Both multi-item scales and matrix
+questions present survey respondents with multiple questions which have
+the same response format, meaning the same number and labeling of
+response options.
 
 At the moment, `resquin` provides four functions:
 
