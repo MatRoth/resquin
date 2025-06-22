@@ -17,11 +17,16 @@
 #' one respondent.
 #' As the second argument you provide one ore more logical statements to flag respondents.
 #' For example:
-#' * flag_resp(x,ERS > 0.5) returns a data frame with one column named `ERS > 0.5`. Each
+#' * `flag_resp(x,ERS > 0.5)` returns a data frame with one column named `ERS > 0.5`. Each
 #' row represents one respondent and shows whether the statement "is the extreme response style
 #' indicator larger than 0.5" is true (`T`) or false (`F`).
-#' * flag_resp(x,ERS > 0.5,ii_mean < 3) returns a data frame with two columns indicating
+#' * `flag_resp(x,ERS > 0.5,ii_mean < 3)` returns a data frame with two columns indicating
 #' for which respondents the two flagging expressions are true or false.
+#'
+#' Note that `flag_resp()` is not restricted to functions from the `resquin` package.
+#' You can supply any numerical column in the data frame `x`. This opens the possibility
+#' to compare flagging strategies based on response quality indicators across
+#' packages and functions.
 #'
 #' Use the `summary()` function on the results to compare flagging strategies.
 #'

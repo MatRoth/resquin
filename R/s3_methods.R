@@ -138,6 +138,17 @@ plot.resp_indicator <- function(x,y,...){
 summary.flag_resp <- function(object,normalize = F,...){
   n_flagged <- colSums(object,na.rm=T)
 
+  # Case for only one flagging strategy
+  if(length(names(object)) == 1){
+    results <- list(
+      n_flagged = n_flagged,
+      agreement = data.frame(),
+      n = nrow(object),
+      normalized = normalize)
+    class(results) <- "summary_flag_resp"
+    return(results)
+  }
+
   # Create correlation matrix style agreement matrix
   identical_combinations <- data.frame(V1 = names(object),V2 = names(object))
   distinct_combinations <- utils::combn(x = names(object),m =2) |>
@@ -187,6 +198,8 @@ summary.flag_resp <- function(object,normalize = F,...){
 print.summary_flag_resp <- function(x,...){
   cli::cli_h3(paste0("Number of respondents flagged (Total N: ",x$n,")"))
   print(x$n_flagged)
+
+  if(nrow(x$agreement) == 0 & ncol(x$agreement) == 0) return()
 
   cli::cli_h3("Agreement between flagging strategies")
     print_agreement <- x$agreement |>

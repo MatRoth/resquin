@@ -1,0 +1,62 @@
+---
+title: "Flagging respondents"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Flagging respondents}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Using `flag_resp()` to create and compare flagging strategies
+One use-case for response quality indicators is to use them to flag responses
+which potentially are of low quality. `resquin` provides the function `flag_resp()`
+to create a data frame of booleans (`T` and `F`) according to user-defined cut-off values on 
+response quality indicators. If a respondent receives a `T` value, they are flagged
+as suspicious. If they receive `F` value, they are deemed unsuspicious.
+
+The strength of `flag_resp()` lies in its ability to quickly create and compare
+multiple flagging strategies, as the following example illustrates:
+
+Suppose we use data on response styles to decide whether respondents are low-quality
+responders on the 15 item `nep` scale. We can use `resp_styles()` to calculate response style indices
+per respondent.
+
+
+```{r setup}
+library(resquin)
+nep_resp_styles <- resp_styles(
+  x = nep,
+  scale_min = 1, # minimum response option
+  scale_max = 5, # maximum response option
+  min_valid_responses = 1) # default, excludes respondents with any missing value
+
+summary(nep_resp_styles)
+```
+
+In the first example, we will consider the acquiescence response style (ARS).
+ARS represents the tendency of respondents to agree to questions regardless of
+their content. Since the `nep` scale includes positively and negatively keyed items, 
+we can expect that higher ARS values indeed correspond to this behavior: Respondents
+who are more concerned about nature should choose higher response options on the positively
+keyed items and more negative responses on the negatively keyed items. Just choosing 
+all high response options presents a substantively inconsistent response behavior,
+potentially caused by acquiescence.
+
+A first idea could be to flag respondents which have more than 80% responses in the
+ARS category. 
+
+```{r}
+first_flagging <- flag_resp(nep_resp_styles,
+                            ARS > 0.8)
+
+summary(first_flagging)
+```
+
+
