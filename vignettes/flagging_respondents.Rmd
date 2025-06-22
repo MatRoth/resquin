@@ -58,5 +58,13 @@ first_flagging <- flag_resp(nep_resp_styles,
 
 summary(first_flagging)
 ```
+We can see that 33 respondents are flagged as suspicious, as their ARS score is above 0.8. In a second step, we might also be interested in those respondents who choose the middle response option a lot. The mid-point response style (MRS) could be a sign of speeding or satisficing, as respondents do not make a choice in either direction of the response scale. We keep the ARS flagging strategy in place to compare it to the new one.
 
+```{r}
+second_flagging <- flag_resp(nep_resp_styles,
+                             ARS > 0.8,
+                             MRS > 0.8)
+summary(second_flagging)
+```
+We can see that only three respondents have a MRS value above 0.8. Unsurprisingly, no respondent who has a ARS > 0.8 also has a MRS > 0.8.
 
