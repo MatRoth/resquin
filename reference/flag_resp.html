@@ -24,7 +24,8 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting_started_with_resquin.html">Getting started with resquin</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/flagging_respondents.html">Flagging respondents</a></li>
+    <li><a class="dropdown-item" href="../articles/getting_started_with_resquin.html">Getting started with resquin</a></li>
     <li><a class="dropdown-item" href="../articles/resquin_in_practice.html">resquin in practice</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -79,12 +80,16 @@ representing which respondents are flagged.</p>
 where each column represents one response quality indicator and each row represents
 one respondent.
 As the second argument you provide one ore more logical statements to flag respondents.
-For example:</p><ul><li><p>flag_resp(x,ERS &gt; 0.5) returns a data frame with one column named <code>ERS &gt; 0.5</code>. Each
+For example:</p><ul><li><p><code>flag_resp(x,ERS &gt; 0.5)</code> returns a data frame with one column named <code>ERS &gt; 0.5</code>. Each
 row represents one respondent and shows whether the statement "is the extreme response style
 indicator larger than 0.5" is true (<code>T</code>) or false (<code>F</code>).</p></li>
-<li><p>flag_resp(x,ERS &gt; 0.5,ii_mean &lt; 3) returns a data frame with two columns indicating
+<li><p><code>flag_resp(x,ERS &gt; 0.5,ii_mean &lt; 3)</code> returns a data frame with two columns indicating
 for which respondents the two flagging expressions are true or false.</p></li>
-</ul><p>Use the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function on the results to compare flagging strategies.</p>
+</ul><p>Note that <code>flag_resp()</code> is not restricted to functions from the <code>resquin</code> package.
+You can supply any numerical column in the data frame <code>x</code>. This opens the possibility
+to compare flagging strategies based on response quality indicators across
+packages and functions.</p>
+<p>Use the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function on the results to compare flagging strategies.</p>
     </div>
 
     <div class="section level2">
@@ -136,7 +141,7 @@ for which respondents the two flagging expressions are true or false.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>
