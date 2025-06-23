@@ -14,7 +14,8 @@ value of the response quality indicator of a respondent.}
 \item{...}{Flagging expressions. See details.}
 }
 \value{
-A data frame containing one column per flagging strategy.
+A data frame containing one column per flagging strategy and
+the same number of rows as\code{x}. Each column contains \code{T} and \code{F} flags per respondents.
 }
 \description{
 Flag respondents with one or more flagging expression.
@@ -43,6 +44,9 @@ to compare flagging strategies based on response quality indicators across
 packages and functions.
 
 Use the \code{summary()} function on the results to compare flagging strategies.
+
+#' For more details see the vignette:
+\code{vignette("help", package = "mypkg")}
 }
 \examples{
 res_dist_indicators <- resp_distributions(nep) # Create indicator data frame

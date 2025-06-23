@@ -1,4 +1,4 @@
-# checking constistency of print, summary and plot methods
+# checking consistency of print, summary and plot methods
 
     Code
       summary(resp_distributions(testdata))
@@ -42,4 +42,16 @@
       10    10     0   0        3     1             3  1.46
       11    11     0   0        1     0             1  1.78
       12    12     0   0        3.33  0.577         3  1.30
+
+---
+
+    Code
+      print(summary(flag_resp(resp_distributions(testdata), ii_mean > 2)))
+    Message
+      
+      -- Number of respondents flagged (Total N: 12) 
+    Output
+      ii_mean > 2 
+                4 
+      NULL
 

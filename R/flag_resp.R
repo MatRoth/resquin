@@ -6,7 +6,10 @@
 #' should be one response quality indicator. Each row should be the
 #' value of the response quality indicator of a respondent.
 #' @param ... Flagging expressions. See details.
-#' @returns A data frame containing one column per flagging strategy.
+#' @returns A data frame containing one column per flagging strategy and
+#' the same number of rows as`x`. Each column contains `T` and `F` flags per respondents.
+#' An additional `id` column is added as the first column if a column named `id`
+#' is present in `x`.
 #' @details
 #' `flag_resp()` works very similar to the popular `dplyr::filter()` function. However,
 #' instead of filtering data, `flag_resp()` returns a data frame of `T` and `F` values,
@@ -30,6 +33,9 @@
 #'
 #' Use the `summary()` function on the results to compare flagging strategies.
 #'
+#' #' For more details see the vignette:
+#' \code{vignette("help", package = "mypkg")}
+#'
 #' @examples
 #' res_dist_indicators <- resp_distributions(nep) # Create indicator data frame
 #'
@@ -48,7 +54,9 @@ flag_resp <- function(x,...){
 
   # Check whether supplied indicator names are in data
   supplied_indicators <- purrr::map(flag_expr,all.vars) |>
+    purrr::map(utils::head,1) |> #only extract lhs of the logical expression
     purrr::flatten_chr()
+
   not_found_indicators <- supplied_indicators[!supplied_indicators %in% names(x)]
   if(length(not_found_indicators) > 0){
     msg<- "The following column names were not found in the supplied data frame:"
@@ -66,6 +74,11 @@ flag_resp <- function(x,...){
 
   # Set type and return
   flag_results <- tibble::as_tibble(flag_results)
+  # Add id if supplied
+  if("id" %in% names(x)) cbind(
+    tibble::tibble(id = x$id),
+    flag_results) -> flag_results
+
   new_flag_resp_results <- vctrs::new_data_frame(
     x = flag_results,
     class = c("flag_resp","tbl"))

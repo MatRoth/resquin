@@ -23,8 +23,24 @@ test_that("summary quantile input test",{
   }
 )
 
-test_that("checking constistency of print, summary and plot methods",{
+test_that("checking consistency of print, summary and plot methods",{
   expect_snapshot(summary(resp_distributions(testdata)))
   expect_snapshot(resp_distributions(testdata))
+  expect_snapshot(print(resp_distributions(testdata) |>
+                    flag_resp(ii_mean > 2) |>
+                    summary()))
+})
+
+test_that("checking consistency of flag_resp summary output",{
+  expect_equal({
+    out <- resp_distributions(testdata) |>
+      flag_resp(ii_mean > 2) |>
+      summary()
+    c(out$n_flagged,
+      out$n,
+      out$normalized)},
+    c("ii_mean > 2" = 4,
+      12,
+      F))
 })
 

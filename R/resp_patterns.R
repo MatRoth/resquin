@@ -206,7 +206,10 @@ resp_patterns <- function(x,
     })}
 
   # Change type and return
-  new_resp_indicator(output,min_valid_responses,na_mask)
+  new_resp_indicator(output,
+                     min_valid_responses,
+                     na_mask,
+                     if("id" %in% names(output)) output$id else F)
 }
 
 

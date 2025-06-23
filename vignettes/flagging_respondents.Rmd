@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+(Work in progress)
 ## Using `flag_resp()` to create and compare flagging strategies
 One use-case for response quality indicators is to use them to flag responses
 which potentially are of low quality. `resquin` provides the function `flag_resp()`
@@ -58,13 +59,92 @@ first_flagging <- flag_resp(nep_resp_styles,
 
 summary(first_flagging)
 ```
-We can see that 33 respondents are flagged as suspicious, as their ARS score is above 0.8. In a second step, we might also be interested in those respondents who choose the middle response option a lot. The mid-point response style (MRS) could be a sign of speeding or satisficing, as respondents do not make a choice in either direction of the response scale. We keep the ARS flagging strategy in place to compare it to the new one.
+We can see that 33 respondents are flagged as suspicious, as their ARS score is above 0.8.
+
+### Using two flagging strategies
+
+In a second step, we might also be interested in flagging respondents who choose the same response option repeatedly. We can use the `resp_patterns()` to compute the longest string length indicator. This indicator shows the longest string of repeated response options. We will flag respondents which have a longest string length of 8 or more. We keep the ARS flagging strategy in place to compare it to the new one.
 
 ```{r}
-second_flagging <- flag_resp(nep_resp_styles,
+nep_resp_patterns <- resp_patterns(nep)
+nep_resp_patterns_resp_styles <- cbind(nep_resp_styles,nep_resp_patterns[,-1])
+
+second_flagging <- flag_resp(nep_resp_patterns_resp_styles,
                              ARS > 0.8,
-                             MRS > 0.8)
+                             longest_string_length >= 8)
 summary(second_flagging)
 ```
-We can see that only three respondents have a MRS value above 0.8. Unsurprisingly, no respondent who has a ARS > 0.8 also has a MRS > 0.8.
+We can see that 19 respondents have a longest string length of larger or equal to 8. The 
+output also contains an agreement matrix between the flagging strategies. In
+the second row of the first column, we can see that the two flagging strategies agree
+on 9 flagged respondents. Together, both strategies would flag 33 + 19 - 9 = 43
+respondents of 1222. 
+
+It is also possible to join mutliple flagging expressions with an `&` or `|` operator.
+
+```{r}
+flag_resp(nep_resp_patterns_resp_styles,
+          ARS > 0.8,
+          longest_string_length >= 8,
+          ARS > 0.8 | longest_string_length >= 8) |> 
+  summary()
+```
+
+### Comparing three flagging strategies with one comming from a different source
+
+We can use any vector of logical (i.e. `T` and `F`) values with the same number of rows as the `nep` data
+frame and compare them with the values provided by `resquin`. In the following 
+example we create a random vector of boolean values and add it to the data frame
+from the last example.
+
+```{r}
+random_vector <- sample(c(F,T),1000,replace = T)
+random_vector[is.na(nep_resp_styles$ARS)] <- NA # Add missing data as in the other data frames
+
+# example three contains response indicator values per respondent
+external_indicator_data <- cbind(
+  nep_resp_patterns_resp_styles,
+  new_indicator = random_vector)
+
+flag_resp(external_indicator_data,
+          ARS > 0.8,
+          longest_string_length >= 8,
+          new_indicator == T) |> 
+  summary()
+```
+The new indicator `new_indicator` now is included in the output of the summary function and can be compared with the other indicators. 
+
+### Filtering respondents
+
+The output of `flag_resp()` can be used to filter out the flagged respondents. The
+output of `flag_resp()` is just a collection of logicals:
+
+```{r}
+flag_df <- flag_resp(
+  nep_resp_patterns_resp_styles,
+  ARS > 0.8,
+  longest_string_length >= 8,
+  ARS > 0.8 | longest_string_length >= 8) 
+
+flag_df
+```
+
+We can use these to filter respondents from the original `nep` dataset.
+We can exclude the flagged respondent.
+
+```{r}
+# Exclude the 33 flagged respondents with ARS > 0.8
+nep[!flag_df$`ARS > 0.8`,] |> 
+  na.omit() #exclude respondents with missing values
+```
+
+Alternatively we can filter out the flagged respondent.
+```{r}
+# Extract only the 33 flagged respondents with ARS 0.8
+nep[flag_df$`ARS > 0.8`,] |> 
+  na.omit()
+```
+
+Notice that you can also use the `id` column in the `flag_df` to join the `flag_df`
+to your original data. 
 

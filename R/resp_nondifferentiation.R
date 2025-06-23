@@ -158,5 +158,8 @@ resp_nondifferentiation <- function(x, min_valid_responses = 1,id = T){
     FUN = \(cur_row) 1-sum((table(cur_row)/length(cur_row))^2,na.rm=T))
 
   #Return output
-  new_resp_indicator(output,min_valid_responses,na_mask)
+  new_resp_indicator(output,
+                     min_valid_responses,
+                     na_mask,
+                     if("id" %in% names(output)) output$id else F)
 }

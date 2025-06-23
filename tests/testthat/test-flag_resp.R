@@ -18,6 +18,7 @@ test_that ("flag_resp output test",{
                c(rep(NA,7),T,T,T,F,T))
   expect_equal(flag_resp(indicators_test,mahal > 1.6,ii_sd <2),
                {res <- tibble::tibble(
+                 "id" = 1:nrow(testdata),
                  "mahal > 1.6" = c(rep(NA,7),T,F,F,T,F),
                  "ii_sd < 2" = c(rep(NA,7),T,F,T,T,T))
                class(res) <- c("flag_resp","tbl","data.frame")

@@ -185,7 +185,10 @@ resp_distributions <- function(x, min_valid_responses = 1,id = T) {
 
 
   # Change type & return
-  output <- new_resp_indicator(output,min_valid_responses,na_mask)
+  output <- new_resp_indicator(output,
+                               min_valid_responses,
+                               na_mask,
+                               if("id" %in% names(output)) output$id else F)
   output
 }
 

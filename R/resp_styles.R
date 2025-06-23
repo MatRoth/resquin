@@ -158,7 +158,10 @@ resp_styles <- function(x,
 
   # Add id in front
   id <- if(isFALSE(id)) return(output) else if(isTRUE(id)) 1:nrow(x) else id
-  output <- cbind(id,output) |> new_resp_indicator(min_valid_responses,na_mask)
+  output <- cbind(id,output) |>
+    new_resp_indicator(min_valid_responses,
+                       na_mask,
+                       if("id" %in% names(output)) output$id else F)
 
 
   return(output)

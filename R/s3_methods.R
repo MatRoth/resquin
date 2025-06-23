@@ -3,12 +3,14 @@
 #' @noRd
 new_resp_indicator <- function(resp_indicator_list,
                                min_valid_responses,
-                               na_mask){
+                               na_mask,
+                               id){
   new_resp_indicator_obj <- vctrs::new_data_frame(
     x = resp_indicator_list,
     class = c("resp_indicator","tbl"),
     "min_valid_responses" = min_valid_responses,
-    "na_mask" = na_mask)
+    "na_mask" = na_mask,
+    "id" = id)
   new_resp_indicator_obj
 }
 
@@ -136,6 +138,9 @@ plot.resp_indicator <- function(x,y,...){
 #'
 #' @exportS3Method base::summary
 summary.flag_resp <- function(object,normalize = F,...){
+  # Filter out id if present
+  if("id" %in% names(object)) object$id <- NULL
+
   n_flagged <- colSums(object,na.rm=T)
 
   # Case for only one flagging strategy
