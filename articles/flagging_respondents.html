@@ -77,15 +77,17 @@
 
     
     
-<p>(Work in progress) ## Using <code><a href="../reference/flag_resp.html">flag_resp()</a></code> to create and
-compare flagging strategies One use-case for response quality indicators
-is to use them to flag responses which potentially are of low quality.
-<code>resquin</code> provides the function <code><a href="../reference/flag_resp.html">flag_resp()</a></code> to
-create a data frame of booleans (<code>T</code> and <code>F</code>)
-according to user-defined cut-off values on response quality indicators.
-If a respondent receives a <code>T</code> value, they are flagged as
-suspicious. If they receive <code>F</code> value, they are deemed
-unsuspicious.</p>
+<div class="section level2">
+<h2 id="using-flag_resp-to-create-and-compare-flagging-strategies">Using <code>flag_resp()</code> to create and compare flagging
+strategies<a class="anchor" aria-label="anchor" href="#using-flag_resp-to-create-and-compare-flagging-strategies"></a>
+</h2>
+<p>One use-case for response quality indicators is to use them to flag
+responses which potentially are of low quality. <code>resquin</code>
+provides the function <code><a href="../reference/flag_resp.html">flag_resp()</a></code> to create a data frame of
+booleans (<code>T</code> and <code>F</code>) according to user-defined
+cut-off values on response quality indicators. If a respondent receives
+a <code>T</code> value, they are flagged as suspicious. If they receive
+<code>F</code> value, they are deemed unsuspicious.</p>
 <p>The strength of <code><a href="../reference/flag_resp.html">flag_resp()</a></code> lies in its ability to
 quickly create and compare multiple flagging strategies, as the
 following example illustrates:</p>
@@ -317,6 +319,7 @@ collection of logicals:</p>
 <p>Notice that you can also use the <code>id</code> column in the
 <code>flag_df</code> to join the <code>flag_df</code> to your original
 data.</p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
