@@ -69,7 +69,8 @@ value of the response quality indicator of a respondent.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame containing one column per flagging strategy.</p>
+    <p>A data frame containing one column per flagging strategy and
+the same number of rows as<code>x</code>. Each column contains <code>T</code> and <code>F</code> flags per respondents.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -90,6 +91,8 @@ You can supply any numerical column in the data frame <code>x</code>. This opens
 to compare flagging strategies based on response quality indicators across
 packages and functions.</p>
 <p>Use the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function on the results to compare flagging strategies.</p>
+<p>#' For more details see the vignette:
+<code>vignette("help", package = "mypkg")</code></p>
     </div>
 
     <div class="section level2">
@@ -101,19 +104,19 @@ packages and functions.</p>
 <span class="r-in"><span>                                 <span class="va">ii_sd</span> <span class="op">&lt;</span> <span class="fl">2</span>, <span class="co"># Flagging strategy 2</span></span></span>
 <span class="r-in"><span>                                 <span class="va">ii_mean</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">&amp;</span> <span class="va">ii_sd</span> <span class="op">&gt;</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># Flagging strategy 3</span></span></span>
 <span class="r-in"><span><span class="va">flagged_respondents</span> <span class="co"># A data frame with three columns, each corresponding to one flagging strategy</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 1,222 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    `ii_mean &gt; 3` `ii_sd &lt; 2` `ii_mean &gt; 3 &amp; ii_sd &gt; 2`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> TRUE          TRUE        FALSE                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> TRUE          TRUE        FALSE                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> FALSE         TRUE        FALSE                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> TRUE          TRUE        FALSE                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> TRUE          TRUE        FALSE                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> TRUE          TRUE        FALSE                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> TRUE          TRUE        FALSE                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> TRUE          TRUE        FALSE                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> TRUE          TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 1,222 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id `ii_mean &gt; 3` `ii_sd &lt; 2` `ii_mean &gt; 3 &amp; ii_sd &gt; 2`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 TRUE          TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2 TRUE          TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3 FALSE         TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4 TRUE          TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5 TRUE          TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6 <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7 TRUE          TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8 TRUE          TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9 TRUE          TRUE        FALSE                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10 TRUE          TRUE        FALSE                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,212 more rows</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">flagged_respondents</span><span class="op">)</span> <span class="co"># quickly compare flagging strategies</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
