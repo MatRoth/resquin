@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-(Work in progress)
 ## Using `flag_resp()` to create and compare flagging strategies
 One use-case for response quality indicators is to use them to flag responses
 which potentially are of low quality. `resquin` provides the function `flag_resp()`
