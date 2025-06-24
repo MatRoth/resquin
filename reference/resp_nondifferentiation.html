@@ -105,7 +105,12 @@ where \(p_i\) is the proportion of the values rated at each scale point on a rat
 The measure becomes larger if respondents use more scales points in a multi-item scale or matrix questions.</p></li>
 </ul><p>It should be noted that Kim et al. (2017) average the response nondifferentiation indicators to obtain an aggregate
 measure for response nondifferentiation. To do so, the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function can be called on the
-results of <code>resp_nondifferentiation()</code>.</p>
+results of <code>resp_nondifferentiation()</code>. Additionally, Kim et al. (2017) removed all respondents with missing
+values from their study. For <code>resp_nondifferentiation()</code> this is the default behavior (<code>min_valid_responses = 1</code>).
+Reducing the value of <code>min_valid_responses</code> can lead to problems. For example, respondents with less valid respones
+will have less of an opportunity to use all response options which in turn is used to calculate the
+Scale Point Variation Method indicator. Thus, consider whether allowing missing responses impacts the results
+indicators and subsequent analyses.</p>
     </div>
     <div class="section level2">
     <h2 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a></h2>
