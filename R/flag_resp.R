@@ -34,7 +34,7 @@
 #' Use the `summary()` function on the results to compare flagging strategies.
 #'
 #' For more details see the vignette:
-#' \code{vignette("Flagging respondents", package = "resquin")}
+#' \code{vignette("flagging_respondents", package = "resquin")}
 #'
 #' @examples
 #' res_dist_indicators <- resp_distributions(nep) # Create indicator data frame
