@@ -181,6 +181,24 @@ resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin
 and [resquin in
 practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
+Researchers have developed a large number of response quality
+indicators. `resquin` only covers a few of them. The following list
+contains packages which provide alternative implementations of the
+indicators used in resquin or provide other indicators not used in
+resquin: \* Implementation of ([Kim et al.
+2019](#ref-kim_straightlining_2019)) measures:
+[straightliner](https://github.com/mweylandt/straightliner/tree/main) \*
+Implementation of indices from the careless responding literature:
+[careless](https://cran.r-project.org/web/packages/careless/index.html)
+\* Autocorrelation and pattern indices:
+[responsePatterns](https://cran.r-project.org/web/packages/responsePatterns/)
+
+Below are packages which use IRT to model and estimate response styles:
+*[PCMRS](https://cran.r-project.org/web/packages/PCMRS/index.html)
+*[FitResponseStyles](https://github.com/mirka-henninger/FitResponseStyles)
+\*[Model Multivariate Ordinal Responses Including Response
+Styles](https://cran.r-project.org/web/packages/MultOrdRS/index.html)
+
 # References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
@@ -199,6 +217,16 @@ Unified Framework.” <https://osf.io/9gs67/>.
 Curran, Paul G. 2016. “Methods for the Detection of Carelessly Invalid
 Responses in Survey Data.” *Journal of Experimental Social Psychology*
 66 (September): 4–19. <https://doi.org/10.1016/j.jesp.2015.07.006>.
+
+</div>
+
+<div id="ref-kim_straightlining_2019" class="csl-entry">
+
+Kim, Yujin, Jennifer Dykema, John Stevenson, Penny Black, and D. Paul
+Moberg. 2019. “Straightlining: Overview of Measurement, Comparison of
+Indicators, and Effects in Mail–Web Mixed-Mode Surveys.” *Social Science
+Computer Review* 37 (2): 214–33.
+<https://doi.org/10.1177/0894439317752406>.
 
 </div>
 

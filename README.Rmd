@@ -112,4 +112,16 @@ resp_patterns(x = testdata) |>
 
 For a more information on how to use `resquin` see the vignettes [Getting started with resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html) and [resquin in practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
+Researchers have developed a large number of response quality indicators. `resquin` only covers a few of them. The following list contains packages which provide alternative implementations of the
+indicators used in resquin or provide other indicators not used in resquin:
+* Implementation of [@kim_straightlining_2019] measures: [straightliner](https://github.com/mweylandt/straightliner/tree/main)
+* Implementation of indices from the careless responding literature: [careless](https://cran.r-project.org/web/packages/careless/index.html)
+* Autocorrelation and pattern indices: [responsePatterns](https://cran.r-project.org/web/packages/responsePatterns/)
+
+Below are packages which use IRT to model and estimate response styles:
+*[PCMRS](https://cran.r-project.org/web/packages/PCMRS/index.html)
+*[FitResponseStyles](https://github.com/mirka-henninger/FitResponseStyles)
+*[Model Multivariate Ordinal Responses Including Response Styles](https://cran.r-project.org/web/packages/MultOrdRS/index.html)
+
+
 # References

@@ -61,7 +61,7 @@ Lets use this data set to calculate response quality indicators.
 Response styles capture systematic shifts in respondents response
 behavior. For example, respondents with an extreme response style may
 only choose the lowest and highest categories (in our example 1 and 5)
-while mid-point responder only choose the midpoint of a scale (in our
+while mid-point respondents only choose the midpoint of a scale (in our
 example 3).
 
 To calculate response styles we can use the `resp_styles()` function.
@@ -112,6 +112,25 @@ they have missing values. A value of 1 indicates that response styles
 should only be calculated for respondents who have valid responses on
 all variables. Values between 0 and 1 indicate the share of responses
 that need to be valid to be included in the response style calculations.
+
+### How to quickly glance at results
+
+Results from `resp_*()` functions can be fed to `summary()` and `print()` functions
+to quickly create overviews for the calculated response quality indicators.
+
+```{r}
+results_response_styles |>
+  summary()
+```
+
+Calculates the averages and a five point summary of the response quality indicators.
+
+```{r}
+results_response_styles |> 
+  print()
+```
+
+Prints a boxplot of the indicators.
 
 ### `resp_distributions()`: Intra-individual response distribution indicators
 
