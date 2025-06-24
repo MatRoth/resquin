@@ -135,7 +135,7 @@ values, which are set to <code>NA</code>.</p>
 <p>Response styles capture systematic shifts in respondents response
 behavior. For example, respondents with an extreme response style may
 only choose the lowest and highest categories (in our example 1 and 5)
-while mid-point responder only choose the midpoint of a scale (in our
+while mid-point respondents only choose the midpoint of a scale (in our
 example 3).</p>
 <p>To calculate response styles we can use the
 <code><a href="../reference/resp_styles.html">resp_styles()</a></code> function. First, we need to specify our data
@@ -200,6 +200,50 @@ variables. Values between 0 and 1 indicate the share of responses that
 need to be valid to be included in the response style calculations.</p>
 </div>
 <div class="section level3">
+<h3 id="how-to-quickly-glance-at-results">How to quickly glance at results<a class="anchor" aria-label="anchor" href="#how-to-quickly-glance-at-results"></a>
+</h3>
+<p>Results from <code>resp_*()</code> functions can be fed to
+<code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> functions to quickly
+create overviews for the calculated response quality indicators.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">results_response_styles</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Averages of response quality indicators</span></span>
+<span><span class="co">#&gt;  MRS  ARS  DRS  ERS NERS </span></span>
+<span><span class="co">#&gt; 0.22 0.28 0.50 0.33 0.67</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Quantiles of response quality indicators</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 6</span></span></span>
+<span><span class="co">#&gt;   quantiles   MRS   ARS   DRS   ERS  NERS</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 0%         0     0     0     0     0.33</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 25%        0     0.08  0.33  0.08  0.42</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 50%        0     0.33  0.5   0.33  0.67</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 75%        0.5   0.33  0.67  0.58  0.92</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 100%       0.67  0.67  1     0.67  1</span></span></code></pre></div>
+<p>Calculates the averages and a five point summary of the response
+quality indicators.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">results_response_styles</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Number of missings due to min_valid_responses equal to 1: 4</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A data frame:                                             10 × 6</span></span></span>
+<span><span class="co">#&gt;       id    MRS    ARS    DRS    ERS   NERS</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1  0      0      1      0.667  0.333</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2  0      0.667  0.333  0.333  0.667</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3  0.667  0      0.333  0      1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5  0.667  0.333  0      0      1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6  0      0.333  0.667  0.333  0.667</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8  0      0.333  0.667  0.667  0.333</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<p>Prints a boxplot of the indicators.</p>
+</div>
+<div class="section level3">
 <h3 id="resp_distributions-intra-individual-response-distribution-indicators">
 <code>resp_distributions()</code>: Intra-individual response
 distribution indicators<a class="anchor" aria-label="anchor" href="#resp_distributions-intra-individual-response-distribution-indicators"></a>
@@ -211,7 +255,7 @@ the location and variability of responses within a respondent.
 can include or exclude respondents from the calculations based on amount
 of missing data they exhibit (for an explanation see paragraph
 above).</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calulating response distribution indicators for all respondents with no missing values</span></span>
 <span><span class="va">results_resp_distributions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
@@ -260,7 +304,7 @@ provide continuous values of nondifferentiation, measuring how varied
 the choice of response options for each respondent is.</p>
 <p><code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code> works just like
 <code><a href="../reference/resp_distributions.html">resp_distributions()</a></code> and <code><a href="../reference/resp_styles.html">resp_styles()</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results_resp_nondifferentiation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
 <span>  min_valid_responses <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Excludes respondents with less than 100% valid responses</span></span>
@@ -315,7 +359,7 @@ analysis of other repeating response patterns: defined_patterns and
 arbitrary_patterns:</p>
 <p>To obtain the three longstring analysis columns simply call
 <code><a href="../reference/resp_patterns.html">resp_patterns()</a></code>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results_resp_patterns</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">results_resp_patterns</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Number of missings due to min_valid_responses equal to 1: 4</span></span></span>
@@ -336,7 +380,7 @@ arbitrary_patterns:</p>
 <code>defined_patterns</code> argument. You can either supply a single
 vector representing a response pattern, or a list of vectors
 representing multiple response patterns.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Single defined pattern</span></span>
 <span><span class="va">defined_patterns_single</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
@@ -408,7 +452,7 @@ representing multiple response patterns.</p>
 <p>Finally, you can request the detection of arbitrary response patterns
 with counts larger than one and pattern lengths longer than one using
 the <code>arbitrary_patterns</code> argument</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">arbitrary_patterns_length_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resp_patterns.html">resp_patterns</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">testdata</span>,</span>
 <span>  arbitrary_patterns <span class="op">=</span> <span class="fl">2</span></span>
@@ -466,7 +510,7 @@ the creation of the <code>id</code> column by setting
 numeric). The latter option is useful if a data set provides its own
 vector of ids.</p>
 <p>Here are examples of the three options:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Default. Integer ids.</span></span>
 <span><span class="fu"><a href="../reference/resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Number of missings due to min_valid_responses equal to 1: 4</span></span></span>
