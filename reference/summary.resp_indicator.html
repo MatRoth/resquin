@@ -73,11 +73,32 @@ quantiles which are calculated. Default is <code>c(0,0.25,0.5,0.75,1)</code>.</p
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A resp_indicator summary object. Works like a list with two elements:</p><ul><li><p>quantile_estimates. A dataframe of estimated quantiles for the response quality indicators
+    <p>A resp_indicator summary object. Works like a list with two elements:</p><ul><li><p><code>quantile_estimates</code>. A dataframe of estimated quantiles for the response quality indicators
 calculated.</p></li>
-<li><p>mean_estimates. A named vector with means of response quality indicators calculated.</p></li>
+<li><p><code>mean_estimates</code>. A named vector with means of response quality indicators calculated.</p></li>
 </ul></div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">nep</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Averages of response quality indicators </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      n_na   prop_na   ii_mean     ii_sd ii_median     mahal </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      2.75      0.18      3.36      1.15      3.66      3.71 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Quantiles of response quality indicators  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   quantiles  n_na prop_na ii_mean ii_sd ii_median mahal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 0%            0       0    2.27  0            1  1.52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 25%           0       0    3.13  0.92         3  2.91</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 50%           0       0    3.33  1.12         4  3.54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 75%           0       0    3.53  1.39         4  4.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 100%         15       1    5     2.07         5  8.17</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

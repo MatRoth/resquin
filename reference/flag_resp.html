@@ -70,7 +70,9 @@ value of the response quality indicator of a respondent.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A data frame containing one column per flagging strategy and
-the same number of rows as<code>x</code>. Each column contains <code>T</code> and <code>F</code> flags per respondents.</p>
+the same number of rows as<code>x</code>. Each column contains <code>T</code> and <code>F</code> flags per respondents.
+An additional <code>id</code> column is added as the first column if a column named <code>id</code>
+is present in <code>x</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -91,7 +93,7 @@ You can supply any numerical column in the data frame <code>x</code>. This opens
 to compare flagging strategies based on response quality indicators across
 packages and functions.</p>
 <p>Use the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function on the results to compare flagging strategies.</p>
-<p>#' For more details see the vignette:
+<p>For more details see the vignette:
 <code>vignette("help", package = "mypkg")</code></p>
     </div>
 

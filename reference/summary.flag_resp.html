@@ -92,6 +92,29 @@ at least one flagging strategy.</p>
 <p>In logical terms, the normalized agreement is <code>sum(fs1 &amp; fs2) / sum(fs1 | fs2)</code>.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="resp_distributions.html">resp_distributions</a></span><span class="op">(</span><span class="va">nep</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="flag_resp.html">flag_resp</a></span><span class="op">(</span><span class="va">ii_mean</span> <span class="op">&gt;</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>   <span class="va">ii_sd</span> <span class="op">&gt;</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   <span class="va">ii_mean</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">&amp;</span> <span class="va">ii_sd</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Number of respondents flagged (Total N: 1222) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             ii_mean &gt; 3               ii_sd &gt; 1 ii_mean &gt; 3 &amp; ii_sd &gt; 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     832                     615                     543 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Agreement between flagging strategies </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Flag                      ii_mean &gt; 3 &amp; ii_sd &gt; 1   ii_sd &gt; 1   ii_mean &gt; 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------  ------------------------  ----------  ------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ii_mean &gt; 3 &amp; ii_sd &gt; 1   543                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ii_sd &gt; 1                 543                       615                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ii_mean &gt; 3               543                       543         832         </span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
