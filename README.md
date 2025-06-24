@@ -186,17 +186,16 @@ resquin: \* Implementation of ([Kim et al.
 2019](#ref-kim_straightlining_2019)) measures:
 [straightliner](https://github.com/mweylandt/straightliner/tree/main) \*
 Implementation of indices from the careless responding literature:
-[careless](https://cran.r-project.org/web/packages/careless/index.html)
-\* Autocorrelation and pattern indices:
-[responsePatterns](https://cran.r-project.org/web/packages/responsePatterns/)
+[careless](https://cran.r-project.org/package=careless) \*
+Autocorrelation and pattern indices:
+[responsePatterns](https://cran.r-project.org/package=responsePatterns)
 
 Below are packages which use IRT to model and estimate response styles:
-*[PCMRS](https://cran.r-project.org/web/packages/PCMRS/index.html)
+*[PCMRS](https://cran.r-project.org/package=PCMRS)
 *[FitResponseStyles](https://github.com/mirka-henninger/FitResponseStyles)
 *[Model Multivariate Ordinal Responses Including Response
-Styles](https://cran.r-project.org/web/packages/MultOrdRS/index.html)
-*[Person fit indices
-(Perfit)](https://www.jstatsoft.org/article/view/v074i05)
+Styles](https://cran.r-project.org/package=MultOrdRS) *[Person fit
+indices (Perfit)](https://cran.r-project.org/package=PerFit)
 
 # References
 
