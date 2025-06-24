@@ -33,7 +33,7 @@
 #'
 #' Use the `summary()` function on the results to compare flagging strategies.
 #'
-#' #' For more details see the vignette:
+#' For more details see the vignette:
 #' \code{vignette("help", package = "mypkg")}
 #'
 #' @examples

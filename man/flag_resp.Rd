@@ -16,6 +16,8 @@ value of the response quality indicator of a respondent.}
 \value{
 A data frame containing one column per flagging strategy and
 the same number of rows as\code{x}. Each column contains \code{T} and \code{F} flags per respondents.
+An additional \code{id} column is added as the first column if a column named \code{id}
+is present in \code{x}.
 }
 \description{
 Flag respondents with one or more flagging expression.
@@ -45,7 +47,7 @@ packages and functions.
 
 Use the \code{summary()} function on the results to compare flagging strategies.
 
-#' For more details see the vignette:
+For more details see the vignette:
 \code{vignette("help", package = "mypkg")}
 }
 \examples{

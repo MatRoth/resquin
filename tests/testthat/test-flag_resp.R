@@ -4,6 +4,7 @@ testdata <- data.frame( # NA block and pattern block
   var_c = c(NA,NA,NA, 5,NA, 3,NA,3,5,2,1,4))
 
 indicators_test <- resp_distributions(testdata)
+indicators_test_wo_id <- resp_distributions(testdata,id = F)
 indicators_nep <- resp_distributions(nep)
 
 test_that("flag_resp input tests",{
@@ -23,4 +24,11 @@ test_that ("flag_resp output test",{
                  "ii_sd < 2" = c(rep(NA,7),T,F,T,T,T))
                class(res) <- c("flag_resp","tbl","data.frame")
                res})
+  expect_equal(flag_resp(indicators_test_wo_id,mahal > 1.6,ii_sd <2),
+               {res <- tibble::tibble(
+                 "mahal > 1.6" = c(rep(NA,7),T,F,F,T,F),
+                 "ii_sd < 2" = c(rep(NA,7),T,F,T,T,T))
+               class(res) <- c("flag_resp","tbl","data.frame")
+               res})
 })
+

@@ -37,3 +37,11 @@ at least one flagging strategy.
 
 In logical terms, the normalized agreement is \code{sum(fs1 & fs2) / sum(fs1 | fs2)}.
 }
+\examples{
+resp_distributions(nep) |>
+  flag_resp(ii_mean > 3,
+   ii_sd > 1,
+   ii_mean > 3 & ii_sd > 1) |>
+  summary()
+
+}

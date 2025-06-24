@@ -37,9 +37,14 @@ tbl_sum.resp_indicator <- function(x,...) {
 #' @param ... Additional arguments (currently not supported).
 #'
 #' @returns A resp_indicator summary object. Works like a list with two elements:
-#' * quantile_estimates. A dataframe of estimated quantiles for the response quality indicators
+#' * `quantile_estimates`. A dataframe of estimated quantiles for the response quality indicators
 #' calculated.
-#' * mean_estimates. A named vector with means of response quality indicators calculated.
+#' * `mean_estimates`. A named vector with means of response quality indicators calculated.
+#'
+#' @examples
+#' resp_distributions(nep) |> summary()
+#'
+#'
 #' @exportS3Method base::summary
 summary.resp_indicator <- function(object,quantiles,...){
   object$id <- NULL
@@ -84,7 +89,7 @@ summary.resp_indicator <- function(object,quantiles,...){
   results
 }
 
-#' Custom summary function
+#' Custom print function summary_response_indicators
 #' @noRd
 #' @exportS3Method base::print
 print.summary_response_indicators <- function(x,...){
@@ -94,22 +99,37 @@ print.summary_response_indicators <- function(x,...){
   print(x$quantile_estimates |> purrr::modify_if(is.numeric,round,2))
 }
 
-#' Custom plot function
-#' @noRd
+#' Plot function for resp_indicator objects
+#'
+#' Provides an overview over results of resp_* functions.
+#'
+#' @param x An object of type resp_indicator created with a resp_* function.
+#' @param y Not used and thus not required.
+#' @param ... Additional arguments (currently not supported).
+#'
+#' @returns Invisibly returns the input `x`.
+#'
+#' @examples
+#' resp_distributions(nep) |> plot()
+#'
 #' @exportS3Method base::plot
 plot.resp_indicator <- function(x,y,...){
   x$id <- NULL
   x$arbitrary_patterns <- NULL
   x$defined_patterns <- NULL
+
+  # Plot to graphics device
   graphics::par(mfrow = c(ncol(x),1),mar = c(2,1,1.5,2))
-  purrr::walk2(.x = x,
-               .y = names(x),
-               .f = \(cur_vals,cur_name){
-                 graphics::boxplot(x = cur_vals,
-                                   main = cur_name,
-                                   horizontal = T)
-               })
+  purrr::walk2(
+    .x = x,
+    .y = names(x),
+    .f = \(cur_vals,cur_name){
+     graphics::boxplot(x = cur_vals,
+                       main = cur_name,
+                       horizontal = T)
+    })
   graphics::par(mfrow = c(1,1))
+  invisible(x)
 }
 
 #' Summary function for flag_resp() output
@@ -135,6 +155,13 @@ plot.resp_indicator <- function(x,y,...){
 #' at least one flagging strategy.
 #'
 #' In logical terms, the normalized agreement is `sum(fs1 & fs2) / sum(fs1 | fs2)`.
+#'
+#' @examples
+#' resp_distributions(nep) |>
+#'   flag_resp(ii_mean > 3,
+#'    ii_sd > 1,
+#'    ii_mean > 3 & ii_sd > 1) |>
+#'   summary()
 #'
 #' @exportS3Method base::summary
 summary.flag_resp <- function(object,normalize = F,...){

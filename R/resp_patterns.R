@@ -1,6 +1,6 @@
-## Response pattern indicators (under development)
+## Response pattern indicators
 #
-#' Compute response pattern indicators (under development)
+#' Compute response pattern indicators
 #'
 #' Compute response pattern indicators for responses to multi-item scales or matrix
 #' questions.

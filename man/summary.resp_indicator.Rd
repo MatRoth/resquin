@@ -17,11 +17,16 @@ quantiles which are calculated. Default is \code{c(0,0.25,0.5,0.75,1)}.}
 \value{
 A resp_indicator summary object. Works like a list with two elements:
 \itemize{
-\item quantile_estimates. A dataframe of estimated quantiles for the response quality indicators
+\item \code{quantile_estimates}. A dataframe of estimated quantiles for the response quality indicators
 calculated.
-\item mean_estimates. A named vector with means of response quality indicators calculated.
+\item \code{mean_estimates}. A named vector with means of response quality indicators calculated.
 }
 }
 \description{
 Summarizes results of resp_* functions.
+}
+\examples{
+resp_distributions(nep) |> summary()
+
+
 }
