@@ -196,8 +196,10 @@ Implementation of indices from the careless responding literature:
 Below are packages which use IRT to model and estimate response styles:
 *[PCMRS](https://cran.r-project.org/web/packages/PCMRS/index.html)
 *[FitResponseStyles](https://github.com/mirka-henninger/FitResponseStyles)
-\*[Model Multivariate Ordinal Responses Including Response
+*[Model Multivariate Ordinal Responses Including Response
 Styles](https://cran.r-project.org/web/packages/MultOrdRS/index.html)
+*[Person fit indices
+(Perfit)](https://www.jstatsoft.org/article/view/v074i05)
 
 # References
 
