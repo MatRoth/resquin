@@ -36,12 +36,9 @@ At the moment, `resquin` provides four functions:
 - `resp_nondifferentiation()` - Calculates response nondifferentiation
   indicators. Nondifferentiation indicators primarily measure
   straightlining. The indicators differ in how straightlining is
-  operationalized. Currently under development.
+  operationalized.
 - `resp_patterns()` - Calculates response pattern indicators (e.g. long
-  string analysis). Currently under development.
-
-(A function on response times was also planed but may require its own
-package. Data wrangling of response times is more complicated.)
+  string analysis).
 
 For information on how to use `resquin` see the vignettes [Getting
 started with

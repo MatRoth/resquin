@@ -47,13 +47,10 @@ At the moment, `resquin` provides four functions:
     survey questions).
 -   `resp_nondifferentiation()` - Calculates response nondifferentiation indicators. Nondifferentiation
     indicators primarily measure straightlining. The indicators differ in how straightlining
-    is operationalized. Currently under development.
+    is operationalized.
 -   `resp_patterns()` - Calculates response pattern indicators (e.g.
-    long string analysis). Currently under development.
+    long string analysis).
 
-(A function on response times was also planed but may require its own package.
-Data wrangling of response times is more complicated.)
-    
 For information on how to use `resquin` see the vignettes [Getting started with resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html) and [resquin in practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
 `resquin` is still under active development. Please use github [issues](https://github.com/MatRoth/resquin/issues) to file questions and bug reports or send them directly to [matthias.roth\@gesis.org](mailto:matthias.roth@gesis.org){.email}. We are happy to receive feedback! 
