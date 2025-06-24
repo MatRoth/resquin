@@ -48,7 +48,7 @@ packages and functions.
 Use the \code{summary()} function on the results to compare flagging strategies.
 
 For more details see the vignette:
-\code{vignette("help", package = "mypkg")}
+\code{vignette("Flagging respondents", package = "resquin")}
 }
 \examples{
 res_dist_indicators <- resp_distributions(nep) # Create indicator data frame
