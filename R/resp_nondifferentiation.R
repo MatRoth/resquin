@@ -38,7 +38,12 @@
 #'
 #' It should be noted that Kim et al. (2017) average the response nondifferentiation indicators to obtain an aggregate
 #' measure for response nondifferentiation. To do so, the `summary()` function can be called on the
-#' results of `resp_nondifferentiation()`.
+#' results of `resp_nondifferentiation()`. Additionally, Kim et al. (2017) removed all respondents with missing
+#' values from their study. For `resp_nondifferentiation()` this is the default behavior (`min_valid_responses = 1`).
+#' Reducing the value of `min_valid_responses` can lead to problems. For example, respondents with less valid respones
+#' will have less of an opportunity to use all response options which in turn is used to calculate the
+#' Scale Point Variation Method indicator. Thus, consider whether allowing missing responses impacts the results
+#' indicators and subsequent analyses.
 #'
 #'
 #' @section Data requirements:
