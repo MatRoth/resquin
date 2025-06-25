@@ -119,7 +119,7 @@ plot.resp_indicator <- function(x,y,...){
   x$defined_patterns <- NULL
   # Check if a column is all NA and drop
   check_na <- colSums(is.na(x)) != nrow(x)
-  x <- x[,names(!check_na)]
+  x <- x[,names(check_na)[check_na]]
 
 
   # Plot to graphics device

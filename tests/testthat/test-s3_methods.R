@@ -44,3 +44,13 @@ test_that("checking consistency of flag_resp summary output",{
       F))
 })
 
+testdata2 <- data.frame( # NA block and pattern block
+  var_a = c(NA, 2, 3, 1,NA,NA, 6,2,1,4,1,3),
+  var_b = c(NA,NA, 4,NA, 2,NA,NA,6,4,3,1,3),
+  var_c = c(NA,NA,NA, 5,NA, 3,NA,3,6,2,1,4))
+
+test_that("check that resp_styles works with plot and even numbered scales",{
+  expect_no_error(
+    resp_styles(testdata2,scale_min = 1,scale_max = 6) |> plot()
+  )
+})
