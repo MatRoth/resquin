@@ -25,7 +25,9 @@ knitr::opts_chunk$set(
 [![CRAN
 status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.org/package=resquin)
 [![R-CMD-check](https://github.com/MatRoth/resquin/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatRoth/resquin/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/MatRoth/resquin/graph/badge.svg)](https://app.codecov.io/gh/MatRoth/resquin)
+[![Codecov test
+coverage](https://codecov.io/gh/MatRoth/resquin/graph/badge.svg)](https://app.codecov.io/gh/MatRoth/resquin)
+
 <!-- badges: end -->
 
 ## About
@@ -33,10 +35,12 @@ status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.or
 `resquin` (**res**ponse **qu**ality **in**dicators) provides functions
 to calculate survey data quality indicators to help identifying
 low-quality responses [@bhaktha; @curran2016; @vanvaerenbergh2013].
-`resp_styles()`, `resp_distributions()`, `resp_nondifferentiation()` and `resp_patterns()` provide response quality indicators geared towards multi-item
-scales or matrix questions. Both multi-item scales and matrix questions
-present survey respondents with multiple questions which have the same response format,
-meaning the same number and labeling of response options.
+`resp_styles()`, `resp_distributions()`, `resp_nondifferentiation()` and
+`resp_patterns()` provide response quality indicators geared towards
+multi-item scales or matrix questions. Both multi-item scales and matrix
+questions present survey respondents with multiple questions which have
+the same response format, meaning the same number and labeling of
+response options.
 
 At the moment, `resquin` provides four functions:
 
@@ -45,20 +49,29 @@ At the moment, `resquin` provides four functions:
 -   `resp_distributions()` - Calculates response distribution indicators
     (e.g. intra-individual mean and standard deviation over a set of
     survey questions).
--   `resp_nondifferentiation()` - Calculates response nondifferentiation indicators. Nondifferentiation
-    indicators primarily measure straightlining. The indicators differ in how straightlining
-    is operationalized.
+-   `resp_nondifferentiation()` - Calculates response nondifferentiation
+    indicators. Nondifferentiation indicators primarily measure
+    straightlining. The indicators differ in how straightlining is
+    operationalized.
 -   `resp_patterns()` - Calculates response pattern indicators (e.g.
     long string analysis).
 
-For information on how to use `resquin` see the vignettes [Getting started with resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html) and [resquin in practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
+For information on how to use `resquin` see the vignettes [Getting
+started with
+resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html)
+and [resquin in
+practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
-`resquin` is still under active development. Please use github [issues](https://github.com/MatRoth/resquin/issues) to file questions and bug reports or send them directly to [matthias.roth\@gesis.org](mailto:matthias.roth@gesis.org){.email}. We are happy to receive feedback! 
+`resquin` is still under active development. Please use github
+[issues](https://github.com/MatRoth/resquin/issues) to file questions
+and bug reports or send them directly to
+[matthias.roth\@gesis.org](mailto:matthias.roth@gesis.org){.email}. We
+are happy to receive feedback!
 
 ## Installation
 
-`resquin` is available via CRAN and github. To install `resquin` from CRAN or 
-github, you can use one of the following commands:
+`resquin` is available via CRAN and github. To install `resquin` from
+CRAN or github, you can use one of the following commands:
 
 ```{r eval=FALSE}
 # Install resquin via CRAN
@@ -73,8 +86,9 @@ pak::pak("https://github.com/MatRoth/resquin")
 
 ## Getting started
 
-To use `resquin`, supply a data frame containing survey responses in wide format 
-to either `resp_styles()`, `resp_distributions()`, `resp_nondifferentiation()`, `resp_patterns()`.
+To use `resquin`, supply a data frame containing survey responses in
+wide format to either `resp_styles()`, `resp_distributions()`,
+`resp_nondifferentiation()`, `resp_patterns()`.
 
 ```{r}
 # load resquin
@@ -107,19 +121,38 @@ resp_patterns(x = testdata) |>
   round(2)
 ```
 
-For a more information on how to use `resquin` see the vignettes [Getting started with resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html) and [resquin in practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
+For a more information on how to use `resquin` see the vignettes
+[Getting started with
+resquin](https://matroth.github.io/resquin/articles/getting_started_with_resquin.html)
+and [resquin in
+practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 
-Researchers have developed a large number of response quality indicators. `resquin` only covers a few of them. The following list contains packages which provide alternative implementations of the
-indicators used in resquin or provide other indicators not used in resquin:
-* Implementation of [@kim_straightlining_2019] measures: [straightliner](https://github.com/mweylandt/straightliner/tree/main)
-* Implementation of indices from the careless responding literature: [careless](https://cran.r-project.org/package=careless)
-* Autocorrelation and pattern indices: [responsePatterns](https://cran.r-project.org/package=responsePatterns)
+Researchers have developed a large number of response quality
+indicators. `resquin` only covers a few of them. The following list
+contains packages which provide alternative implementations of the
+indicators used in `resquin` or provide other indicators not used in
+`resquin`:
 
-Below are packages which use IRT to model and estimate response styles:
-*[PCMRS](https://cran.r-project.org/package=PCMRS)
-*[FitResponseStyles](https://github.com/mirka-henninger/FitResponseStyles)
-*[Model Multivariate Ordinal Responses Including Response Styles](https://cran.r-project.org/package=MultOrdRS)
-*[Person fit indices (Perfit)](https://cran.r-project.org/package=PerFit)
+-   Implementation of [@kim_straightlining_2019] measures:
+    [straightliner](https://github.com/mweylandt/straightliner/tree/main)
 
+-   Implementation of indices from the careless responding literature:
+    [careless](https://cran.r-project.org/package=careless)
+
+-   Autocorrelation and pattern indices:
+    [responsePatterns](https://cran.r-project.org/package=responsePatterns)
+
+Below are packages which use IRT to model and estimate response styles
+and individual response quality:
+
+-   [PCMRS](https://cran.r-project.org/package=PCMRS)
+
+-   [FitResponseStyles](https://github.com/mirka-henninger/FitResponseStyles)
+
+-   [Model Multivariate Ordinal Responses Including Response
+    Styles](https://cran.r-project.org/package=MultOrdRS)
+
+-   [Person fit indices
+    (Perfit)](https://cran.r-project.org/package=PerFit)
 
 # References

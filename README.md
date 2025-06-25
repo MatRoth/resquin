@@ -10,6 +10,7 @@ status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.or
 [![R-CMD-check](https://github.com/MatRoth/resquin/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatRoth/resquin/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/MatRoth/resquin/graph/badge.svg)](https://app.codecov.io/gh/MatRoth/resquin)
+
 <!-- badges: end -->
 
 ## About
@@ -181,21 +182,31 @@ practice](https://matroth.github.io/resquin/articles/resquin_in_practice.html).
 Researchers have developed a large number of response quality
 indicators. `resquin` only covers a few of them. The following list
 contains packages which provide alternative implementations of the
-indicators used in resquin or provide other indicators not used in
-resquin: \* Implementation of ([Kim et al.
-2019](#ref-kim_straightlining_2019)) measures:
-[straightliner](https://github.com/mweylandt/straightliner/tree/main) \*
-Implementation of indices from the careless responding literature:
-[careless](https://cran.r-project.org/package=careless) \*
-Autocorrelation and pattern indices:
-[responsePatterns](https://cran.r-project.org/package=responsePatterns)
+indicators used in `resquin` or provide other indicators not used in
+`resquin`:
 
-Below are packages which use IRT to model and estimate response styles:
-*[PCMRS](https://cran.r-project.org/package=PCMRS)
-*[FitResponseStyles](https://github.com/mirka-henninger/FitResponseStyles)
-*[Model Multivariate Ordinal Responses Including Response
-Styles](https://cran.r-project.org/package=MultOrdRS) *[Person fit
-indices (Perfit)](https://cran.r-project.org/package=PerFit)
+- Implementation of ([Kim et al. 2019](#ref-kim_straightlining_2019))
+  measures:
+  [straightliner](https://github.com/mweylandt/straightliner/tree/main)
+
+- Implementation of indices from the careless responding literature:
+  [careless](https://cran.r-project.org/package=careless)
+
+- Autocorrelation and pattern indices:
+  [responsePatterns](https://cran.r-project.org/package=responsePatterns)
+
+Below are packages which use IRT to model and estimate response styles
+and individual response quality:
+
+- [PCMRS](https://cran.r-project.org/package=PCMRS)
+
+- [FitResponseStyles](https://github.com/mirka-henninger/FitResponseStyles)
+
+- [Model Multivariate Ordinal Responses Including Response
+  Styles](https://cran.r-project.org/package=MultOrdRS)
+
+- [Person fit indices
+  (Perfit)](https://cran.r-project.org/package=PerFit)
 
 # References
 
