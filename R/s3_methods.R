@@ -117,6 +117,10 @@ plot.resp_indicator <- function(x,y,...){
   x$id <- NULL
   x$arbitrary_patterns <- NULL
   x$defined_patterns <- NULL
+  # Check if a column is all NA and drop
+  check_na <- colSums(is.na(x)) != nrow(x)
+  x <- x[,names(!check_na)]
+
 
   # Plot to graphics device
   graphics::par(mfrow = c(ncol(x),1),mar = c(2,1,1.5,2))
