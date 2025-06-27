@@ -17,7 +17,7 @@ smaller than 1.
 on even numbered response scales.
 * Added tests for functions added since 0.0.2.
 * Now depends on R version being >= to R version 4.1.
-
+* Added example data set `nep` from the GESIS panel.
 
 # resquin 0.1.0
 * Added `resp_patterns()` and `resp_nondifferentiation()` as a new function.
