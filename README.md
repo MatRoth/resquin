@@ -208,6 +208,12 @@ and individual response quality:
 - [Person fit indices
   (Perfit)](https://cran.r-project.org/package=PerFit)
 
+Finally, there are packages for pattern checking:
+
+- [pattern.checks](https://cran.r-project.org/package=pattern.checks)
+
+- [bpa](https://cran.r-project.org/package=bpa)
+
 # References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
