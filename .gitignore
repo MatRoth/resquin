@@ -11,3 +11,5 @@ docs
 /doc/
 /Meta/
 inst/doc
+/revdep
+cran-comments.md

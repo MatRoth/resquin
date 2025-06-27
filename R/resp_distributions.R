@@ -208,6 +208,5 @@ mahalanobis_na<-\(x,center,cov){
   x <- sweep(x, 2L, center)
   cov <- solve(cov)
 
-  #x[is.na(x)] <- rowMeans(x,na.rm=T) #set NA to 0 to propagate numerical value instead of NA
   sqrt(rowSums(x %*% cov * x))
 }

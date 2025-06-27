@@ -1,4 +1,4 @@
-# Development version
+# resquion 0.1.1
 * Changed the way the mahalanobis distance is calculcated in `resp_distributions()`,
 if missing values are allowed. Now within respondent mean imputation is used.
 Before missing values were turned to a value of 0, which is wrong in almost any
@@ -8,7 +8,15 @@ to influence the value of the mahalanobis distance value under missing data.
 Because within respondent mean imputation is not ideal, a new section
 in the description is added to call for caution when interpreting the mahalanobis
 distance values produced by `resp_distributions()` if `min_valid_responses` is
-smaller than 0.
+smaller than 1.
+* Polished documentation (fixing typos etc.)
+* Added vignette on flagging respondents with `flag_resp()`.
+* Added a disclaimer for handling of missing data in `resp_nondifferentiation`.
+* Added documentation on s3 methods.
+* Fixed bug in s3 print function which would crash if `resp_styles()` was used
+on even numbered response scales.
+* Added tests for functions added since 0.0.2.
+
 
 # resquin 0.1.0
 * Added `resp_patterns()` and `resp_nondifferentiation()` as a new function.
