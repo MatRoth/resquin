@@ -1,4 +1,4 @@
-# resquion 0.1.1
+# resquin 0.1.1
 * Changed the way the mahalanobis distance is calculcated in `resp_distributions()`,
 if missing values are allowed. Now within respondent mean imputation is used.
 Before missing values were turned to a value of 0, which is wrong in almost any
