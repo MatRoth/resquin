@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">resquin</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,9 +40,21 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/MatRoth/resquin/blob/v0.1.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/MatRoth/resquin/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.1" id="resquin-011">resquin 0.1.1<a class="anchor" aria-label="anchor" href="#resquin-011"></a></h2>
+<ul><li>Changed the way the mahalanobis distance is calculcated in <code><a href="../reference/resp_distributions.html">resp_distributions()</a></code>, if missing values are allowed. Now within respondent mean imputation is used. Before missing values were turned to a value of 0, which is wrong in almost any case and would have skewed the results of respondents with missing values. Mean imputation is not an ideal solution, but it allows the observed data to influence the value of the mahalanobis distance value under missing data. Because within respondent mean imputation is not ideal, a new section in the description is added to call for caution when interpreting the mahalanobis distance values produced by <code><a href="../reference/resp_distributions.html">resp_distributions()</a></code> if <code>min_valid_responses</code> is smaller than 1.</li>
+<li>Polished documentation (fixing typos etc.)</li>
+<li>Added vignette on flagging respondents with <code><a href="../reference/flag_resp.html">flag_resp()</a></code>.</li>
+<li>Added a disclaimer for handling of missing data in <code>resp_nondifferentiation</code>.</li>
+<li>Added documentation on s3 methods.</li>
+<li>Fixed bug in s3 print function which would crash if <code><a href="../reference/resp_styles.html">resp_styles()</a></code> was used on even numbered response scales.</li>
+<li>Added tests for functions added since 0.0.2.</li>
+<li>Now depends on R version being &gt;= to R version 4.1.</li>
+<li>Added example data set <code>nep</code> from the GESIS panel.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="resquin-010">resquin 0.1.0<a class="anchor" aria-label="anchor" href="#resquin-010"></a></h2>
 <ul><li>Added <code><a href="../reference/resp_patterns.html">resp_patterns()</a></code> and <code><a href="../reference/resp_nondifferentiation.html">resp_nondifferentiation()</a></code> as a new function.</li>
