@@ -16,6 +16,7 @@ smaller than 1.
 * Fixed bug in s3 print function which would crash if `resp_styles()` was used
 on even numbered response scales.
 * Added tests for functions added since 0.0.2.
+* Now depends on R version being >= to R version 4.1.
 
 
 # resquin 0.1.0

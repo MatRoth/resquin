@@ -40,5 +40,5 @@ VignetteBuilder: knitr
 URL: https://github.com/MatRoth/resquin, https://matroth.github.io/resquin/
 BugReports: https://github.com/MatRoth/resquin/issues
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1)
 LazyData: true
