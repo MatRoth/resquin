@@ -1,3 +1,5 @@
+# resquin (development version)
+
 # resquin 0.1.1
 * Changed the way the mahalanobis distance is calculcated in `resp_distributions()`,
 if missing values are allowed. Now within respondent mean imputation is used.
