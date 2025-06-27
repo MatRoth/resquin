@@ -8,8 +8,6 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/resquin)](https://CRAN.R-project.org/package=resquin)
 [![R-CMD-check](https://github.com/MatRoth/resquin/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatRoth/resquin/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/MatRoth/resquin/graph/badge.svg)](https://app.codecov.io/gh/MatRoth/resquin)
 
 <!-- badges: end -->
 
